@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <EditText
+        android:id="@+id/signIn_edit_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:drawableStart="@drawable/icon_sign_username"
+        android:hint="手机号"
+        android:background="@null"
+        android:textColor="@color/inputTextColor"
+        android:theme="@style/MyEditText"
+        android:inputType="phone"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/divideLine"/>
+
+    <EditText
+        android:id="@+id/signIn_edit_psw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:drawableStart="@drawable/icon_sign_userpsw"
+        android:hint="密码"
+        android:background="@null"
+        android:textColor="@color/inputTextColor"
+        android:theme="@style/MyEditText"
+        android:layout_marginTop="20dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/divideLine"/>
+
+    <Button
+        android:id="@+id/signIn_button_signIn"
+        android:layout_width="233dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/shape_sign_button_sign_in"
+        android:text="登录"
+        android:textColor="#FFF"
+        android:textSize="16sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/signIn_text_forgetPsw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="忘记密码？"
+        android:textColor="#93A8AC"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/signIn_text_signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="还没有账号？开始注册吧"
+        android:textColor="#93A8AC"
+        android:textSize="14sp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+</LinearLayout>

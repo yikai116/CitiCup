@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <EditText
+        android:id="@+id/signUp_edit_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:hint="手机号"
+        android:background="@null"
+        android:textColor="@color/inputTextColor"
+        android:theme="@style/MyEditText"
+        android:inputType="phone"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/divideLine"/>
+
+    <EditText
+        android:id="@+id/signUp_edit_psw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:hint="密码"
+        android:background="@null"
+        android:textColor="@color/inputTextColor"
+        android:theme="@style/MyEditText"
+        android:layout_marginTop="20dp"
+        android:inputType="textPassword"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/divideLine"/>
+
+    <EditText
+        android:id="@+id/signUp_edit_psw_re"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:hint="重复密码"
+        android:background="@null"
+        android:textColor="@color/inputTextColor"
+        android:theme="@style/MyEditText"
+        android:layout_marginTop="20dp"
+        android:inputType="textPassword"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/divideLine"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/signUp_edit_con"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="验证码"
+                android:background="@null"
+                android:textColor="@color/inputTextColor"
+                android:theme="@style/MyEditText"
+                android:inputType="textPassword"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/divideLine"/>
+        </LinearLayout>
+
+        <com.ufreedom.CountDownTextView
+            android:id="@+id/signUp_button_getCon"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@color/theme_color"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:text="点击获取"
+            android:layout_marginLeft="16dp"
+            android:textColor="#FFF"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/signUp_button_signUp"
+        android:layout_width="233dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_sign_button_sign_in"
+        android:text="注册"
+        android:textColor="#FFF"
+        android:textSize="16sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/signUp_text_signIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="已有账号,登录？"
+        android:textColor="#93A8AC"
+        android:textSize="14sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+</LinearLayout>
