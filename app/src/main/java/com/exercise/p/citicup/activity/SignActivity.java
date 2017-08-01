@@ -185,7 +185,6 @@ public class SignActivity extends AppCompatActivity implements SignView {
             }
         });
 
-
         //获取验证码按钮倒计时回调函数
         signUp_button_getCon.addCountDownCallback(new CountDownTextView.CountDownCallback() {
             //开始计时，设置不可点击

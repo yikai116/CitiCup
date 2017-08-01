@@ -22,7 +22,7 @@ public interface FpswModel {
 
     @FormUrlEncoded
     @POST("getFindPswVerCode")
-    Call<MyResponse> getFindPswVerCode(
+    Call<MyResponse<String>> getFindPswVerCode(
             @Field("phone") String phone
     );
 }
