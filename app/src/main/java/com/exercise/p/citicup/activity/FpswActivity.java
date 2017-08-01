@@ -93,7 +93,6 @@ public class FpswActivity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm.isActive())
                     imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-
             }
         });
 

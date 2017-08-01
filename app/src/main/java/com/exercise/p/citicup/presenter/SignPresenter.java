@@ -57,11 +57,17 @@ public class SignPresenter {
                 Log.i("Test","success" + call.request().url().toString());
                 signView.showProgress(false);
                 MyResponse response1 = response.body();
-                if (response1.getStatus().getCode() == 1) {
+                if (response1.getStatus().getCode() == Helper.SUCCESS) {
                     signView.toMainActivity();
                 }
-                else {
+                else if (response1.getStatus().getCode() == Helper.NO_USER){
+                    signView.setSignInPhoneError(response1.getStatus().getMsg());
+                }
+                else if (response1.getStatus().getCode() == Helper.PSW_ERROR){
                     signView.setSignInPswError(response1.getStatus().getMsg());
+                }
+                else {
+                    signView.showMessage(response1.getStatus().getMsg());
                 }
             }
 
@@ -105,10 +111,18 @@ public class SignPresenter {
                 Log.i("Test",call.request().url().toString());
                 MyResponse response1 = response.body();
                 signView.showProgress(false);
-                if (response1.getStatus().getCode() == 1) {
+                if (response1.getStatus().getCode() == Helper.SUCCESS) {
                     signView.toMainActivity();
-                } else
+                }
+                else if (response1.getStatus().getCode() == Helper.USER_REGISTERED){
                     signView.setSignUpPhoneError(response1.getStatus().getMsg());
+                }
+                else if (response1.getStatus().getCode() == Helper.VERCODE_ERROR){
+                    signView.setSignUpConError(response1.getStatus().getMsg());
+                }
+                else {
+                    signView.showMessage(response1.getStatus().getMsg());
+                }
             }
 
             @Override
@@ -131,9 +145,12 @@ public class SignPresenter {
             public void onResponse(Call<MyResponse<String>> call, Response<MyResponse<String>> response) {
                 Log.i("Test","success" + call.request().url().toString());
                 Log.i("Test",response.body().getData() != null ? response.body().getData() : "null");
-                if (response.body().getStatus().getCode() == 1) {
+                if (response.body().getStatus().getCode() == Helper.SUCCESS) {
                     signView.showMessage(response.body().getData());
-                } else {
+                } else if (response.body().getStatus().getCode() == Helper.USER_REGISTERED){
+                    signView.setSignUpPhoneError(response.body().getStatus().getMsg());
+                }
+                else {
                     signView.showMessage(response.body().getStatus().getMsg());
                 }
             }

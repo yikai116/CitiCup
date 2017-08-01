@@ -28,20 +28,10 @@ public interface SignModel {
             @Body SignUpParam param
     );
 
-    @POST("findPsw")
-    Call<MyResponse> findPsw(
-            @Body FindPswParam param
-    );
-
     @FormUrlEncoded
     @POST("getSignUpVerCode")
     Call<MyResponse<String>> getSignUpVerCode(
             @Field("phone") String phone
     );
 
-    @FormUrlEncoded
-    @POST("getSignUpVerCode")
-    Call<MyResponse> getFindPswVerCode(
-            @Field("phone") String phone
-    );
 }

@@ -19,120 +19,137 @@
             android:layout_gravity="center"/>
 
     </android.support.v7.widget.Toolbar>
-    <EditText
-        android:id="@+id/fPsw_edit_phone"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:hint="手机号"
-        android:background="@null"
-        android:textColor="@color/inputTextColor"
-        android:theme="@style/MyEditText"
-        android:layout_marginTop="20dp"
-        android:inputType="phone"/>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@color/divideLine"/>
-    <EditText
-        android:id="@+id/fPsw_edit_psw"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:hint="新密码"
-        android:background="@null"
-        android:textColor="@color/inputTextColor"
-        android:theme="@style/MyEditText"
-        android:layout_marginTop="20dp"
-        android:inputType="textPassword"/>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@color/divideLine"/>
-
-    <EditText
-        android:id="@+id/fPsw_edit_psw_re"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:hint="重复密码"
-        android:background="@null"
-        android:textColor="@color/inputTextColor"
-        android:theme="@style/MyEditText"
-        android:layout_marginTop="20dp"
-        android:inputType="textPassword"/>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@color/divideLine"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp">
-
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
             android:orientation="vertical">
-
             <EditText
-                android:id="@+id/fPsw_edit_con"
+                android:id="@+id/fPsw_edit_phone"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:hint="验证码"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:hint="手机号"
                 android:background="@null"
                 android:textColor="@color/inputTextColor"
                 android:theme="@style/MyEditText"
+                android:layout_marginTop="20dp"
+                android:inputType="phone"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@color/divideLine"/>
+            <EditText
+                android:id="@+id/fPsw_edit_psw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:hint="新密码"
+                android:background="@null"
+                android:textColor="@color/inputTextColor"
+                android:theme="@style/MyEditText"
+                android:layout_marginTop="20dp"
                 android:inputType="textPassword"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
                 android:background="@color/divideLine"/>
+
+            <EditText
+                android:id="@+id/fPsw_edit_psw_re"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:hint="重复密码"
+                android:background="@null"
+                android:textColor="@color/inputTextColor"
+                android:theme="@style/MyEditText"
+                android:layout_marginTop="20dp"
+                android:inputType="textPassword"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@color/divideLine"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/fPsw_edit_con"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:hint="验证码"
+                        android:background="@null"
+                        android:textColor="@color/inputTextColor"
+                        android:theme="@style/MyEditText"
+                        android:inputType="textPassword"/>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/divideLine"/>
+                </LinearLayout>
+
+                <com.ufreedom.CountDownTextView
+                    android:id="@+id/fPsw_button_getCon"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@color/theme_color"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:text="点击获取"
+                    android:layout_marginLeft="16dp"
+                    android:textColor="#FFF"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/fPsw_button_commit"
+                android:layout_width="233dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_sign_button_sign_in"
+                android:text="提交"
+                android:textColor="#FFF"
+                android:textSize="16sp" />
         </LinearLayout>
+        <ProgressBar
+            android:id="@+id/fpsw_processBar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/theme_color"
+            android:visibility="gone" />
+    </RelativeLayout>
 
-        <com.ufreedom.CountDownTextView
-            android:id="@+id/fPsw_button_getCon"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:background="@color/theme_color"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:text="点击获取"
-            android:layout_marginLeft="16dp"
-            android:textColor="#FFF"
-            android:textSize="12sp"/>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/fPsw_button_commit"
-        android:layout_width="233dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="25dp"
-        android:layout_gravity="center"
-        android:background="@drawable/shape_sign_button_sign_in"
-        android:text="提交"
-        android:textColor="#FFF"
-        android:textSize="16sp" />
 
 </LinearLayout>
