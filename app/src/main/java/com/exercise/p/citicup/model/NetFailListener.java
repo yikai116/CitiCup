@@ -1,4 +1,4 @@
-package com.exercise.p.citicup.dao;
+package com.exercise.p.citicup.model;
 
 /**
  * Created by p on 2017/6/4.

@@ -16,6 +16,7 @@ import android.text.InputType;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
@@ -34,7 +35,7 @@ import com.ufreedom.CountDownTextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignActivity extends AppCompatActivity implements SignView{
+public class SignActivity extends AppCompatActivity implements SignView {
 
     //登录控件
     private EditText signIn_edit_phone;
@@ -72,23 +73,29 @@ public class SignActivity extends AppCompatActivity implements SignView{
         initSignUpView(signUpView);
     }
 
-    //初始化整体界面
-    private void initView(){
+    /**
+     * 初始化整体界面
+     */
+    private void initView() {
         pager = (ViewPager) findViewById(R.id.sign_pager);
         root = (RelativeLayout) findViewById(R.id.root_sign);
         progressBar = (ProgressBar) findViewById(R.id.sign_processBar);
-        signInView = getLayoutInflater().inflate(R.layout.fragment_sign_in,null);
-        signUpView = getLayoutInflater().inflate(R.layout.fragment_sign_up,null);
+        signInView = getLayoutInflater().inflate(R.layout.fragment_sign_in, null);
+        signUpView = getLayoutInflater().inflate(R.layout.fragment_sign_up, null);
         presenter = new SignPresenter(this);
         lists.add(signInView);
         lists.add(signUpView);
         pagerAdapter = new ViewPagerAdapter(lists);
         pager.setAdapter(pagerAdapter);
-        pager.setPageTransformer(true,new MyPageTransformer());
-        controlKeyboardLayout(root, pager);
+        pager.setPageTransformer(true, new MyPageTransformer());
+        controlKeyboardLayout(root);
     }
-    //初始化登录界面
-    private void initSignInView(View signInView) {
+
+    /**
+     * 初始化登录界面
+     * @param signInView 登录部分界面
+     */
+    private void initSignInView(final View signInView) {
         signIn_edit_phone = (EditText) signInView.findViewById(R.id.signIn_edit_phone);
         signIn_edit_psw = (EditText) signInView.findViewById(R.id.signIn_edit_psw);
         signIn_edit_psw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD + InputType.TYPE_CLASS_TEXT);
@@ -98,14 +105,14 @@ public class SignActivity extends AppCompatActivity implements SignView{
 
         //设置字体颜色
         SpannableStringBuilder builder = new SpannableStringBuilder(signIn_signUp.getText().toString());
-        ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(this,R.color.theme_color));
-        builder.setSpan(blueSpan,8,10,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.theme_color));
+        builder.setSpan(blueSpan, 8, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         signIn_signUp.setText(builder);
 
         signIn_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pager.setCurrentItem(1,true);
+                pager.setCurrentItem(1, true);
             }
         });
 
@@ -113,7 +120,7 @@ public class SignActivity extends AppCompatActivity implements SignView{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(SignActivity.this,FpswActivity.class);
+                intent.setClass(SignActivity.this, FpswActivity.class);
                 startActivity(intent);
             }
         });
@@ -121,18 +128,22 @@ public class SignActivity extends AppCompatActivity implements SignView{
         signIn_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //如果软键盘处于显示状态，则隐藏
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (imm.isActive())
-                    imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                //隐藏软键盘
+                ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE))
+                        .hideSoftInputFromWindow(SignActivity.this.getCurrentFocus()
+                                .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 //进行登录
                 presenter.signIn(signIn_edit_phone.getText().toString()
-                        ,signIn_edit_psw.getText().toString());
+                        , signIn_edit_psw.getText().toString());
 
             }
         });
     }
-    //初始化注册界面
+
+    /**
+     * 初始化注册界面
+     * @param signUpView 注册部分界面
+     */
     private void initSignUpView(View signUpView) {
         signUp_edit_phone = (EditText) signUpView.findViewById(R.id.signUp_edit_phone);
         signUp_edit_psw = (EditText) signUpView.findViewById(R.id.signUp_edit_psw);
@@ -144,29 +155,29 @@ public class SignActivity extends AppCompatActivity implements SignView{
 
         //设置字体颜色
         SpannableStringBuilder builder = new SpannableStringBuilder(signUp_signIn.getText().toString());
-        ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(this,R.color.theme_color));
-        builder.setSpan(blueSpan,5,7,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.theme_color));
+        builder.setSpan(blueSpan, 5, 7, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         signUp_signIn.setText(builder);
 
         signUp_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pager.setCurrentItem(0,true);
+                pager.setCurrentItem(0, true);
             }
         });
 
         //未点击获取验证码之前，设置注册按钮不可点击，并且修改颜色
         signUp_signUp.setEnabled(false);
         GradientDrawable drawable = (GradientDrawable) signUp_signUp.getBackground();
-        drawable.setColor(ContextCompat.getColor(SignActivity.this,R.color.button_grey));
-//        signUp_signUp.setBackground(drawable);
+        drawable.setColor(ContextCompat.getColor(SignActivity.this, R.color.button_grey));
         //注册按钮监听器
         signUp_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (imm.isActive())
-                    imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                //隐藏软键盘
+                ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE))
+                        .hideSoftInputFromWindow(SignActivity.this.getCurrentFocus()
+                                .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 presenter.signUp(signUp_edit_phone.getText().toString()
                         , signUp_edit_psw.getText().toString()
                         , signUp_edit_psw_re.getText().toString()
@@ -174,22 +185,25 @@ public class SignActivity extends AppCompatActivity implements SignView{
             }
         });
 
+
         //获取验证码按钮倒计时回调函数
         signUp_button_getCon.addCountDownCallback(new CountDownTextView.CountDownCallback() {
             //开始计时，设置不可点击
             @Override
             public void onTick(CountDownTextView countDownTextView, long millisUntilFinished) {
-                countDownTextView.setClickable(false);
-                countDownTextView.setBackgroundColor(ContextCompat.getColor(SignActivity.this,R.color.button_grey));
+                signUp_button_getCon.setClickable(false);
+                signUp_button_getCon.setBackgroundColor(ContextCompat.getColor(SignActivity.this, R.color.button_grey));
             }
+
             //计时结束，设置可点击
             @Override
             public void onFinish(CountDownTextView countDownTextView) {
-                countDownTextView.setClickable(true);
-                countDownTextView.setText("点击获取");
-                countDownTextView.setBackgroundColor(ContextCompat.getColor(SignActivity.this,R.color.theme_color));
+                signUp_button_getCon.setClickable(true);
+                signUp_button_getCon.setText("点击获取");
+                signUp_button_getCon.setBackgroundColor(ContextCompat.getColor(SignActivity.this, R.color.theme_color));
             }
         });
+
         //设置倒计时View
         signUp_button_getCon.setTimeFormat(CountDownTextView.TIME_SHOW_S);
         signUp_button_getCon.setAutoDisplayText(true);
@@ -197,19 +211,23 @@ public class SignActivity extends AppCompatActivity implements SignView{
         signUp_button_getCon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("Test", "点击");
                 long timeInFuture = SystemClock.elapsedRealtime() + 1000 * 60;
                 signUp_button_getCon.setTimeInFuture(timeInFuture);
                 signUp_button_getCon.start();
                 signUp_signUp.setEnabled(true);
                 GradientDrawable drawable = (GradientDrawable) signUp_signUp.getBackground();
-                drawable.setColor(ContextCompat.getColor(SignActivity.this,R.color.theme_color));
-//                signUp_signUp.setBackground(drawable);
+                drawable.setColor(ContextCompat.getColor(SignActivity.this, R.color.theme_color));
+                presenter.getSignUpVerCode(signUp_edit_phone.getText().toString());
             }
         });
     }
 
-    //控制键盘布局
-    private void controlKeyboardLayout(final RelativeLayout root, final View view) {
+    /**
+     * 控制键盘布局
+     * @param root 根布局控件
+     */
+    private void controlKeyboardLayout(final RelativeLayout root) {
         root.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
@@ -228,7 +246,7 @@ public class SignActivity extends AppCompatActivity implements SignView{
                                 // 获取scrollToView在窗体的坐标
                                 v.getLocationInWindow(location);
                                 int y = location[1] + 500 - rect.bottom;
-                                root.scrollBy(0,y);
+                                root.scrollBy(0, y);
                             }
                         } else {
                             // 软键盘没有弹出来的时候
@@ -240,12 +258,12 @@ public class SignActivity extends AppCompatActivity implements SignView{
 
     @Override
     public void setSignInPhoneError(String msg) {
-        setError(signIn_edit_phone,msg);
+        setError(signIn_edit_phone, msg);
     }
 
     @Override
     public void setSignInPswError(String msg) {
-        setError(signIn_edit_psw,msg);
+        setError(signIn_edit_psw, msg);
     }
 
     @Override
@@ -256,15 +274,15 @@ public class SignActivity extends AppCompatActivity implements SignView{
     @Override
     public void toMainActivity() {
         Intent intent = new Intent();
-        intent.setClass(SignActivity.this,MainActivity.class);
+        intent.setClass(SignActivity.this, MainActivity.class);
         startActivity(intent);
         this.finish();
     }
 
     @Override
     public void showProgress(boolean show) {
-        progressBar.setVisibility(show?View.VISIBLE:View.INVISIBLE);
-        pager.setVisibility(show?View.INVISIBLE:View.VISIBLE);
+        progressBar.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        pager.setVisibility(show ? View.INVISIBLE : View.VISIBLE);
     }
 
     @Override
@@ -283,58 +301,72 @@ public class SignActivity extends AppCompatActivity implements SignView{
     }
 
     @Override
+    public void cancelSignUpGetVerCode() {
+        signUp_button_getCon.cancel();
+        signUp_button_getCon.setClickable(true);
+        signUp_button_getCon.setText("点击获取");
+        signUp_button_getCon.setBackgroundColor(ContextCompat.getColor(SignActivity.this, R.color.theme_color));
+    }
+
+    @Override
     public void setSignUpConError(String msg) {
         setError(signUp_edit_con, msg);
     }
 
-    private void setError(EditText view, String msg){
+    /**
+     * EditText设置错误信息
+     * @param view EditText控件
+     * @param msg  错误信息
+     */
+    private void setError(EditText view, String msg) {
         SpannableStringBuilder builder = new SpannableStringBuilder(msg);
         ForegroundColorSpan blueSpan = new ForegroundColorSpan(Color.RED);
-        builder.setSpan(blueSpan,0,msg.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(blueSpan, 0, msg.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         view.setText("");
         view.setHint(builder);
         view.requestFocus();
     }
 
-    //ViewPager适配器
-    private class ViewPagerAdapter extends PagerAdapter{
+    /**
+     * ViewPager适配器
+     */
+    private class ViewPagerAdapter extends PagerAdapter {
 
         List<View> viewLists;
 
-        public ViewPagerAdapter(List<View> lists)
-        {
+        public ViewPagerAdapter(List<View> lists) {
             viewLists = lists;
         }
+
         //获得size
         @Override
         public int getCount() {
-            // TODO Auto-generated method stub
             return viewLists.size();
         }
 
         @Override
         public boolean isViewFromObject(View arg0, Object arg1) {
-            // TODO Auto-generated method stub
             return arg0 == arg1;
         }
+
         //销毁Item
         @Override
-        public void destroyItem(View view, int position, Object object)
-        {
+        public void destroyItem(View view, int position, Object object) {
             ((ViewPager) view).removeView(viewLists.get(position));
         }
+
         //实例化Item
         @Override
-        public Object instantiateItem(View view, int position)
-        {
+        public Object instantiateItem(View view, int position) {
             ((ViewPager) view).addView(viewLists.get(position), 0);
-
             return viewLists.get(position);
         }
 
     }
 
-    //ViewPager过渡动画
+    /**
+     * ViewPager过渡动画
+     */
     private class MyPageTransformer implements ViewPager.PageTransformer {
 
         private static final float ROT_MAX = 20.0f;
@@ -342,15 +374,12 @@ public class SignActivity extends AppCompatActivity implements SignView{
 
         /**
          * @param view     滑动中的那个view
-         * @param position
+         * @param position 滑动的比例
          */
         public void transformPage(View view, float position) {
-
-
             //界面不可见
             if (position < -1) {
                 ViewCompat.setRotation(view, 0);
-
             }
             //界面可见
             else if (position <= 1) {
@@ -358,7 +387,6 @@ public class SignActivity extends AppCompatActivity implements SignView{
                 ViewCompat.setPivotX(view, view.getMeasuredWidth() * 0.5f);
                 ViewCompat.setPivotY(view, view.getMeasuredHeight());
                 ViewCompat.setRotation(view, mRot);
-
             }
             //界面不可见
             else {

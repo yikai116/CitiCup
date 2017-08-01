@@ -1,4 +1,4 @@
-package com.exercise.p.citicup.json;
+package com.exercise.p.citicup.dto;
 
 /**
  * Created by p on 2017/5/11.

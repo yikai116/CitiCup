@@ -1,9 +1,16 @@
 package com.exercise.p.citicup.presenter;
 
-import com.exercise.p.citicup.dao.RetrofitInstance;
-import com.exercise.p.citicup.dao.SignModel;
+import android.util.Log;
+
+import com.exercise.p.citicup.Helper;
+import com.exercise.p.citicup.dto.Code;
+import com.exercise.p.citicup.dto.SignInParam;
+import com.exercise.p.citicup.dto.SignUpParam;
+import com.exercise.p.citicup.dto.response.MyResponse;
+import com.exercise.p.citicup.model.RetrofitInstance;
+import com.exercise.p.citicup.model.SignModel;
 import com.exercise.p.citicup.view.SignView;
-import com.exercise.p.citicup.json.SignIn_Res;
+import com.google.gson.Gson;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,75 +27,123 @@ public class SignPresenter {
     private SignView signView;
     private SignModel signModel;
 
-    public SignPresenter(SignView view){
+    public SignPresenter(SignView view) {
         signView = view;
         signModel = RetrofitInstance.getRetrofit().create(SignModel.class);
     }
 
-    public void signIn(String phone, String psw){
-        if (!isPhoneValid(phone)){
+    public void signIn(String phone, String psw) {
+        if (!isPhoneValid(phone)) {
             signView.setSignInPhoneError("用户名格式错误");
             return;
         }
-        if (!isPasswordValid(psw)){
+        if (!isPasswordValid(psw)) {
             signView.setSignInPswError("密码格式错误");
             return;
         }
+        SignInParam param = new SignInParam();
+        param.setPhone(phone);
+        try {
+            param.setPsw(Helper.md5Encode(psw));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        param.setToken("123");
         signView.showProgress(true);
-        Call<SignIn_Res> signInResCall = signModel.sign_in(phone,psw);
-        signInResCall.enqueue(new Callback<SignIn_Res>() {
+        Call<MyResponse> signInResCall = signModel.signIn(param);
+        signInResCall.enqueue(new Callback<MyResponse>() {
             @Override
-            public void onResponse(Call<SignIn_Res> call, Response<SignIn_Res> response) {
+            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                Log.i("Test","success" + call.request().url().toString());
                 signView.showProgress(false);
-                if (response.body().isIsOk())
+                MyResponse response1 = response.body();
+                if (response1.getStatus().getCode() == 1) {
                     signView.toMainActivity();
-                else
-                    signView.setSignInPswError("账号或密码错误");
+                }
+                else {
+                    signView.setSignInPswError(response1.getStatus().getMsg());
+                }
             }
 
             @Override
-            public void onFailure(Call<SignIn_Res> call, Throwable t) {
+            public void onFailure(Call<MyResponse> call, Throwable t) {
+                Log.i("Test",call.request().url().toString());
+                signView.showProgress(false);
                 signView.showMessage("网络连接错误");
             }
         });
 
     }
 
-    public void signUp(String phone, String psw, String psw_re, String con_code){
-        if (!isPhoneValid(phone)){
+    public void signUp(String phone, String psw, String psw_re, String verCode) {
+        if (!isPhoneValid(phone)) {
             signView.setSignUpPhoneError("用户名格式错误");
             return;
         }
-        if (!isPasswordValid(psw)){
+        if (!isPasswordValid(psw)) {
             signView.setSignUpPswError("密码格式错误");
             return;
         }
-        if (!psw_re.equals(psw)){
+        if (!psw_re.equals(psw)) {
             signView.setSignUpPswReError("两次密码不匹配");
             return;
         }
-        if (!con_code.equals("1234")){
-            signView.setSignUpConError("验证码不正确");
-            return;
+        SignUpParam param = new SignUpParam();
+        param.setPhone(phone);
+        try {
+            param.setPsw(Helper.md5Encode(psw));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        param.setToken("123");
+        param.setVerCode(verCode);
         signView.showProgress(true);
-        Call<SignIn_Res> signInResCall = signModel.sign_up(phone,psw,"2015141463221","大帅比","男");
-        signInResCall.enqueue(new Callback<SignIn_Res>() {
+        Call<MyResponse> call = signModel.signUp(param);
+        call.enqueue(new Callback<MyResponse>() {
             @Override
-            public void onResponse(Call<SignIn_Res> call, Response<SignIn_Res> response) {
+            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                Log.i("Test",call.request().url().toString());
+                MyResponse response1 = response.body();
                 signView.showProgress(false);
-                if (response.body().isIsOk()) {
-                    signView.showMessage("注册成功，已自动登录~");
+                if (response1.getStatus().getCode() == 1) {
                     signView.toMainActivity();
-                }
-                else
-                    signView.setSignUpPhoneError("账号已存在");
+                } else
+                    signView.setSignUpPhoneError(response1.getStatus().getMsg());
             }
 
             @Override
-            public void onFailure(Call<SignIn_Res> call, Throwable t) {
+            public void onFailure(Call<MyResponse> call, Throwable t) {
+                Log.i("Test",call.request().url().toString());
+                signView.showProgress(false);
                 signView.showMessage("网络连接错误");
+            }
+        });
+    }
+
+    public void getSignUpVerCode(String phone){
+        if (!isPhoneValid(phone)) {
+            signView.setSignUpPhoneError("用户名格式错误");
+            return;
+        }
+        Call<MyResponse<String>> call = signModel.getSignUpVerCode(phone);
+        call.enqueue(new Callback<MyResponse<String>>() {
+            @Override
+            public void onResponse(Call<MyResponse<String>> call, Response<MyResponse<String>> response) {
+                Log.i("Test","success" + call.request().url().toString());
+                Log.i("Test",response.body().getData() != null ? response.body().getData() : "null");
+                if (response.body().getStatus().getCode() == 1) {
+                    signView.showMessage(response.body().getData());
+                } else {
+                    signView.showMessage(response.body().getStatus().getMsg());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyResponse<String>> call, Throwable t) {
+                Log.i("Test",call.request().url().toString());
+                signView.showProgress(false);
+                signView.showMessage("网络连接错误");
+                signView.cancelSignUpGetVerCode();
             }
         });
     }
@@ -99,7 +154,6 @@ public class SignPresenter {
         Matcher m = p.matcher(phone);
         return m.matches();
     }
-
 
     private boolean isPasswordValid(String password) {
         return password.length() > 5;
