@@ -48,7 +48,7 @@ public class SignPresenter {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        param.setToken("123");
+        param.setToken(Helper.IMEI);
         signView.showProgress(true);
         Call<MyResponse> signInResCall = signModel.signIn(param);
         signInResCall.enqueue(new Callback<MyResponse>() {
@@ -101,7 +101,7 @@ public class SignPresenter {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        param.setToken("123");
+        param.setToken(Helper.IMEI);
         param.setVerCode(verCode);
         signView.showProgress(true);
         Call<MyResponse> call = signModel.signUp(param);

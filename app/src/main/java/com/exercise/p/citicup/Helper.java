@@ -1,9 +1,19 @@
 package com.exercise.p.citicup;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.support.v4.content.ContextCompat;
+import android.telephony.TelephonyManager;
+import android.util.Log;
+
+import com.exercise.p.citicup.activity.WelcomeActivity;
+
 import java.security.MessageDigest;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Random;
+
+import static android.content.Context.TELEPHONY_SERVICE;
 
 /**
  * Created by p on 2017/7/31.
@@ -30,6 +40,8 @@ public class Helper {
      * 用户存在
      */
     public static final int USER_REGISTERED = -5;
+
+    public static String IMEI = null;
 
     /**
      * 密码MD5加密算法
@@ -58,6 +70,30 @@ public class Helper {
             hexValue.append(Integer.toHexString(val));
         }
         return hexValue.toString();
+    }
+
+    public static String getIMEI(Context context){
+        try {
+            TelephonyManager TelephonyMgr = (TelephonyManager)context.getSystemService(TELEPHONY_SERVICE);
+            return TelephonyMgr.getDeviceId();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return getMyIMEI();
+        }
+    }
+
+    private static String getMyIMEI(){
+        String base = "abcdefghijklmnopqrstuvwxyz0123456789";
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+        String token;
+        for (int i = 0; i < 15; i++) {
+            int number = random.nextInt(base.length());
+            sb.append(base.charAt(number));
+        }
+        token = sb.toString();
+        return token;
     }
 
 }
