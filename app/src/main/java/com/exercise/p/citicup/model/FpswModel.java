@@ -15,11 +15,21 @@ import retrofit2.http.POST;
  */
 
 public interface FpswModel {
+    /**
+     * 找回密码接口
+     * @param param 传入json数据
+     * @return 返回结果信息
+     */
     @POST("findPsw")
     Call<MyResponse> findPsw(
             @Body FindPswParam param
     );
 
+    /**
+     * 得到修改密码的验证码
+     * @param phone 用户修改密码的手机号
+     * @return 返回验证码
+     */
     @FormUrlEncoded
     @POST("getFindPswVerCode")
     Call<MyResponse<String>> getFindPswVerCode(

@@ -21,10 +21,16 @@ public class RetrofitInstance {
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build();
 
+    /**
+     * @return 不带验证码的Retrofit
+     */
     public static Retrofit getRetrofit() {
         return retrofit;
     }
 
+    /**
+     * @return 带验证码的Retrofit
+     */
     public static Retrofit getRetrofitWithToken() {
         return retrofitWithToken;
     }

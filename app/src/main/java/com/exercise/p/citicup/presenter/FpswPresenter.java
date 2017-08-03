@@ -21,14 +21,22 @@ import retrofit2.Response;
  */
 
 public class FpswPresenter {
-    FpswView fpswView;
-    FpswModel fpswModel;
+
+    private FpswView fpswView;
+    private FpswModel fpswModel;
 
     public FpswPresenter(FpswView fpswView) {
         this.fpswView = fpswView;
         fpswModel = RetrofitInstance.getRetrofit().create(FpswModel.class);
     }
 
+    /**
+     * 找回密码
+     * @param phone 用户手机号
+     * @param psw 用户新密码
+     * @param psw_re 新密码重复
+     * @param verCode 验证码
+     */
     public void findPsw(String phone, String psw, String psw_re, String verCode) {
         if (!isPhoneValid(phone)) {
             fpswView.setFpswPhoneError("用户名格式错误");
@@ -81,6 +89,10 @@ public class FpswPresenter {
         });
     }
 
+    /**
+     * 得到找回密码验证码
+     * @param phone 用户手机号
+     */
     public void getFpswVerCode(String phone){
         if (!isPhoneValid(phone)) {
             fpswView.setFpswPhoneError("用户名格式错误");
@@ -112,6 +124,11 @@ public class FpswPresenter {
         });
     }
 
+    /**
+     * 判断手机号是否合格
+     * @param phone 手机号
+     * @return 是否合格
+     */
     private boolean isPhoneValid(String phone) {
         String regExp = "^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\\d{8}$";
         Pattern p = Pattern.compile(regExp);
@@ -119,6 +136,11 @@ public class FpswPresenter {
         return m.matches();
     }
 
+    /**
+     * 判断面是否小于6位
+     * @param password 密码
+     * @return 是否小于6位
+     */
     private boolean isPasswordValid(String password) {
         return password.length() > 5;
     }

@@ -18,16 +18,31 @@ import retrofit2.http.Query;
  */
 
 public interface SignModel {
+    /**
+     * 登录
+     * @param param 用户信息
+     * @return 返回结果信息
+     */
     @POST("signIn")
     Call<MyResponse> signIn(
             @Body SignInParam param
     );
 
+    /**
+     * 注册
+     * @param param 用户信息
+     * @return 返回结果信息
+     */
     @POST("signUp")
     Call<MyResponse> signUp(
             @Body SignUpParam param
     );
 
+    /**
+     * 得到注册时的验证码
+     * @param phone 用户手机号
+     * @return 返回结果信息
+     */
     @FormUrlEncoded
     @POST("getSignUpVerCode")
     Call<MyResponse<String>> getSignUpVerCode(

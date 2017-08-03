@@ -30,11 +30,13 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        //从手机内存中得到标识符
         sharedPreferences = getSharedPreferences("AppInfo", MODE_PRIVATE);
         Helper.IMEI = sharedPreferences.getString("IMEI", Helper.getIMEI(this));
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("IMEI", Helper.IMEI);
         editor.apply();
+        //请求验证标识符
         WelcomeModel welcomeModel = RetrofitInstance.getRetrofit().create(WelcomeModel.class);
         Call<MyResponse> call = welcomeModel.verToken(Helper.IMEI);
         call.enqueue(new Callback<MyResponse>() {
@@ -62,6 +64,9 @@ public class WelcomeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 欢迎界面等待任务，持续1s
+     */
     private class WelAsyncTask extends AsyncTask<Void, Void, Integer> {
 
         @Override

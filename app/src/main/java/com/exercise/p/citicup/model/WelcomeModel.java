@@ -14,6 +14,11 @@ import retrofit2.http.POST;
  */
 
 public interface WelcomeModel {
+    /**
+     * 验证标识符
+     * @param token 标识符
+     * @return 返回信息
+     */
     @FormUrlEncoded
     @POST("verToken")
     Call<MyResponse> verToken(
