@@ -24,7 +24,7 @@
         <activity android:name=".activity.SignActivity"
             android:theme="@style/NoTitle"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.FpswActivity"></activity>
+        <activity android:name=".activity.FpswActivity"/>
     </application>
 
 </manifest>

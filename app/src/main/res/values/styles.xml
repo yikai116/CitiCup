@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/theme_color</item>
-        <item name="colorPrimaryDark">#8e6fd7f7</item>
+        <item name="colorPrimaryDark">#9e211e1e</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     
@@ -24,6 +24,9 @@
         <item name="android:paddingBottom">11dp</item>
     </style>
 
+    <style name="TabText">
+        <item name="android:textSize">12sp</item>
+    </style>
 
 
 </resources>

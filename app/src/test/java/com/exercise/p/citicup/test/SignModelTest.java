@@ -48,20 +48,7 @@ public class SignModelTest {
     }
     @Test
     public void getSignUpVerCode() throws Exception {
-        Call<MyResponse> call = signModel.getSignUpVerCode("15196649548");
-        System.out.println("23");
-        call.enqueue(new Callback<MyResponse>() {
-            @Override
-            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                Log.i("Test","success" + call.request().url().toString());
-            }
 
-            @Override
-            public void onFailure(Call<MyResponse> call, Throwable t) {
-                System.out.println(call.request().url().toString());
-                System.out.println(call.request().body().toString());
-            }
-        });
 
         System.out.println("32");
     }
