@@ -3,14 +3,12 @@ package com.exercise.p.citicup.presenter;
 import android.util.Log;
 
 import com.exercise.p.citicup.Helper;
-import com.exercise.p.citicup.dto.Code;
 import com.exercise.p.citicup.dto.SignInParam;
 import com.exercise.p.citicup.dto.SignUpParam;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.model.RetrofitInstance;
 import com.exercise.p.citicup.model.SignModel;
 import com.exercise.p.citicup.view.SignView;
-import com.google.gson.Gson;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -153,6 +151,7 @@ public class SignPresenter {
     public void getSignUpVerCode(String phone){
         if (!isPhoneValid(phone)) {
             signView.setSignUpPhoneError("用户名格式错误");
+            signView.cancelGetVerCode();
             return;
         }
         Call<MyResponse<String>> call = signModel.getSignUpVerCode(phone);
@@ -176,7 +175,7 @@ public class SignPresenter {
                 Log.i("Test",call.request().url().toString());
                 signView.showProgress(false);
                 signView.showMessage("网络连接错误");
-                signView.cancelSignUpGetVerCode();
+                signView.cancelGetVerCode();
             }
         });
     }

@@ -300,11 +300,15 @@ public class SignActivity extends AppCompatActivity implements SignView {
     }
 
     @Override
-    public void cancelSignUpGetVerCode() {
+    public void cancelGetVerCode() {
         signUp_button_getCon.cancel();
         signUp_button_getCon.setClickable(true);
         signUp_button_getCon.setText("点击获取");
         signUp_button_getCon.setBackgroundColor(ContextCompat.getColor(SignActivity.this, R.color.theme_color));
+
+        signUp_signUp.setEnabled(false);
+        GradientDrawable drawable = (GradientDrawable) signUp_signUp.getBackground();
+        drawable.setColor(ContextCompat.getColor(SignActivity.this,R.color.button_grey));
     }
 
     @Override

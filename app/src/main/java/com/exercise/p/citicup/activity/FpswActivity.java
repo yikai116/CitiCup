@@ -149,9 +149,14 @@ public class FpswActivity extends AppCompatActivity implements FpswView{
 
     @Override
     public void cancelGetVerCode() {
+        countDownTextView.cancel();
         countDownTextView.setClickable(true);
         countDownTextView.setText("点击获取");
         countDownTextView.setBackgroundColor(ContextCompat.getColor(FpswActivity.this,R.color.theme_color));
+
+        fPsw_button_commit.setEnabled(false);
+        GradientDrawable drawable = (GradientDrawable) fPsw_button_commit.getBackground();
+        drawable.setColor(ContextCompat.getColor(FpswActivity.this,R.color.button_grey));
     }
 
     @Override

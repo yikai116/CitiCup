@@ -96,6 +96,7 @@ public class FpswPresenter {
     public void getFpswVerCode(String phone){
         if (!isPhoneValid(phone)) {
             fpswView.setFpswPhoneError("用户名格式错误");
+            fpswView.cancelGetVerCode();
             return;
         }
         Call<MyResponse<String>> call = fpswModel.getFindPswVerCode(phone);

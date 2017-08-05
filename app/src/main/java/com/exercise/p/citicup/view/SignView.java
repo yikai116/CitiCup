@@ -13,7 +13,7 @@ public interface SignView {
     void setSignUpPhoneError(String msg);
     void setSignUpPswError(String msg);
     void setSignUpPswReError(String msg);
-    void cancelSignUpGetVerCode();
+    void cancelGetVerCode();
 
     void showMessage(String msg);
     void toMainActivity();
