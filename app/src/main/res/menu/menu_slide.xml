@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/side_insul"
+        android:icon="@drawable/icon_side_insul"
+        android:title="保险偏好"
+        />
+
+    <item
+        android:id="@+id/side_manal"
+        android:icon="@drawable/icon_side_manal"
+        android:title="理财偏好"
+        />
+
+
+    <item
+        android:id="@+id/side_riskt"
+        android:icon="@drawable/icon_side_riskt"
+        android:title="风险测评"
+        />
+
+
+    <item
+        android:id="@+id/side_riskl"
+        android:icon="@drawable/icon_side_riskl"
+        android:title="风险偏好"
+        />
+
+
+    <item
+        android:id="@+id/side_other"
+        android:icon="@drawable/icon_side_other"
+        android:title="其他设置"
+        />
+
+</menu>

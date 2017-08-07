@@ -105,7 +105,7 @@ public class SignActivity extends AppCompatActivity implements SignView {
 
         //设置字体颜色
         SpannableStringBuilder builder = new SpannableStringBuilder(signIn_signUp.getText().toString());
-        ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.theme_color));
+        ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.themeColor));
         builder.setSpan(blueSpan, 8, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         signIn_signUp.setText(builder);
 
@@ -155,7 +155,7 @@ public class SignActivity extends AppCompatActivity implements SignView {
 
         //设置字体颜色
         SpannableStringBuilder builder = new SpannableStringBuilder(signUp_signIn.getText().toString());
-        ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.theme_color));
+        ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.themeColor));
         builder.setSpan(blueSpan, 5, 7, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         signUp_signIn.setText(builder);
 
@@ -169,7 +169,7 @@ public class SignActivity extends AppCompatActivity implements SignView {
         //未点击获取验证码之前，设置注册按钮不可点击，并且修改颜色
         signUp_signUp.setEnabled(false);
         GradientDrawable drawable = (GradientDrawable) signUp_signUp.getBackground();
-        drawable.setColor(ContextCompat.getColor(SignActivity.this, R.color.button_grey));
+        drawable.setColor(ContextCompat.getColor(SignActivity.this, R.color.buttonGrey));
         //注册按钮监听器
         signUp_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +191,7 @@ public class SignActivity extends AppCompatActivity implements SignView {
             @Override
             public void onTick(CountDownTextView countDownTextView, long millisUntilFinished) {
                 signUp_button_getCon.setClickable(false);
-                signUp_button_getCon.setBackgroundColor(ContextCompat.getColor(SignActivity.this, R.color.button_grey));
+                signUp_button_getCon.setBackgroundColor(ContextCompat.getColor(SignActivity.this, R.color.buttonGrey));
             }
 
             //计时结束，设置可点击
@@ -199,7 +199,7 @@ public class SignActivity extends AppCompatActivity implements SignView {
             public void onFinish(CountDownTextView countDownTextView) {
                 signUp_button_getCon.setClickable(true);
                 signUp_button_getCon.setText("点击获取");
-                signUp_button_getCon.setBackgroundColor(ContextCompat.getColor(SignActivity.this, R.color.theme_color));
+                signUp_button_getCon.setBackgroundColor(ContextCompat.getColor(SignActivity.this, R.color.themeColor));
             }
         });
 
@@ -216,7 +216,7 @@ public class SignActivity extends AppCompatActivity implements SignView {
                 signUp_button_getCon.start();
                 signUp_signUp.setEnabled(true);
                 GradientDrawable drawable = (GradientDrawable) signUp_signUp.getBackground();
-                drawable.setColor(ContextCompat.getColor(SignActivity.this, R.color.theme_color));
+                drawable.setColor(ContextCompat.getColor(SignActivity.this, R.color.themeColor));
                 presenter.getSignUpVerCode(signUp_edit_phone.getText().toString());
             }
         });
@@ -304,11 +304,11 @@ public class SignActivity extends AppCompatActivity implements SignView {
         signUp_button_getCon.cancel();
         signUp_button_getCon.setClickable(true);
         signUp_button_getCon.setText("点击获取");
-        signUp_button_getCon.setBackgroundColor(ContextCompat.getColor(SignActivity.this, R.color.theme_color));
+        signUp_button_getCon.setBackgroundColor(ContextCompat.getColor(SignActivity.this, R.color.themeColor));
 
         signUp_signUp.setEnabled(false);
         GradientDrawable drawable = (GradientDrawable) signUp_signUp.getBackground();
-        drawable.setColor(ContextCompat.getColor(SignActivity.this,R.color.button_grey));
+        drawable.setColor(ContextCompat.getColor(SignActivity.this,R.color.buttonGrey));
     }
 
     @Override

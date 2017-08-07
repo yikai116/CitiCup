@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="#0ff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#faf7f7"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="侧边栏"/>
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.design.widget.NavigationView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#faf7f7"
+            app:headerLayout="@layout/layout_slide_header"
+            app:itemTextAppearance="@style/SideText"
+            app:menu="@menu/menu_slide"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/SideText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:drawablePadding="7dp"
+            android:drawableStart="@drawable/icon_side_exit"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="退出"/>
+    </LinearLayout>
 </LinearLayout>

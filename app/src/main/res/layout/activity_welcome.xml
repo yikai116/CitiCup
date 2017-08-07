@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.exercise.p.citycup.Activity.WelcomeActivity">
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/welcome_logo"
         android:layout_width="215.16dp"
         android:layout_height="96.36dp"
-        android:layout_gravity="center"
-        android:scaleType="centerInside"
-        android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:scaleType="centerInside"
         app:srcCompat="@mipmap/lifney_logo"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcome_logo"
         android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="@color/theme_color"
-        android:text="您身边的投资理财小助手"/>
+        android:text="您身边的投资理财小助手"
+        android:textColor="@color/themeColor"
+        android:textSize="20sp"/>
 
 </RelativeLayout>

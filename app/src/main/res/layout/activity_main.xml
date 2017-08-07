@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.exercise.p.citicup.activity.MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,15 +16,18 @@
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="?colorPrimary">
+            android:background="?colorPrimary"
+            android:translationZ="2dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity = "center"
+                android:layout_gravity="center"
                 android:text="Lifney"
                 android:textColor="#FFF"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </android.support.v7.widget.Toolbar>
+
         <android.support.design.widget.TabLayout
             android:id="@+id/main_tab"
             android:layout_width="match_parent"
@@ -31,30 +35,27 @@
             android:layout_gravity="center"
             android:background="?colorPrimary"
             android:orientation="horizontal"
+            android:translationZ="2dp"
             app:tabGravity="fill"
             app:tabIndicatorColor="#FFFF8C"
             app:tabSelectedTextColor="#FFF"
             app:tabTextAppearance="@style/TabText"
-            app:tabTextColor="#adffffff"
-            />
-        <FrameLayout
+            app:tabTextColor="#adffffff"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/main_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/main_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"/>
-        </FrameLayout>
+            android:layout_weight="1"
+            android:gravity="center" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start">
 
-        <include layout="@layout/layout_slide"/>
+        <include layout="@layout/layout_slide" />
     </LinearLayout>
 
 

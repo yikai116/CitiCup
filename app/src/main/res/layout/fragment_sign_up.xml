@@ -15,11 +15,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:hint="手机号"
         android:background="@null"
+        android:hint="手机号"
+        android:inputType="phone"
         android:textColor="@color/inputTextColor"
-        android:theme="@style/MyEditText"
-        android:inputType="phone"/>
+        android:theme="@style/MyEditText"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -34,12 +34,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:hint="密码"
-        android:background="@null"
-        android:textColor="@color/inputTextColor"
-        android:theme="@style/MyEditText"
         android:layout_marginTop="20dp"
-        android:inputType="textPassword"/>
+        android:background="@null"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:textColor="@color/inputTextColor"
+        android:theme="@style/MyEditText"/>
 
 
     <FrameLayout
@@ -55,12 +55,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:hint="重复密码"
-        android:background="@null"
-        android:textColor="@color/inputTextColor"
-        android:theme="@style/MyEditText"
         android:layout_marginTop="20dp"
-        android:inputType="textPassword"/>
+        android:background="@null"
+        android:hint="重复密码"
+        android:inputType="textPassword"
+        android:textColor="@color/inputTextColor"
+        android:theme="@style/MyEditText"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -72,10 +72,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -88,11 +88,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:hint="验证码"
                 android:background="@null"
+                android:hint="验证码"
+                android:inputType="textPassword"
                 android:textColor="@color/inputTextColor"
-                android:theme="@style/MyEditText"
-                android:inputType="textPassword"/>
+                android:theme="@style/MyEditText"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -104,12 +104,12 @@
             android:id="@+id/signUp_button_getCon"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_weight="1"
-            android:background="@color/theme_color"
             android:layout_gravity="bottom"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:background="@color/themeColor"
             android:gravity="center"
             android:text="点击获取"
-            android:layout_marginLeft="16dp"
             android:textColor="#FFF"
             android:textSize="12sp"/>
 
@@ -119,8 +119,8 @@
         android:id="@+id/signUp_button_signUp"
         android:layout_width="233dp"
         android:layout_height="50dp"
-        android:layout_marginTop="25dp"
         android:layout_gravity="center"
+        android:layout_marginTop="25dp"
         android:background="@drawable/shape_sign_button_sign_in"
         android:text="注册"
         android:textColor="#FFF"

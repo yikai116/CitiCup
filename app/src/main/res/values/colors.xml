@@ -4,8 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="theme_color">#42A5F5</color>
-    <color name="button_grey">#D5D7D9</color>
+    <color name="themeColor">#42A5F5</color>
+    <color name="buttonGrey">#D5D7D9</color>
     <color name="inputTextColor">#757575</color>
     <color name="divideLine">#93A8AC</color>
+    <color name="slideTextColor">#626262</color>
 </resources>

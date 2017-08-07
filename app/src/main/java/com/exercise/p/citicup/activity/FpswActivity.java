@@ -68,14 +68,14 @@ public class FpswActivity extends AppCompatActivity implements FpswView{
             @Override
             public void onTick(CountDownTextView countDownTextView, long millisUntilFinished) {
                 countDownTextView.setClickable(false);
-                countDownTextView.setBackgroundColor(ContextCompat.getColor(FpswActivity.this,R.color.button_grey));
+                countDownTextView.setBackgroundColor(ContextCompat.getColor(FpswActivity.this,R.color.buttonGrey));
             }
 
             @Override
             public void onFinish(CountDownTextView countDownTextView) {
                 countDownTextView.setClickable(true);
                 countDownTextView.setText("点击获取");
-                countDownTextView.setBackgroundColor(ContextCompat.getColor(FpswActivity.this,R.color.theme_color));
+                countDownTextView.setBackgroundColor(ContextCompat.getColor(FpswActivity.this,R.color.themeColor));
             }
         });
         countDownTextView.setTimeFormat(CountDownTextView.TIME_SHOW_S);
@@ -88,7 +88,7 @@ public class FpswActivity extends AppCompatActivity implements FpswView{
                 countDownTextView.start();
                 fPsw_button_commit.setEnabled(true);
                 GradientDrawable drawable = (GradientDrawable) fPsw_button_commit.getBackground();
-                drawable.setColor(ContextCompat.getColor(FpswActivity.this,R.color.theme_color));
+                drawable.setColor(ContextCompat.getColor(FpswActivity.this,R.color.themeColor));
                 presenter.getFpswVerCode(fPsw_edit_phone.getText().toString());
             }
         });
@@ -105,7 +105,7 @@ public class FpswActivity extends AppCompatActivity implements FpswView{
         fPsw_button_commit = (Button) findViewById(R.id.fPsw_button_commit);
         fPsw_button_commit.setEnabled(false);
         GradientDrawable drawable = (GradientDrawable) fPsw_button_commit.getBackground();
-        drawable.setColor(ContextCompat.getColor(FpswActivity.this,R.color.button_grey));
+        drawable.setColor(ContextCompat.getColor(FpswActivity.this,R.color.buttonGrey));
         fPsw_button_commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,11 +152,11 @@ public class FpswActivity extends AppCompatActivity implements FpswView{
         countDownTextView.cancel();
         countDownTextView.setClickable(true);
         countDownTextView.setText("点击获取");
-        countDownTextView.setBackgroundColor(ContextCompat.getColor(FpswActivity.this,R.color.theme_color));
+        countDownTextView.setBackgroundColor(ContextCompat.getColor(FpswActivity.this,R.color.themeColor));
 
         fPsw_button_commit.setEnabled(false);
         GradientDrawable drawable = (GradientDrawable) fPsw_button_commit.getBackground();
-        drawable.setColor(ContextCompat.getColor(FpswActivity.this,R.color.button_grey));
+        drawable.setColor(ContextCompat.getColor(FpswActivity.this,R.color.buttonGrey));
     }
 
     @Override
