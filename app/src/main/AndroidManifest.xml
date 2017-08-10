@@ -1,9 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.exercise.p.citicup">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.WelcomeActivity"
+        <activity
+            android:name=".activity.WelcomeActivity"
             android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +22,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.SignActivity"
-            android:theme="@style/NoTitle"
+        <activity
+            android:name=".activity.SignActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.FpswActivity"/>
+        <activity android:name=".activity.FpswActivity" />
+        <activity android:name=".activity.InsulActivity"></activity>
     </application>
 
 </manifest>

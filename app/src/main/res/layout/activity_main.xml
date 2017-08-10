@@ -20,12 +20,11 @@
             android:translationZ="2dp">
 
             <TextView
+                style="@style/MyTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Lifney"
-                android:textColor="#FFF"
-                android:textSize="16sp" />
+                android:text="Lifney" />
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
@@ -55,7 +54,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start">
 
-        <include layout="@layout/layout_slide" />
+        <include layout="@layout/layout_side" />
     </LinearLayout>
 
 

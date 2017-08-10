@@ -27,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.exercise.p.citicup.ViewPagerAdapter;
 import com.exercise.p.citicup.presenter.SignPresenter;
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.view.SignView;
@@ -78,7 +79,7 @@ public class SignActivity extends AppCompatActivity implements SignView {
      */
     private void initView() {
         pager = (ViewPager) findViewById(R.id.sign_pager);
-        root = (RelativeLayout) findViewById(R.id.root_sign);
+        root = (RelativeLayout) findViewById(R.id.sign_root);
         progressBar = (ProgressBar) findViewById(R.id.sign_processBar);
         signInView = getLayoutInflater().inflate(R.layout.fragment_sign_in, null);
         signUpView = getLayoutInflater().inflate(R.layout.fragment_sign_up, null);
@@ -328,43 +329,6 @@ public class SignActivity extends AppCompatActivity implements SignView {
         view.setText("");
         view.setHint(builder);
         view.requestFocus();
-    }
-
-    /**
-     * ViewPager适配器
-     */
-    private class ViewPagerAdapter extends PagerAdapter {
-
-        List<View> viewLists;
-
-        public ViewPagerAdapter(List<View> lists) {
-            viewLists = lists;
-        }
-
-        //获得size
-        @Override
-        public int getCount() {
-            return viewLists.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View arg0, Object arg1) {
-            return arg0 == arg1;
-        }
-
-        //销毁Item
-        @Override
-        public void destroyItem(View view, int position, Object object) {
-            ((ViewPager) view).removeView(viewLists.get(position));
-        }
-
-        //实例化Item
-        @Override
-        public Object instantiateItem(View view, int position) {
-            ((ViewPager) view).addView(viewLists.get(position), 0);
-            return viewLists.get(position);
-        }
-
     }
 
     /**

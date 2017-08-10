@@ -1,10 +1,11 @@
 package com.exercise.p.citicup.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -12,9 +13,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.exercise.p.citicup.MyFragAdapter;
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.fragment.main.InsuFragment;
 import com.exercise.p.citicup.fragment.main.ManaFragment;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     ViewPager pager;
+    NavigationView naviView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         findView();
         initToolBar();
         initTab();
+        initNavi();
     }
 
     private void findView(){
@@ -43,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawerLayout);
         pager = (ViewPager) findViewById(R.id.main_pager);
+        naviView = (NavigationView) findViewById(R.id.main_side);
+
+
+        TextView exit = (TextView) findViewById(R.id.exit);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.finish();
+            }
+        });
     }
 
     /**
@@ -54,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayShowTitleEnabled(false);
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name);
         toggle.setDrawerIndicatorEnabled(false);
@@ -92,21 +107,36 @@ public class MainActivity extends AppCompatActivity {
         tab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(pager));
     }
 
-    private class MyFragAdapter extends FragmentPagerAdapter{
-
-        List<Fragment> mFragments;
-        public MyFragAdapter(FragmentManager fm, List<Fragment> fragments) {
-            super(fm);
-            mFragments=fragments;
-        }
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
+    /**
+     * 设置侧边栏点击事件
+     */
+    private void initNavi(){
+        naviView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.side_insul:
+                        Toast.makeText(MainActivity.this, "1", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this,InsulActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.side_manal:
+                        Toast.makeText(MainActivity.this, "2", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.side_riskt:
+                        Toast.makeText(MainActivity.this, "3", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.side_riskl:
+                        Toast.makeText(MainActivity.this, "4", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.side_other:
+                        Toast.makeText(MainActivity.this, "5", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:break;
+                }
+                return false;
+            }
+        });
     }
 }
