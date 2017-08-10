@@ -38,5 +38,6 @@ dependencies {
     compile 'com.ufreedom.countdowntextview:library:0.1.0'
     compile 'com.android.support:design:25.3.1'
     compile 'com.makeramen:roundedimageview:2.3.0'
+    compile 'com.github.bmelnychuk:atv:1.2.+'
     testCompile 'junit:junit:4.12'
 }

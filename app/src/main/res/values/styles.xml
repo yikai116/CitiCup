@@ -35,5 +35,8 @@
         <item name="android:textColor">@color/slideTextColor</item>
     </style>
 
+    <style name="MyCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_checkbox</item>
+    </style>
 
 </resources>
