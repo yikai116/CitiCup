@@ -72,6 +72,11 @@ public class Helper {
         return hexValue.toString();
     }
 
+    /**
+     * 得到IMEI字符串
+     * @param context 上下文
+     * @return 字符串
+     */
     public static String getIMEI(Context context){
         try {
             TelephonyManager TelephonyMgr = (TelephonyManager)context.getSystemService(TELEPHONY_SERVICE);
@@ -83,6 +88,9 @@ public class Helper {
         }
     }
 
+    /**
+     * getIMEI()调用
+     */
     private static String getMyIMEI(){
         String base = "abcdefghijklmnopqrstuvwxyz0123456789";
         Random random = new Random();
@@ -96,6 +104,12 @@ public class Helper {
         return token;
     }
 
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     * @param context 上下文
+     * @param dpValue dp值
+     * @return px值
+     */
     public static int dp2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
@@ -103,6 +117,9 @@ public class Helper {
 
     /**
      * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
+     * @param context 上下文
+     * @param pxValue px值
+     * @return dp值
      */
     public static int px2dp(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
