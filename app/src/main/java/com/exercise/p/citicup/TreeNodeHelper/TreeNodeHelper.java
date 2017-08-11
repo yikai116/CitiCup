@@ -12,25 +12,44 @@ import java.util.List;
 public class TreeNodeHelper {
     /**
      * 得到选中的TreeNode，针对叶节点
+     *
      * @param root 根节点
      * @return 选中的叶节点集合
      */
-    private List<TreeNode> getSelected(TreeNode root) {
+    public static List<TreeNode> getSelected(TreeNode... root) {
         List<TreeNode> result = new ArrayList<>();
-        if (root.isLeaf()) {
-            return null;
-        }
-        for (TreeNode node1 : root.getChildren()) {
-            if (node1.isLeaf()) {
-                if (node1.isSelected()) {
-                    result.add(node1);
+        for (TreeNode node : root) {
+            if (node.isLeaf()) {
+                if (node.isSelected()) {
+                    result.add(node);
                 }
             } else {
-                List<TreeNode> rest = getSelected(node1);
-                if (rest != null)
-                    result.addAll(rest);
+                for (TreeNode node1 : node.getChildren()) {
+                    result.addAll(getSelected(node1));
+                }
             }
         }
         return result;
+    }
+
+    private static List<TreeNode> getLeaf(TreeNode... root) {
+        List<TreeNode> result = new ArrayList<>();
+        for (TreeNode node : root) {
+            if (node.isLeaf()) {
+                result.add(node);
+            } else {
+                result.addAll(getLeaf(node));
+            }
+        }
+        return result;
+    }
+
+    public static List<String> getNodeText(List<TreeNode> nodes) {
+        ArrayList<String> texts = new ArrayList<>();
+        for (TreeNode node : nodes) {
+            MyHolder.IconTreeItem item = (MyHolder.IconTreeItem) node.getValue();
+            texts.add(item.text);
+        }
+        return texts;
     }
 }

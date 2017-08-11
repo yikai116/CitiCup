@@ -5,12 +5,19 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.exercise.p.citicup.MyCards;
 import com.exercise.p.citicup.TreeNodeHelper.MyHolder;
 import com.exercise.p.citicup.R;
+import com.exercise.p.citicup.TreeNodeHelper.TreeNodeHelper;
 import com.exercise.p.citicup.ViewPagerAdapter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.unnamed.b.atv.model.TreeNode;
 import com.unnamed.b.atv.view.AndroidTreeView;
 
@@ -24,7 +31,10 @@ public class InsulActivity extends AppCompatActivity {
     ViewPager pager;
     View page1;
     View page2;
-    TreeNode root = TreeNode.root();
+    TreeNode page1_root = TreeNode.root();
+
+    MyCards cards1;
+    MyCards cards2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,7 @@ public class InsulActivity extends AppCompatActivity {
         initTab();
         initPager();
         initPage1();
+        initPage2();
     }
 
     private void findView() {
@@ -76,46 +87,123 @@ public class InsulActivity extends AppCompatActivity {
 
     private void initPage1() {
         LinearLayout layout = (LinearLayout) page1.findViewById(R.id.insul_1_root);
-        initData();
-        final AndroidTreeView tView = new AndroidTreeView(this, root);
+        initPage1Data();
+        final AndroidTreeView tView = new AndroidTreeView(this, page1_root);
         tView.setDefaultViewHolder(MyHolder.class);
         layout.addView(tView.getView(),
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
-    private void initData() {
+    private void initPage2() {
+        List<MyCards.MyTextCard> cards1Content = new ArrayList<>();
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_1), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_2), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_3), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_4), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_5), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_6), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_7), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_8), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_9), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_10), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_11), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_12), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_13), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_14), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_15), false));
+        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_16), false));
+        for (final MyCards.MyTextCard card : cards1Content) {
+            card.setOnclickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (card.isSelected()) {
+                        card.setAppearance(R.drawable.shape_insul_card_normal,getResources().getColor(R.color.cardTextNormal));
+                        card.setSelected(false);
+                    } else {
+                        card.setAppearance(R.drawable.shape_insul_card_selected,getResources().getColor(R.color.white));
+                        card.setSelected(true);
+                    }
+                }
+            });
+        }
+        cards1 = new MyCards<>(cards1Content);
 
-        TreeNode p1 = new TreeNode(new MyHolder.IconTreeItem("理财型", R.drawable.icon_insul_1_1));
+        List<MyCards.MyTextCard> cards2Content = new ArrayList<>();
+        cards2Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_2_1), false));
+        cards2Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_2_2), false));
+        for (final MyCards.MyTextCard card : cards2Content) {
+            card.setOnclickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (card.isSelected()) {
+                        card.setAppearance(R.drawable.shape_insul_card_normal,getResources().getColor(R.color.cardTextNormal));
+                        card.setSelected(false);
+                    } else {
+                        card.setAppearance(R.drawable.shape_insul_card_selected,getResources().getColor(R.color.white));
+                        card.setSelected(true);
+                    }
+                }
+            });
+        }
+        cards2 = new MyCards<>(cards2Content);
+
+        Button button = (Button) page2.findViewById(R.id.fragment_insul_2_commit);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<TreeNode> list = page1_root.getChildren();
+
+                ArrayList<String> one = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(0)));
+
+                ArrayList<String> two = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(1)));
+
+                ArrayList<String> three = (ArrayList<String>) cards1.getSelected();
+
+                ArrayList<String> four = (ArrayList<String>) cards2.getSelected();
+
+                ArrayList<ArrayList<String>> json = new ArrayList<>();
+                json.add(one);
+                json.add(two);
+                json.add(three);
+                json.add(four);
+                Log.i("Test", new Gson().toJson(json));
+            }
+        });
+    }
+
+    private void initPage1Data() {
+
+        TreeNode p1 = new TreeNode(new MyHolder.IconTreeItem("理财型", R.drawable.icon_insul_1_1_1));
         TreeNode p1_1 = new TreeNode(new MyHolder.IconTreeItem("保本"));
         TreeNode p1_2 = new TreeNode(new MyHolder.IconTreeItem("非保本"));
         p1.addChildren(p1_1, p1_2);
 
-        TreeNode p2 = new TreeNode(new MyHolder.IconTreeItem("保障型", R.drawable.icon_insul_1_2));
+        TreeNode p2 = new TreeNode(new MyHolder.IconTreeItem("保障型", R.drawable.icon_insul_1_1_2));
 
-        TreeNode p2_1 = new TreeNode(new MyHolder.IconTreeItem("寿险", R.drawable.icon_insul_2));
+        TreeNode p2_1 = new TreeNode(new MyHolder.IconTreeItem("寿险", R.drawable.icon_insul_1_2));
         TreeNode p2_1_1 = new TreeNode(new MyHolder.IconTreeItem("普通型"));
         TreeNode p2_1_2 = new TreeNode(new MyHolder.IconTreeItem("两全险"));
         p2_1.addChildren(p2_1_1, p2_1_2);
 
-        TreeNode p2_2 = new TreeNode(new MyHolder.IconTreeItem("年金险", R.drawable.icon_insul_2));
+        TreeNode p2_2 = new TreeNode(new MyHolder.IconTreeItem("年金险", R.drawable.icon_insul_1_2));
         TreeNode p2_2_1 = new TreeNode(new MyHolder.IconTreeItem("养老年金"));
         TreeNode p2_2_2 = new TreeNode(new MyHolder.IconTreeItem("教育年金"));
         TreeNode p2_2_3 = new TreeNode(new MyHolder.IconTreeItem("普通年金"));
         p2_2.addChildren(p2_2_1, p2_2_2, p2_2_3);
 
-        TreeNode p2_3 = new TreeNode(new MyHolder.IconTreeItem("意外险", R.drawable.icon_insul_2));
+        TreeNode p2_3 = new TreeNode(new MyHolder.IconTreeItem("意外险", R.drawable.icon_insul_1_2));
         TreeNode p2_3_1 = new TreeNode(new MyHolder.IconTreeItem("人身年金"));
         TreeNode p2_3_2 = new TreeNode(new MyHolder.IconTreeItem("交通年金"));
         TreeNode p2_3_3 = new TreeNode(new MyHolder.IconTreeItem("航空年金"));
         p2_3.addChildren(p2_3_1, p2_3_2, p2_3_3);
 
-        TreeNode p2_4 = new TreeNode(new MyHolder.IconTreeItem("个人财险", R.drawable.icon_insul_2));
+        TreeNode p2_4 = new TreeNode(new MyHolder.IconTreeItem("个人财险", R.drawable.icon_insul_1_2));
         TreeNode p2_4_1 = new TreeNode(new MyHolder.IconTreeItem("家财险"));
         TreeNode p2_4_2 = new TreeNode(new MyHolder.IconTreeItem("汽车险"));
         TreeNode p2_4_3 = new TreeNode(new MyHolder.IconTreeItem("房贷险"));
         p2_4.addChildren(p2_4_1, p2_4_2, p2_4_3);
 
-        TreeNode p2_5 = new TreeNode(new MyHolder.IconTreeItem("企业财险", R.drawable.icon_insul_2));
+        TreeNode p2_5 = new TreeNode(new MyHolder.IconTreeItem("企业财险", R.drawable.icon_insul_1_2));
         TreeNode p2_5_1 = new TreeNode(new MyHolder.IconTreeItem("财产保险"));
         TreeNode p2_5_2 = new TreeNode(new MyHolder.IconTreeItem("短期意健险"));
         TreeNode p2_5_3 = new TreeNode(new MyHolder.IconTreeItem("保证保险"));
@@ -124,13 +212,13 @@ public class InsulActivity extends AppCompatActivity {
         TreeNode p2_5_6 = new TreeNode(new MyHolder.IconTreeItem("责任保险"));
         p2_5.addChildren(p2_5_1, p2_5_2, p2_5_3, p2_5_4, p2_5_5, p2_5_6);
 
-        TreeNode p2_6 = new TreeNode(new MyHolder.IconTreeItem("旅游险", R.drawable.icon_insul_2));
+        TreeNode p2_6 = new TreeNode(new MyHolder.IconTreeItem("旅游险", R.drawable.icon_insul_1_2));
         TreeNode p2_6_1 = new TreeNode(new MyHolder.IconTreeItem("境内"));
         TreeNode p2_6_2 = new TreeNode(new MyHolder.IconTreeItem("境外"));
         TreeNode p2_6_3 = new TreeNode(new MyHolder.IconTreeItem("港澳台"));
         p2_6.addChildren(p2_6_1, p2_6_2, p2_6_3);
 
-        TreeNode p2_7 = new TreeNode(new MyHolder.IconTreeItem("健康险", R.drawable.icon_insul_2));
+        TreeNode p2_7 = new TreeNode(new MyHolder.IconTreeItem("健康险", R.drawable.icon_insul_1_2));
         TreeNode p2_7_1 = new TreeNode(new MyHolder.IconTreeItem("护理"));
         TreeNode p2_7_2 = new TreeNode(new MyHolder.IconTreeItem("女性疾病"));
         TreeNode p2_7_3 = new TreeNode(new MyHolder.IconTreeItem("失能收入损失险"));
@@ -140,7 +228,7 @@ public class InsulActivity extends AppCompatActivity {
 
         p2.addChildren(p2_1, p2_2, p2_3, p2_4, p2_5, p2_6, p2_7);
 
-        root.addChildren(p1, p2);
+        page1_root.addChildren(p1, p2);
 
     }
 

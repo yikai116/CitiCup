@@ -9,4 +9,6 @@
     <color name="inputTextColor">#757575</color>
     <color name="divideLine">#93A8AC</color>
     <color name="slideTextColor">#626262</color>
+    <color name="cardTextNormal">#485465</color>
+    <color name="white">#FFF</color>
 </resources>
