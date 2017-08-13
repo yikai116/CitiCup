@@ -32,13 +32,15 @@ public class TreeNodeHelper {
         return result;
     }
 
-    private static List<TreeNode> getLeaf(TreeNode... root) {
+    public static List<TreeNode> getLeaf(TreeNode... root) {
         List<TreeNode> result = new ArrayList<>();
         for (TreeNode node : root) {
             if (node.isLeaf()) {
                 result.add(node);
             } else {
-                result.addAll(getLeaf(node));
+                for (TreeNode node1 : node.getChildren()) {
+                    result.addAll(getLeaf(node1));
+                }
             }
         }
         return result;

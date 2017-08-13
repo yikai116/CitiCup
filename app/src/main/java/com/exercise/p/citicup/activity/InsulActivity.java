@@ -17,7 +17,6 @@ import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.TreeNodeHelper.TreeNodeHelper;
 import com.exercise.p.citicup.ViewPagerAdapter;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.unnamed.b.atv.model.TreeNode;
 import com.unnamed.b.atv.view.AndroidTreeView;
 
@@ -154,12 +153,24 @@ public class InsulActivity extends AppCompatActivity {
                 List<TreeNode> list = page1_root.getChildren();
 
                 ArrayList<String> one = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(0)));
+                if (one.size() == 0){
+                    one.addAll(TreeNodeHelper.getNodeText(TreeNodeHelper.getLeaf(list.get(0))));
+                }
 
                 ArrayList<String> two = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(1)));
+                if (two.size() == 0){
+                    two.addAll(TreeNodeHelper.getNodeText(TreeNodeHelper.getLeaf(list.get(1))));
+                }
 
-                ArrayList<String> three = (ArrayList<String>) cards1.getSelected();
+                ArrayList<String> three = (ArrayList<String>) cards1.getSelectedText();
+                if (three.size() == 0){
+                    three.addAll(cards1.getAllText());
+                }
 
-                ArrayList<String> four = (ArrayList<String>) cards2.getSelected();
+                ArrayList<String> four = (ArrayList<String>) cards2.getSelectedText();
+                if (four.size() == 0){
+                    four.addAll(cards2.getAllText());
+                }
 
                 ArrayList<ArrayList<String>> json = new ArrayList<>();
                 json.add(one);
@@ -231,7 +242,6 @@ public class InsulActivity extends AppCompatActivity {
         page1_root.addChildren(p1, p2);
 
     }
-
 
 }
 

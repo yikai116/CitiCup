@@ -10,7 +10,7 @@ import java.util.List;
  * Created by p on 2017/8/11.
  */
 
-public class MyCards<E extends MyCards.MyTextCard>{
+public class MyCards<E extends MyCards.MyTextCard> {
 
     private List<E> cards;
 
@@ -26,11 +26,19 @@ public class MyCards<E extends MyCards.MyTextCard>{
         this.cards = cards;
     }
 
-    public List<String> getSelected(){
+    public List<String> getSelectedText() {
         List<String> list = new ArrayList<>();
-        for (MyTextCard card: cards) {
+        for (MyTextCard card : cards) {
             if (card.isSelected())
                 list.add(card.getText());
+        }
+        return list;
+    }
+
+    public List<String> getAllText() {
+        List<String> list = new ArrayList<>();
+        for (MyTextCard card : cards) {
+            list.add(card.getText());
         }
         return list;
     }
@@ -47,8 +55,7 @@ public class MyCards<E extends MyCards.MyTextCard>{
                 public void onClick(View v) {
                     if (isSelected()) {
                         setSelected(false);
-                    }
-                    else {
+                    } else {
                         setSelected(true);
                     }
                 }
@@ -63,7 +70,7 @@ public class MyCards<E extends MyCards.MyTextCard>{
             this.textView = textView;
         }
 
-        public void setAppearance(int background,int textColor){
+        public void setAppearance(int background, int textColor) {
             textView.setBackgroundResource(background);
             textView.setTextColor(textColor);
         }
@@ -76,11 +83,11 @@ public class MyCards<E extends MyCards.MyTextCard>{
             isSelected = selected;
         }
 
-        public String getText(){
+        public String getText() {
             return textView.getText().toString();
         }
 
-        public void setOnclickListener(View.OnClickListener listener){
+        public void setOnclickListener(View.OnClickListener listener) {
             textView.setOnClickListener(listener);
         }
     }

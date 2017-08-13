@@ -1,5 +1,6 @@
 package com.exercise.p.citicup.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,8 +14,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ViewPager pager;
     NavigationView naviView;
+    ImageView avatar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawerLayout);
         pager = (ViewPager) findViewById(R.id.main_pager);
         naviView = (NavigationView) findViewById(R.id.main_side);
-
+        avatar = (ImageView)
+                naviView.getHeaderView(0).findViewById(R.id.side_avatar);
 
         TextView exit = (TextView) findViewById(R.id.exit);
         exit.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +144,47 @@ public class MainActivity extends AppCompatActivity {
                     default:break;
                 }
                 return false;
+            }
+        });
+        avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog mCameraDialog = new Dialog(MainActivity.this,R.style.BottomDialog);
+                LinearLayout root = (LinearLayout) LayoutInflater.from(MainActivity.this).inflate(
+                        R.layout.layout_avatar_popup, null);
+                //初始化视图
+                root.findViewById(R.id.btn_choose_img).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "相册选取", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                root.findViewById(R.id.btn_open_camera).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "拍照", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                root.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                mCameraDialog.setContentView(root);
+                Window dialogWindow = mCameraDialog.getWindow();
+                dialogWindow.setGravity(Gravity.BOTTOM);
+//        dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
+                WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
+                lp.x = 0; // 新位置X坐标
+                lp.y = 0; // 新位置Y坐标
+                lp.width = (int) getResources().getDisplayMetrics().widthPixels; // 宽度
+                root.measure(0, 0);
+                lp.height = root.getMeasuredHeight();
+
+                lp.alpha = 9f; // 透明度
+                dialogWindow.setAttributes(lp);
+                mCameraDialog.show();
             }
         });
     }
