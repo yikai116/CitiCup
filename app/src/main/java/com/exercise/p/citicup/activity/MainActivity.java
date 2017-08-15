@@ -202,13 +202,7 @@ public class MainActivity extends AppCompatActivity {
         assert dialogWindow != null;
         dialogWindow.setGravity(Gravity.BOTTOM);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
-        lp.x = 0; // 新位置X坐标
-        lp.y = 0; // 新位置Y坐标
         lp.width = (int) getResources().getDisplayMetrics().widthPixels; // 宽度
-        root.measure(0, 0);
-        lp.height = root.getMeasuredHeight();
-
-        lp.alpha = 9f; // 透明度
         dialogWindow.setAttributes(lp);
         mCameraDialog.show();
     }
@@ -229,8 +223,8 @@ public class MainActivity extends AppCompatActivity {
             //获取选择图片的uri
             Uri uri = data.getData();
             Log.i("Test","album: 1  :" + uri.toString());
-            uri = Uri.fromFile(new File((PhotoUtils.getRealFilePath(this,uri))));
-            Log.i("Test","album: 2  :" + uri.toString());
+//            uri = Uri.fromFile(new File((PhotoUtils.getRealFilePath(this,uri))));
+//            Log.i("Test","album: 2  :" + uri.toString());
             PhotoUtils.photoZoom(this,uri , tempPath, ZOOM_CODE, 1, 1);
         }
         if (requestCode == ZOOM_CODE && resultCode == RESULT_OK) {

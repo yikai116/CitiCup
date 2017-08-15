@@ -10,31 +10,27 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <android.support.design.widget.NavigationView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <android.support.design.widget.NavigationView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/main_side"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#faf7f7"
             app:headerLayout="@layout/layout_side_header"
             app:itemTextAppearance="@style/SideText"
-            app:menu="@menu/menu_side"/>
+            app:menu="@menu/menu_side" />
+
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/exit"
+        style="@style/SideText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/exit"
-            style="@style/SideText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
-            android:drawablePadding="7dp"
-            android:drawableStart="@drawable/icon_side_exit"
-            android:gravity="center_vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:text="退出"/>
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:drawablePadding="7dp"
+        android:drawableStart="@drawable/icon_side_exit"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="退出" />
 </LinearLayout>

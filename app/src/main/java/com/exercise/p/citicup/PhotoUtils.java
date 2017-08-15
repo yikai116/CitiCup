@@ -30,11 +30,11 @@ public class PhotoUtils {
      */
     public static void getPhotoFromCamera(Activity activity, int cameraCode,
                                           String tempPath) {
-        Intent getImageByCamera = new Intent(
+        Intent intent = new Intent(
                 "android.media.action.IMAGE_CAPTURE");
-        getImageByCamera.putExtra(MediaStore.EXTRA_OUTPUT,
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,
                 Uri.fromFile(new File(tempPath)));
-        activity.startActivityForResult(getImageByCamera, cameraCode);
+        activity.startActivityForResult(intent, cameraCode);
     }
 
     /**
@@ -44,13 +44,13 @@ public class PhotoUtils {
      * @param albumCode 跳转到相册activity的请求码
      */
     public static void getPhotoFromAlbum(Activity activity, int albumCode) {
-//        Intent getImage = new Intent(
-//                Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        activity.startActivityForResult(getImage, albumCode);
-        Intent getImage = new Intent(Intent.ACTION_GET_CONTENT);
-        getImage.addCategory(Intent.CATEGORY_OPENABLE);
-        getImage.setType("image/jpeg");
-        activity.startActivityForResult(getImage, albumCode);
+        Intent intent = new Intent(
+                Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        activity.startActivityForResult(intent, albumCode);
+//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        intent.addCategory(Intent.CATEGORY_OPENABLE);
+//        intent.setType("image/jpeg");
+//        activity.startActivityForResult(intent, albumCode);
     }
 
     /**
@@ -110,6 +110,13 @@ public class PhotoUtils {
         return Bitmap.createScaledBitmap(weak.get(), w, h, true);
     }
 
+    /**
+     * 得到真正的图片路径
+     *
+     * @param context 上下文
+     * @param imageUri 图片uri
+     * @return 真正的uri
+     */
     public static String getRealFilePath( final Context context, final Uri imageUri ) {
         if (context == null || imageUri == null)
             return null;
