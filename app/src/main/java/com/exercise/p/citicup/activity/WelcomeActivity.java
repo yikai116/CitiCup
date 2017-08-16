@@ -23,8 +23,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public static final int LOGIN = 2;
     public static final int NOTLOGIN = 3;
-    private int tag = NOTLOGIN;
     SharedPreferences sharedPreferences;
+    private int tag = NOTLOGIN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,32 +36,36 @@ public class WelcomeActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("IMEI", Helper.IMEI);
         editor.apply();
+        //去除登录
+        tag = LOGIN;
+        WelAsyncTask task = new WelAsyncTask();
+        task.execute();
         //请求验证标识符
-        WelcomeModel welcomeModel = RetrofitInstance.getRetrofit().create(WelcomeModel.class);
-        Call<MyResponse> call = welcomeModel.verToken(Helper.IMEI);
-        call.enqueue(new Callback<MyResponse>() {
-            @Override
-            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                Log.i("Test",response.body().toString());
-                if (response.body().getStatus().getCode() == 1){
-                    tag = LOGIN;
-                }
-                else {
-                    tag = NOTLOGIN;
-                    Toast.makeText(WelcomeActivity.this, response.body().getStatus().getMsg(), Toast.LENGTH_SHORT).show();
-                }
-                WelAsyncTask task = new WelAsyncTask();
-                task.execute();
-            }
-
-            @Override
-            public void onFailure(Call<MyResponse> call, Throwable t) {
-                Toast.makeText(WelcomeActivity.this, "网络连接错误", Toast.LENGTH_SHORT).show();
-                tag = NOTLOGIN;
-                WelAsyncTask task = new WelAsyncTask();
-                task.execute();
-            }
-        });
+//        WelcomeModel welcomeModel = RetrofitInstance.getRetrofit().create(WelcomeModel.class);
+//        Call<MyResponse> call = welcomeModel.verToken(Helper.IMEI);
+//        call.enqueue(new Callback<MyResponse>() {
+//            @Override
+//            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+//                Log.i("Test",response.body().toString());
+//                if (response.body().getStatus().getCode() == 1){
+//                    tag = LOGIN;
+//                }
+//                else {
+//                    tag = NOTLOGIN;
+//                    Toast.makeText(WelcomeActivity.this, response.body().getStatus().getMsg(), Toast.LENGTH_SHORT).show();
+//                }
+//                WelAsyncTask task = new WelAsyncTask();
+//                task.execute();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<MyResponse> call, Throwable t) {
+//                Toast.makeText(WelcomeActivity.this, "网络连接错误", Toast.LENGTH_SHORT).show();
+//                tag = NOTLOGIN;
+//                WelAsyncTask task = new WelAsyncTask();
+//                task.execute();
+//            }
+//        });
     }
 
     /**
@@ -76,7 +80,7 @@ public class WelcomeActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Log.i("Test","tag: " + tag);
+            Log.i("Test", "tag: " + tag);
             return tag;
         }
 
@@ -87,8 +91,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(WelcomeActivity.this, MainActivity.class);
                 WelcomeActivity.this.startActivity(intent);
-            }
-            else if (status == NOTLOGIN){
+            } else if (status == NOTLOGIN) {
                 Intent intent = new Intent();
                 intent.setClass(WelcomeActivity.this, SignActivity.class);
                 WelcomeActivity.this.startActivity(intent);
