@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.exercise.p.citicup.activity.ReadActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/read_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="?colorPrimary"
+        android:translationZ="2dp">
+
+        <TextView
+            style="@style/MyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="小白必看" />
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="20.5dp"
+                    android:background="@color/themeColor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="如何使用本应用"
+                    android:textColor="#485465"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="10dp"
+                android:lineSpacingMultiplier="1.3"
+                android:text="\t\t我们为您提供一套选择方案，您可以自由选择想要购买的保险产品类型，同时您也可以自行筛选您想了解的品种，我们会为您提供最佳的保险产品供您参考。最后的购买权利在您手上。"
+                android:textColor="#485465"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="20.5dp"
+                    android:background="@color/themeColor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="为何需要保险"
+                    android:textColor="#485465"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="22dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/icon_read_1" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="13.5dp"
+                        android:layout_marginStart="13.5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="正确的理财观念"
+                            android:textColor="#485465"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="\t\t安全与保障，是每个人生命中最大的需求。家庭投资不能一味追求高回报，而应根据不同的需要作出相应的安排，即投资目标要与人生风险相匹配，因为我们每个人都会面临四大风险。"
+                            android:textColor="#485465"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/icon_read_2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="13.5dp"
+                        android:layout_marginStart="13.5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="不可忽视的人生四大风险"
+                            android:textColor="#485465"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="\t\t一是由意外残疾导致的家庭收入中断；\n\t\t二是由疾病导致收入减少或中断，巨额费用增加；\n\t\t三是晚年收入中断，养老费用长期持续支出\n\t\t四是资金贬值，投资失败，财富蒸发......\n\t\t这些风险不妥善解决，它们随时都有可能带给我们及家人巨大的灾难"
+                            android:textColor="#485465"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="20.5dp"
+                    android:background="@color/themeColor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="家庭必备四大账户"
+                    android:textColor="#485465"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="22dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="\t\t每个家庭抵御人生风险的方式有很多，但从家庭合理理财的角度，最好的方法是为自己和家人建立财务四个账户："
+                    android:textColor="#485465"
+                    android:textSize="12sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="24dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/shape_read_1"
+                            android:gravity="center"
+                            android:text="健康保险账户"
+                            android:textColor="#FFF"
+                            android:textSize="14dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="10dp"
+                            android:gravity="start|center_vertical"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="重大疾病治疗\n补充社会医疗保险金\n预防老年医疗费用侵蚀养老金"
+                            android:textColor="#757575"/>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/read_line_vertical"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="24dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/shape_read_2"
+                            android:gravity="center"
+                            android:text="人身风险保障账户"
+                            android:textColor="#FFF"
+                            android:textSize="14dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="10dp"
+                            android:gravity="start|center_vertical"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="意外发生时责任得到保障，爱心得以延续\n从家应对，放手一搏\n支付大额意外伤害医疗费用"
+                            android:textColor="#757575"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/read_line_horizontal"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="24dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/shape_read_3"
+                            android:gravity="center"
+                            android:text="养老金领取账户"
+                            android:textColor="#FFF"
+                            android:textSize="14dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="10dp"
+                            android:gravity="start|center_vertical"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="准备退休金，保障老年生活的品质和尊严\n逐年规划，以适当时间换取养老空间"
+                            android:textColor="#757575"/>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/read_line_vertical"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="24dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/shape_read_4"
+                            android:gravity="center"
+                            android:text="长期投资理财账户"
+                            android:textColor="#FFF"
+                            android:textSize="14dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="10dp"
+                            android:gravity="start|center_vertical"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="预备子女上学、婚嫁、购房、创业基金\n通过专家理财获取稳健回报预留生活费用5-10年，解决家庭负债：房，车，生意等"
+                            android:textColor="#757575"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="让家庭的投资目标与人生风险保障相匹配！"
+                android:textColor="#485485"
+                android:textSize="12sp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

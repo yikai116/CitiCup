@@ -12,6 +12,7 @@
         android:paddingTop="10dp">
 
         <TextView
+            android:id="@+id/insu_read"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -21,6 +22,7 @@
             android:textSize="12sp"/>
 
         <TextView
+            android:id="@+id/insu_choose"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,6 +33,7 @@
             android:textSize="12sp"/>
 
         <TextView
+            android:id="@+id/insu_mistake"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -41,6 +44,7 @@
             android:textSize="12sp"/>
 
         <TextView
+            android:id="@+id/insu_feedback"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -51,6 +55,7 @@
             android:textSize="12sp"/>
 
     </LinearLayout>
+
 
 
 </LinearLayout>
