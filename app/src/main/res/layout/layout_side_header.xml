@@ -6,16 +6,13 @@
     android:background="@color/themeColor"
     android:orientation="vertical">
 
-    <com.makeramen.roundedimageview.RoundedImageView
+    <ImageView
         android:id="@+id/side_avatar"
         android:layout_width="81dp"
         android:layout_height="81dp"
         android:layout_gravity="center"
         android:layout_marginTop="57dp"
         android:background="@drawable/shape_avatar"
-        android:src="@mipmap/avatar"
-        app:riv_corner_radius="40dp"
-        app:riv_oval="true"
         />
 
     <TextView

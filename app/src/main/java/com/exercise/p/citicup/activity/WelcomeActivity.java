@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.exercise.p.citicup.Helper;
 import com.exercise.p.citicup.R;
+import com.exercise.p.citicup.dto.UserInfo;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.model.FpswModel;
 import com.exercise.p.citicup.model.RetrofitInstance;
@@ -37,35 +38,37 @@ public class WelcomeActivity extends AppCompatActivity {
         editor.putString("IMEI", Helper.IMEI);
         editor.apply();
         //去除登录
-        tag = LOGIN;
-        WelAsyncTask task = new WelAsyncTask();
-        task.execute();
+//        tag = LOGIN;
+//        WelAsyncTask task = new WelAsyncTask();
+//        task.execute();
         //请求验证标识符
-//        WelcomeModel welcomeModel = RetrofitInstance.getRetrofit().create(WelcomeModel.class);
-//        Call<MyResponse> call = welcomeModel.verToken(Helper.IMEI);
-//        call.enqueue(new Callback<MyResponse>() {
-//            @Override
-//            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-//                Log.i("Test",response.body().toString());
-//                if (response.body().getStatus().getCode() == 1){
-//                    tag = LOGIN;
-//                }
-//                else {
-//                    tag = NOTLOGIN;
-//                    Toast.makeText(WelcomeActivity.this, response.body().getStatus().getMsg(), Toast.LENGTH_SHORT).show();
-//                }
-//                WelAsyncTask task = new WelAsyncTask();
-//                task.execute();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MyResponse> call, Throwable t) {
-//                Toast.makeText(WelcomeActivity.this, "网络连接错误", Toast.LENGTH_SHORT).show();
-//                tag = NOTLOGIN;
-//                WelAsyncTask task = new WelAsyncTask();
-//                task.execute();
-//            }
-//        });
+        WelcomeModel welcomeModel = RetrofitInstance.getRetrofit().create(WelcomeModel.class);
+        Log.i("Test",Helper.IMEI);
+        Call<MyResponse<UserInfo>> call = welcomeModel.verToken(Helper.IMEI);
+        call.enqueue(new Callback<MyResponse<UserInfo>>() {
+            @Override
+            public void onResponse(Call<MyResponse<UserInfo>> call, Response<MyResponse<UserInfo>> response) {
+                Log.i("Test",response.body().getData().toString());
+                if (response.body().getStatus().getCode() == 1){
+                    tag = LOGIN;
+                    Helper.userInfo = response.body().getData();
+                }
+                else {
+                    tag = NOTLOGIN;
+                    Toast.makeText(WelcomeActivity.this, response.body().getStatus().getMsg(), Toast.LENGTH_SHORT).show();
+                }
+                WelAsyncTask task = new WelAsyncTask();
+                task.execute();
+            }
+
+            @Override
+            public void onFailure(Call<MyResponse<UserInfo>> call, Throwable t) {
+                Toast.makeText(WelcomeActivity.this, "网络连接错误", Toast.LENGTH_SHORT).show();
+                tag = NOTLOGIN;
+                WelAsyncTask task = new WelAsyncTask();
+                task.execute();
+            }
+        });
     }
 
     /**
@@ -87,11 +90,12 @@ public class WelcomeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer status) {
             super.onPostExecute(status);
-            if (status == LOGIN) {
+            if (status == LOGIN && Helper.userInfo != null) {
                 Intent intent = new Intent();
                 intent.setClass(WelcomeActivity.this, MainActivity.class);
                 WelcomeActivity.this.startActivity(intent);
-            } else if (status == NOTLOGIN) {
+            }
+            else{
                 Intent intent = new Intent();
                 intent.setClass(WelcomeActivity.this, SignActivity.class);
                 WelcomeActivity.this.startActivity(intent);

@@ -1,6 +1,7 @@
 package com.exercise.p.citicup.model;
 
 import com.exercise.p.citicup.dto.SignInParam;
+import com.exercise.p.citicup.dto.UserInfo;
 import com.exercise.p.citicup.dto.response.MyResponse;
 
 import retrofit2.Call;
@@ -21,7 +22,7 @@ public interface WelcomeModel {
      */
     @FormUrlEncoded
     @POST("verToken")
-    Call<MyResponse> verToken(
+    Call<MyResponse<UserInfo>> verToken(
             @Field("token") String token
     );
 }

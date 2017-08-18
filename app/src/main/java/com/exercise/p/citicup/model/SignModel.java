@@ -1,9 +1,8 @@
 package com.exercise.p.citicup.model;
 
-import com.exercise.p.citicup.dto.Code;
-import com.exercise.p.citicup.dto.FindPswParam;
 import com.exercise.p.citicup.dto.SignInParam;
 import com.exercise.p.citicup.dto.SignUpParam;
+import com.exercise.p.citicup.dto.UserInfo;
 import com.exercise.p.citicup.dto.response.MyResponse;
 
 import retrofit2.Call;
@@ -24,7 +23,7 @@ public interface SignModel {
      * @return 返回结果信息
      */
     @POST("signIn")
-    Call<MyResponse> signIn(
+    Call<MyResponse<UserInfo>> signIn(
             @Body SignInParam param
     );
 
@@ -34,7 +33,7 @@ public interface SignModel {
      * @return 返回结果信息
      */
     @POST("signUp")
-    Call<MyResponse> signUp(
+    Call<MyResponse<UserInfo>> signUp(
             @Body SignUpParam param
     );
 

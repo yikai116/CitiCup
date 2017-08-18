@@ -69,6 +69,7 @@ public class SignActivity extends AppCompatActivity implements SignView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
+        Log.i("Test","create");
         initView();
         initSignInView(signInView);
         initSignUpView(signUpView);

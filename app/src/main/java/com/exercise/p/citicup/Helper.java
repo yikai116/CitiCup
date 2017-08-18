@@ -7,6 +7,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.exercise.p.citicup.activity.WelcomeActivity;
+import com.exercise.p.citicup.dto.UserInfo;
 
 import java.security.MessageDigest;
 import java.sql.Timestamp;
@@ -40,7 +41,10 @@ public class Helper {
      * 用户存在
      */
     public static final int USER_REGISTERED = -5;
-
+    /**
+     * 用户信息
+     */
+    public static UserInfo userInfo = null;
     public static String IMEI = null;
 
     /**
