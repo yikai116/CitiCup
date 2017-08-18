@@ -60,19 +60,21 @@ public class SignPresenter {
             public void onResponse(Call<MyResponse<UserInfo>> call, Response<MyResponse<UserInfo>> response) {
                 Log.i("Test","success" + call.request().url().toString());
                 MyResponse<UserInfo> response1 = response.body();
-                signView.showProgress(false);
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
                     Helper.userInfo = response1.getData();
                     signView.toMainActivity();
                 }
                 else if (response1.getStatus().getCode() == Helper.NO_USER){
                     signView.setSignInPhoneError(response1.getStatus().getMsg());
+                    signView.showProgress(false);
                 }
                 else if (response1.getStatus().getCode() == Helper.PSW_ERROR){
                     signView.setSignInPswError(response1.getStatus().getMsg());
+                    signView.showProgress(false);
                 }
                 else {
                     signView.showMessage(response1.getStatus().getMsg());
+                    signView.showProgress(false);
                 }
             }
             @Override
@@ -121,19 +123,21 @@ public class SignPresenter {
             public void onResponse(Call<MyResponse<UserInfo>> call, Response<MyResponse<UserInfo>> response) {
                 Log.i("Test",call.request().url().toString());
                 MyResponse<UserInfo> response1 = response.body();
-                signView.showProgress(false);
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
                     Helper.userInfo = response1.getData();
                     signView.toMainActivity();
                 }
                 else if (response1.getStatus().getCode() == Helper.USER_REGISTERED){
                     signView.setSignUpPhoneError(response1.getStatus().getMsg());
+                    signView.showProgress(false);
                 }
                 else if (response1.getStatus().getCode() == Helper.VERCODE_ERROR){
                     signView.setSignUpConError(response1.getStatus().getMsg());
+                    signView.showProgress(false);
                 }
                 else {
                     signView.showMessage(response1.getStatus().getMsg());
+                    signView.showProgress(false);
                 }
             }
 

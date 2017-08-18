@@ -48,7 +48,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
@@ -176,25 +181,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        Glide.with(MainActivity.this)
-                .load(Helper.userInfo.getAvatar())
-                .asBitmap()
-                .placeholder(R.drawable.rotate_avatar_ing)
-                .into(new BitmapImageViewTarget(avatar) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable circularBitmapDrawable =
-                                RoundedBitmapDrawableFactory.create(MainActivity.this.getResources(), resource);
-                        circularBitmapDrawable.setCircular(true);
-                        avatar.setImageDrawable(circularBitmapDrawable);
-                    }
 
-                    @Override
-                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                        super.onLoadFailed(e, errorDrawable);
-                        avatar.setImageResource(R.drawable.icon_avatar_fail);
-                    }
-                });
+        setAvatar(Helper.userInfo.getAvatar());
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -262,28 +250,58 @@ public class MainActivity extends AppCompatActivity {
             PhotoUtils.photoZoom(this, uri, tempPath, ZOOM_CODE, 1, 1);
         }
         if (requestCode == ZOOM_CODE && resultCode == RESULT_OK) {
-            Glide.with(MainActivity.this)
-                    .load(Uri.fromFile(new File(tempPath)))
-                    .asBitmap()
-                    .placeholder(R.drawable.rotate_avatar_ing)
-                    .into(new BitmapImageViewTarget(avatar) {
-                        @Override
-                        protected void setResource(Bitmap resource) {
-                            RoundedBitmapDrawable circularBitmapDrawable =
-                                    RoundedBitmapDrawableFactory.create(MainActivity.this.getResources(), resource);
-                            circularBitmapDrawable.setCircular(true);
-                            avatar.setImageDrawable(circularBitmapDrawable);
-                        }
+            File file = new File(tempPath);
 
-                        @Override
-                        public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                            super.onLoadFailed(e, errorDrawable);
-                            avatar.setImageResource(R.drawable.icon_avatar_fail);
-                        }
-                    });
             //在这里可以把临时图片上传到服务器保存，方便下次登录从服务器获取头像
-//            SetModel temp = RetrofitInstance.getRetrofitWithToken().create(SetModel.class);
-//            Call<MyResponse<String>> call = temp.uploadAvatar()
+
+            // 创建 RequestBody，用于封装构建RequestBody
+            RequestBody requestFile =
+                    RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+            // MultipartBody.Part avatar是参数名字
+            MultipartBody.Part part =
+                    MultipartBody.Part.createFormData("avatar", file.getName(), requestFile);
+            SetModel temp = RetrofitInstance.getRetrofitWithToken().create(SetModel.class);
+            Call<MyResponse<String>> call = temp.uploadAvatar(part);
+            call.enqueue(new Callback<MyResponse<String>>() {
+                @Override
+                public void onResponse(Call<MyResponse<String>> call, Response<MyResponse<String>> response) {
+                    Log.i("Test",response.body().toString());
+                    if (response.body().getStatus().getCode() == Helper.SUCCESS) {
+                        setAvatar(response.body().getData());
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this, response.body().getStatus().getMsg(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MyResponse<String>> call, Throwable t) {
+                    Toast.makeText(MainActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+    }
+
+    protected void setAvatar(String url){
+        Glide.with(MainActivity.this)
+                .load(url)
+                .asBitmap()
+                .centerCrop()
+                .into(new BitmapImageViewTarget(avatar) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(MainActivity.this.getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        avatar.setImageDrawable(circularBitmapDrawable);
+                    }
+
+                    @Override
+                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                        super.onLoadFailed(e, errorDrawable);
+                        avatar.setImageResource(R.drawable.icon_avatar_fail);
+                    }
+                });
     }
 }

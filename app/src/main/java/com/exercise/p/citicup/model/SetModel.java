@@ -20,6 +20,7 @@ public interface SetModel {
      * @param param 传入json数据
      * @return 返回结果信息
      */
+    @Multipart
     @POST("setAvatar")
     Call<MyResponse<String>> uploadAvatar(
             @Part MultipartBody.Part avatar
