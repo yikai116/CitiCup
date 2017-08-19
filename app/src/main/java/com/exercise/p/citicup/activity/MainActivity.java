@@ -1,6 +1,7 @@
 package com.exercise.p.citicup.activity;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -33,6 +35,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.signature.StringSignature;
 import com.exercise.p.citicup.Helper;
 import com.exercise.p.citicup.MyFragAdapter;
 import com.exercise.p.citicup.PhotoUtils;
@@ -46,6 +49,7 @@ import com.exercise.p.citicup.model.SetModel;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -70,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager pager;
     NavigationView naviView;
     ImageView avatar;
+    TextView userName;
     //临时文件路径
     private String tempPath = Environment.getExternalStorageDirectory()
             .getAbsolutePath() + "/tempPhoto.jpg";
@@ -93,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         naviView = (NavigationView) findViewById(R.id.main_side);
         avatar = (ImageView)
                 naviView.getHeaderView(0).findViewById(R.id.side_avatar);
-
+        userName = (TextView) naviView.getHeaderView(0).findViewById(R.id.side_name);
         TextView exit = (TextView) findViewById(R.id.exit);
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,8 +186,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        setAvatar(Helper.userInfo.getAvatar());
+        userName.setText(Helper.userInfo.getName());
+        setAvatar(Helper.userInfo.getAvatar(),null);
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,6 +258,10 @@ public class MainActivity extends AppCompatActivity {
             File file = new File(tempPath);
 
             //在这里可以把临时图片上传到服务器保存，方便下次登录从服务器获取头像
+            final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+            dialog.setTitle("正在上传...");
+            dialog.setCancelable(false);
+            dialog.show();
 
             // 创建 RequestBody，用于封装构建RequestBody
             RequestBody requestFile =
@@ -266,31 +275,41 @@ public class MainActivity extends AppCompatActivity {
             call.enqueue(new Callback<MyResponse<String>>() {
                 @Override
                 public void onResponse(Call<MyResponse<String>> call, Response<MyResponse<String>> response) {
-                    Log.i("Test",response.body().toString());
+                    Log.i("Test", response.body().toString());
                     if (response.body().getStatus().getCode() == Helper.SUCCESS) {
-                        setAvatar(response.body().getData());
-                    }
-                    else {
+                        dialog.dismiss();
+                        dialog.setTitle("正在加载...");
+                        dialog.show();
+                        setAvatar(response.body().getData(), dialog);
+                    } else {
+                        dialog.dismiss();
                         Toast.makeText(MainActivity.this, response.body().getStatus().getMsg(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<MyResponse<String>> call, Throwable t) {
+                    dialog.dismiss();
                     Toast.makeText(MainActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
-    protected void setAvatar(String url){
+    protected void setAvatar(final String url, @Nullable final ProgressDialog dialog) {
         Glide.with(MainActivity.this)
                 .load(url)
                 .asBitmap()
+                .placeholder(R.drawable.rotate_loading)
+                .signature(new StringSignature(String.valueOf(System.currentTimeMillis())))
                 .centerCrop()
                 .into(new BitmapImageViewTarget(avatar) {
                     @Override
                     protected void setResource(Bitmap resource) {
+                        if (dialog != null && dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
+                        Log.i("Test", "成功" + url);
                         RoundedBitmapDrawable circularBitmapDrawable =
                                 RoundedBitmapDrawableFactory.create(MainActivity.this.getResources(), resource);
                         circularBitmapDrawable.setCircular(true);
@@ -299,6 +318,10 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                        if (dialog != null && dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
+                        Log.i("Test", "失败");
                         super.onLoadFailed(e, errorDrawable);
                         avatar.setImageResource(R.drawable.icon_avatar_fail);
                     }
