@@ -161,15 +161,19 @@ public class MainActivity extends AppCompatActivity {
         naviView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent = null;
                 switch (item.getItemId()) {
                     case R.id.side_insul:
                         Toast.makeText(MainActivity.this, "1", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent();
+                        intent = new Intent();
                         intent.setClass(MainActivity.this, InsulActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.side_manal:
                         Toast.makeText(MainActivity.this, "2", Toast.LENGTH_SHORT).show();
+                        intent = new Intent();
+                        intent.setClass(MainActivity.this, ManalActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.side_riskt:
                         Toast.makeText(MainActivity.this, "3", Toast.LENGTH_SHORT).show();
