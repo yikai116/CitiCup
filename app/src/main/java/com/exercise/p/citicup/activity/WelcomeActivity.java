@@ -43,8 +43,10 @@ public class WelcomeActivity extends AppCompatActivity {
 //        task.execute();
         //请求验证标识符
         WelcomeModel welcomeModel = RetrofitInstance.getRetrofit().create(WelcomeModel.class);
-        Log.i("Test",Helper.IMEI);
+        Log.i("Test","IMEI" + Helper.IMEI);
         Call<MyResponse<UserInfo>> call = welcomeModel.verToken(Helper.IMEI);
+        Log.i("Test","URL" + call.request().url());
+        Log.i("Test","BODY" + call.request().body());
         call.enqueue(new Callback<MyResponse<UserInfo>>() {
             @Override
             public void onResponse(Call<MyResponse<UserInfo>> call, Response<MyResponse<UserInfo>> response) {
