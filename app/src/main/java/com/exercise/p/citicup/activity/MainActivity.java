@@ -325,7 +325,8 @@ public class MainActivity extends AppCompatActivity {
                         if (dialog != null && dialog.isShowing()) {
                             dialog.dismiss();
                         }
-                        Log.i("Test", "失败");
+                        Log.i("Test", "失败" + url);
+                        e.printStackTrace();
                         super.onLoadFailed(e, errorDrawable);
                         avatar.setImageResource(R.drawable.icon_avatar_fail);
                     }
