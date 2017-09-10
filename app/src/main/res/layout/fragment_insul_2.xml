@@ -7,226 +7,236 @@
     android:paddingRight="22dp"
     android:paddingTop="19dp">
 
-    <TextView
-        style="@style/TabText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="10dp"
-        android:drawableStart="@drawable/icon_insu_2_1"
-        android:gravity="center"
-        android:text="产品主题" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+            android:orientation="vertical">
+            <TextView
+                style="@style/TabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/icon_insu_2_1"
+                android:gravity="center"
+                android:text="产品主题" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/b_1_1"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="已婚"
+                        />
+
+                    <TextView
+                        android:id="@+id/b_1_2"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="单身"/>
+
+                    <TextView
+                        android:id="@+id/b_1_3"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="恋爱" />
+
+                    <TextView
+                        android:id="@+id/b_1_4"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="投资理财"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/b_1_5"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="家有小孩" />
+
+                    <TextView
+                        android:id="@+id/b_1_6"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="家有宝贝" />
+
+                    <TextView
+                        android:id="@+id/b_1_7"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="家有高堂" />
+
+                    <TextView
+                        android:id="@+id/b_1_8"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="我是白领" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/b_1_9"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="子女教育" />
+
+                    <TextView
+                        android:id="@+id/b_1_10"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="子女成年" />
+
+                    <TextView
+                        android:id="@+id/b_1_11"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="晚年养老" />
+
+                    <TextView
+                        android:id="@+id/b_1_12"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="我有爱车" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/b_1_13"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="健康护航" />
+
+                    <TextView
+                        android:id="@+id/b_1_14"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="出行安全" />
+
+                    <TextView
+                        android:id="@+id/b_1_15"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="我爱旅游" />
+
+                    <TextView
+                        android:id="@+id/b_1_16"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="财产保障" />
+                </LinearLayout>
+
+            </LinearLayout>
+
 
             <TextView
-                android:id="@+id/b_1_1"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="已婚"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/icon_insu_2_2"
+                android:gravity="center"
+                android:paddingTop="30dp"
+                android:text="缴费方式"/>
 
-            <TextView
-                android:id="@+id/b_1_2"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="单身"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp">
 
-            <TextView
-                android:id="@+id/b_1_3"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="恋爱" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/b_1_4"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="投资理财"
-                 />
+                    <TextView
+                        android:id="@+id/b_2_1"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="趸缴" />
+
+                    <TextView
+                        android:id="@+id/b_2_2"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="期缴"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/fragment_insul_2_commit"
+                android:layout_width="178dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/shape_sign_button_sign_in"
+                android:text="提交"
+                android:textColor="#FFF"
+                android:textSize="16sp" />
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/b_1_5"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="家有小孩" />
-
-            <TextView
-                android:id="@+id/b_1_6"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="家有宝贝" />
-
-            <TextView
-                android:id="@+id/b_1_7"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="家有高堂" />
-
-            <TextView
-                android:id="@+id/b_1_8"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="我是白领" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/b_1_9"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="子女教育" />
-
-            <TextView
-                android:id="@+id/b_1_10"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="子女成年" />
-
-            <TextView
-                android:id="@+id/b_1_11"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="晚年养老" />
-
-            <TextView
-                android:id="@+id/b_1_12"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="我有爱车" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/b_1_13"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="健康护航" />
-
-            <TextView
-                android:id="@+id/b_1_14"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="出行安全" />
-
-            <TextView
-                android:id="@+id/b_1_15"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="我爱旅游" />
-
-            <TextView
-                android:id="@+id/b_1_16"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="财产保障" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="10dp"
-        android:drawableStart="@drawable/icon_insu_2_2"
-        android:gravity="center"
-        android:paddingTop="30dp"
-        android:text="缴费方式"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="10dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/b_2_1"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="趸缴" />
-
-            <TextView
-                android:id="@+id/b_2_2"
-                style="@style/CardText"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="期缴"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/fragment_insul_2_commit"
-        android:layout_width="178dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/shape_sign_button_sign_in"
-        android:text="提交"
-        android:textColor="#FFF"
-        android:textSize="16sp" />
 </LinearLayout>

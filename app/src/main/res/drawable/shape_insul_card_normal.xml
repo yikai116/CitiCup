@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">--><!--&lt;!&ndash; Drop Shadow Stack &ndash;&gt;--><!--<item>--><!--<shape>--><!--<padding--><!--android:bottom="0.3dp"--><!--android:left="0.3dp"--><!--android:right="0.3dp"--><!--android:top="0.3dp" />--><!--<solid android:color="#10f4eded" />--><!--</shape>--><!--</item>--><!--<item>--><!--<shape>--><!--<padding--><!--android:bottom="0.3dp"--><!--android:left="0.3dp"--><!--android:right="0.3dp"--><!--android:top="0.3dp" />--><!--<solid android:color="#20f4eded" />--><!--</shape>--><!--</item>--><!--<item>--><!--<shape>--><!--<padding--><!--android:bottom="0.3dp"--><!--android:left="0.3dp"--><!--android:right="0.3dp"--><!--android:top="0.3dp" />--><!--<solid android:color="#40f4eded" />--><!--</shape>--><!--</item>--><!--<item>--><!--<shape>--><!--<padding--><!--android:bottom="0.3dp"--><!--android:left="0.3dp"--><!--android:right="0.3dp"--><!--android:top="0.3dp" />--><!--<solid android:color="#50f4eded" />--><!--</shape>--><!--</item>--><!--<item>--><!--<shape>--><!--<padding--><!--android:bottom="0.3dp"--><!--android:left="0.3dp"--><!--android:right="0.3dp"--><!--android:top="0.3dp" />--><!--<solid android:color="#60f4eded" />--><!--</shape>--><!--</item>--><!--&lt;!&ndash; Background &ndash;&gt;--><!--<item>--><!--<shape>--><!--<padding--><!--android:bottom="0.3dp"--><!--android:left="0.3dp"--><!--android:right="0.3dp"--><!--android:top="0.3dp" />--><!--<solid android:color="#b5f4eded" />--><!--<corners android:radius="6dp" />--><!--</shape>--><!--</item>--><!--</layer-list>-->
-
+<?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <solid android:color="#b5f4eded" />
-    <corners android:radius="6dp" />
+    <corners android:radius="3dp"/>
+    <solid android:color="#fff"/>
 </shape>

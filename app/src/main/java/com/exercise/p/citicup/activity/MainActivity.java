@@ -177,6 +177,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.side_riskt:
                         Toast.makeText(MainActivity.this, "3", Toast.LENGTH_SHORT).show();
+                        intent = new Intent();
+                        intent.setClass(MainActivity.this, RisktActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.side_riskl:
                         Toast.makeText(MainActivity.this, "4", Toast.LENGTH_SHORT).show();

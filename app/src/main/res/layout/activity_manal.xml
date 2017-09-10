@@ -1,9 +1,435 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.exercise.p.citicup.activity.ManalActivity">
+    android:orientation="vertical"
+    tools:context="com.exercise.p.citicup.activity.InsulActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/manal_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="?colorPrimary">
+
+        <TextView
+            style="@style/MyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="理财偏好" />
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="21dp"
+            android:paddingTop="21dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="20.5dp"
+                    android:background="@color/themeColor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="产品期限"
+                    android:textColor="#485465"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingEnd="17.5dp"
+                    android:paddingStart="17.5dp">
+                    <TextView
+                        android:id="@+id/b_1_1"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="30天(含)以下"/>
+                    <TextView
+                        android:id="@+id/b_1_2"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="31-90天(含)"/>
+                    <TextView
+                        android:id="@+id/b_1_3"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="91-180天(含)"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:paddingEnd="17.5dp"
+                    android:paddingStart="17.5dp">
+                    <TextView
+                        android:id="@+id/b_1_4"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="181-360天(含)"/>
+                    <TextView
+                        android:id="@+id/b_1_5"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="361-720天(含)"/>
+                    <TextView
+                        android:id="@+id/b_1_6"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="720天以上"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:paddingEnd="17.5dp"
+                    android:paddingStart="17.5dp">
+                    <TextView
+                        android:id="@+id/b_1_7"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="无固定期限"/>
+                    <Space
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"/>
+                    <Space
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="20.5dp"
+                    android:background="@color/themeColor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="产品类型"
+                    android:textColor="#485465"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingEnd="17.5dp"
+                    android:paddingStart="17.5dp">
+                    <TextView
+                        android:id="@+id/b_2_1"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="固定收益类产品"/>
+                    <TextView
+                        android:id="@+id/b_2_2"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="现金管理类产品"/>
+                    <TextView
+                        android:id="@+id/b_2_3"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="净值类基金产品"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="20.5dp"
+                    android:background="@color/themeColor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="风险等级"
+                    android:textColor="#485465"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingEnd="17.5dp"
+                    android:paddingStart="17.5dp">
+                    <TextView
+                        android:id="@+id/b_3_1"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="PR1-风险很低"/>
+                    <TextView
+                        android:id="@+id/b_3_2"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="PR2-风险较低"/>
+                    <TextView
+                        android:id="@+id/b_3_3"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="PR3-风险适中"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:paddingEnd="17.5dp"
+                    android:paddingStart="17.5dp">
+                    <TextView
+                        android:id="@+id/b_3_4"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="PR4-风险较高"/>
+                    <TextView
+                        android:id="@+id/b_3_5"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="PR5-风险高"/>
+                    <Space
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="20.5dp"
+                    android:background="@color/themeColor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="收益类型"
+                    android:textColor="#485465"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingEnd="17.5dp"
+                    android:paddingStart="17.5dp">
+                    <TextView
+                        android:id="@+id/b_4_1"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="保本保收益"/>
+                    <TextView
+                        android:id="@+id/b_4_2"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="保本浮动收益"/>
+                    <TextView
+                        android:id="@+id/b_4_3"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="不保本浮动收益"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:paddingEnd="17.5dp"
+                    android:paddingStart="17.5dp">
+                    <TextView
+                        android:id="@+id/b_4_4"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="其他"/>
+                    <Space
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"/>
+                    <Space
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="20.5dp"
+                    android:background="@color/themeColor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="销售状态"
+                    android:textColor="#485465"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingEnd="17.5dp"
+                    android:paddingStart="17.5dp">
+                    <TextView
+                        android:id="@+id/b_5_1"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="全部"/>
+                    <TextView
+                        android:id="@+id/b_5_2"
+                        style="@style/CardText"
+                        android:layout_width="0dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="1"
+                        android:text="在售"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/manal_commit"
+                android:layout_width="178dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/shape_sign_button_sign_in"
+                android:text="提交"
+                android:textColor="#FFF"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

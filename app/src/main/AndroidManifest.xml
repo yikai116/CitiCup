@@ -30,7 +30,8 @@
         <activity android:name=".activity.FpswActivity" />
         <activity android:name=".activity.InsulActivity" />
         <activity android:name=".activity.ReadActivity" />
-        <activity android:name=".activity.ManalActivity"></activity>
+        <activity android:name=".activity.ManalActivity" />
+        <activity android:name=".activity.RisktActivity"></activity>
     </application>
 
 </manifest>

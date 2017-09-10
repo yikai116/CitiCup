@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="a1">
+        <item>工资、劳务报酬</item>
+        <item>生产经营所得</item>
+        <item>利息、股息、转让证券等金融性资产收入</item>
+        <item>出租、出售房地产等非金融性资产收入</item>
+        <item>无固定收入</item>
+    </string-array>
+
+    <integer-array name="i1">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="a2">
+        <item>70%以上</item>
+        <item>50%-70%</item>
+        <item>30%-50% </item>
+        <item>10%-30%</item>
+        <item>10%以下</item>
+    </string-array>
+
+    <integer-array name="i2">
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="a3">
+        <item>没有</item>
+        <item>有，住房抵押贷款等长期定额债务</item>
+        <item>有，信用卡欠款、消费信贷等短期信用债务</item>
+        <item>有，亲戚朋友之间借款</item>
+    </string-array>
+
+    <integer-array name="i3">
+        <item>5</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <string-array name="a4">
+        <item>不超过50万元人民币</item>
+        <item>50万-300万元（不含）人民币</item>
+        <item>300万-1000万元（不含）人民币</item>
+        <item>1000万元人民币以上</item>
+    </string-array>
+
+    <integer-array name="i4">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+
+    <string-array name="a5">
+        <item>一般：现在或以前曾从事金融、经济或财会等与金融产品投资相关的工作超过两年</item>
+        <item>丰富：已取得金融、经济或财会等与金融产品投资相关专业学士以上学位</item>
+        <item>专业人士：取得证券从业资格、基金从业资格、期货从业资格、注册会计师证书（CPA）或注册金融分析师证书（CFA）中的一项及以上</item>
+        <item>我不符合以上任何一项描述</item>
+    </string-array>
+
+    <integer-array name="i5">
+        <item>2</item>
+        <item>3</item>
+        <item>5</item>
+        <item>2</item>
+    </integer-array>
+
+    <string-array name="a6">
+        <item>有限：除银行活期账户和定期存款外，我基本没有其他投资经验</item>
+        <item>一般：除银行活期账户和定期存款外，我购买过基金、保险等理财产品，但还需要进一步的指导</item>
+        <item>丰富：我是一位有经验的投资者，参与过股票、基金等产品的交易，并倾向于自己做出投资决策</item>
+        <item>非常丰富：我是一位非常有经验的投资者，参与过权证、期货或创业板等高风险产品的交易</item>
+    </string-array>
+
+    <integer-array name="i6">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+
+    <string-array name="a7">
+        <item>太高了</item>
+        <item>偏高</item>
+        <item>正常</item>
+        <item>偏低</item>
+    </string-array>
+
+    <integer-array name="i7">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <string-array name="a8">
+        <item>5个以下</item>
+        <item>6至10个</item>
+        <item>11至15个</item>
+        <item>16个以上</item>
+    </string-array>
+
+    <integer-array name="i8">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+
+    </integer-array>
+
+    <string-array name="a9">
+        <item>银行存款等</item>
+        <item>债券、货币市场基金、债券型基金或其他固定收益类产品等</item>
+        <item>股票、混合型基金、偏股型基金、股票型基金等权益类投资品种等</item>
+        <item>期货、融资融券、股票期权</item>
+        <item>复杂金融产品、其他产品或服务</item>
+    </string-array>
+
+    <integer-array name="i9">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="a10">
+        <item>10万元以内</item>
+        <item>10万元～30万元</item>
+        <item>30万元～100万元</item>
+        <item>100万元以上</item>
+        <item>从未从事过金融市场投资</item>
+    </string-array>
+
+    <integer-array name="i10">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="a11">
+        <item>0到1年</item>
+        <item>1到5年</item>
+        <item>无特别要求</item>
+    </string-array>
+
+    <integer-array name="i11">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+    </integer-array>
+
+    <string-array name="a12">
+        <item>债券、货币市场基金、债券基金等固定收益类投资品种</item>
+        <item>股票、混合型基金、偏股型基金、股票型基金等权益类投资品种</item>
+        <item>期货、融资融券、股票期权等</item>
+        <item>复杂或高风险金融产品或服务</item>
+        <item>其他产品或服务</item>
+    </string-array>
+
+    <integer-array name="i12">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="a13">
+        <item>全部投资于A</item>
+        <item>大部分投资于A </item>
+        <item>两种投资各一半</item>
+        <item>大部分投资于B </item>
+        <item>全部投资于B </item>
+    </string-array>
+
+    <integer-array name="i13">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+
+    <string-array name="a14">
+        <item>资产保值，我不愿意承担任何风险投资</item>
+        <item>尽可能保证本金安全，不在乎收益率比较低</item>
+        <item>产生一定的收益，可以承担一定的投资风险</item>
+        <item>产生较多的收益，可以承担较大的投资风险</item>
+        <item>实现资产大幅增长，愿意承担很大的投资风险</item>
+    </string-array>
+
+    <integer-array name="i14">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+
+    <string-array name="a15">
+        <item>不能承受任何损失</item>
+        <item>一定的投资损失</item>
+        <item>较大的投资损失</item>
+        <item>损失可以超过本金</item>
+    </string-array>
+
+    <integer-array name="i15">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <string-array name="a16">
+        <item>改善生活</item>
+        <item>个体生产经营或证券投资以外的投资行为</item>
+        <item>履行扶养、抚养或赡养义务</item>
+        <item>本人养老或医疗</item>
+        <item>偿付债务</item>
+    </string-array>
+
+    <integer-array name="i16">
+        <item>2</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="a17">
+        <item>18–30岁</item>
+        <item>31–40岁</item>
+        <item>41–50岁</item>
+        <item>51–60岁</item>
+        <item>超过60岁</item>
+    </string-array>
+
+    <integer-array name="i17">
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="a18">
+        <item>1–2人</item>
+        <item>3–4人</item>
+        <item>5人以上</item>
+    </string-array>
+
+    <integer-array name="i18">
+        <item>4</item>
+        <item>2</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="a19">
+        <item>高中或以下</item>
+        <item>大学专科</item>
+        <item>大学本科</item>
+        <item>硕士及以上</item>
+    </string-array>
+
+    <integer-array name="i19">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <string-array name="a20">
+        <item>您与配偶均有稳定收入的工作</item>
+        <item>您与配偶其中一人有稳定收入的工作</item>
+        <item>您与配偶均没有稳定收入的工作或者已退休</item>
+        <item>未婚，但有稳定收入的工作</item>
+        <item>未婚，目前暂无稳定收入的工作</item>
+    </string-array>
+
+    <integer-array name="i20">
+        <item>4</item>
+        <item>3</item>
+        <item>1</item>
+        <item>5</item>
+        <item>2</item>
+    </integer-array>
+
+    <string-array name="topic">
+        <item>您的主要收入来源是</item>
+        <item>最近您家庭预计进行证券投资的资金占家庭现有总资产(不含自住、自用房产及汽车等固定资产)的比例是</item>
+        <item>您是否有尚未清偿的数额较大的债务，如有，其性质是</item>
+        <item>您可用于投资的资产数额（包括金融资产和不动产）为</item>
+        <item>您的投资知识符合以下哪种情况</item>
+        <item>您的投资经验可以被概括为</item>
+        <item>有一位投资者一个月内做了15笔交易（同一品种买卖各一次算一笔），您认为这样的交易频率</item>
+        <item>过去一年时间内，您购买的不同产品或接受的不同服务（含同一类型的不同产品或服务）的数量是</item>
+        <item>以下金融产品或服务，您投资经验在两年以上的有（多选）</item>
+        <item>如果您曾经从事过金融市场投资，在交易较为活跃的月份，平均月交易额大概是多少</item>
+        <item>您用于证券投资的大部分资金不会用作其他用途的时间段为：</item>
+        <item>您打算重点投资于哪种种类的投资品种？（多选）</item>
+        <item>假设有两种不同的投资：投资A预期获得5%%的收益，有可能承担非常小的损失；投资B预期获得20%%收益</item>
+        <item>您进行投资时的首要目标是</item>
+        <item>您认为自己能承受的最大投资损失是多少？</item>
+        <item>您打算将自己的投资回报主要用于</item>
+        <item>您的年龄是</item>
+        <item>今后五年时间内，您的父母、配偶以及未成年子女等需负法定抚养和赡养义务的人数为</item>
+        <item>您的最高学历是</item>
+        <item>您家庭的就业状况是</item>
+    </string-array>
+
+</resources>
