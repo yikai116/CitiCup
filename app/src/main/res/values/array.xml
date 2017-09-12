@@ -68,8 +68,8 @@
     </string-array>
 
     <integer-array name="i5">
-        <item>2</item>
         <item>3</item>
+        <item>4</item>
         <item>5</item>
         <item>2</item>
     </integer-array>
@@ -320,4 +320,32 @@
         <item>您家庭的就业状况是</item>
     </string-array>
 
+    <string-array name="type">
+        <item>谨慎型</item>
+        <item>稳健型</item>
+        <item>平衡型</item>
+        <item>进取型</item>
+        <item>激进型</item>
+    </string-array>
+    <string-array name="ability">
+        <item>低</item>
+        <item>中偏低</item>
+        <item>中</item>
+        <item>中偏高</item>
+        <item>高</item>
+    </string-array>
+    <string-array name="expect">
+        <item>较低收益</item>
+        <item>中等偏低收益</item>
+        <item>中等收益</item>
+        <item>中等偏高收益</item>
+        <item>高收益</item>
+    </string-array>
+    <string-array name="text">
+        <item>您属于可以承担低风险而作风谨慎类型的投资者。您适合投资于以保本为主的投资工具，但您因此会牺牲资本升值的机会。</item>
+        <item>您属于可以承担低至中等风险类型的投资者。您适合投资于能够权衡保本而亦有若干升值能力的投资工具。</item>
+        <item>您属于可以承担中等风险类型的投资者。您适合投资于能够为您提供温和升值能力，而投资价值有温和波动的投资工具。</item>
+        <item>您属于可以承担中等至高风险类型的投资者。您适合投资于能够为您提供升值能力，而投资价值有波动的投资工具。</item>
+        <item>您属于可以承受高风险类型的投资者。您适合投资于能够为您提供高升值能力而投资价值波动大的投资工具。最坏的情况下，您可能失去全部投资本金并需对您投资所导致的任何亏蚀承担责任。</item>
+    </string-array>
 </resources>

@@ -22,14 +22,14 @@
             android:textSize="12sp"/>
 
         <TextView
-            android:id="@+id/insu_choose"
+            android:id="@+id/insu_teach"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawablePadding="3.5dp"
             android:drawableTop="@drawable/icon_insu_choose"
             android:gravity="center"
-            android:text="险种选择"
+            android:text="教您读表单"
             android:textSize="12sp"/>
 
         <TextView

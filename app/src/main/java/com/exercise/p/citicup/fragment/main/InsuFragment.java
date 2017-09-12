@@ -41,7 +41,7 @@ public class InsuFragment extends Fragment{
                 startActivity(intent);
             }
         });
-        root.findViewById(R.id.insu_choose).setOnClickListener(new View.OnClickListener() {
+        root.findViewById(R.id.insu_teach).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Choose", Toast.LENGTH_SHORT).show();

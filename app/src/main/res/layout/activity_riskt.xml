@@ -22,40 +22,67 @@
             android:text="投资者风险承受能力问卷" />
     </android.support.v7.widget.Toolbar>
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:paddingTop="11dp"
-        android:text="本问卷旨在了解您可承受的风险程度等情况，借此协助您选择合适的产 品或服务类别，以符合您的风险承受能力"
-        android:textAlignment="center"
-        android:textColor="#A8B4C4"
-        android:textSize="10sp"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="11dp"
-        android:background="#979797"/>
+        android:layout_height="match_parent">
         <LinearLayout
+            android:id="@+id/page1"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingTop="10dp">
-            <ScrollView
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true">
-                <LinearLayout
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:paddingTop="11dp"
+                android:text="本问卷旨在了解您可承受的风险程度等情况，借此协助您选择合适的产 品或服务类别，以符合您的风险承受能力"
+                android:textAlignment="center"
+                android:textColor="#A8B4C4"
+                android:textSize="10sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="11dp"
+                android:background="#979797" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingTop="10dp">
+
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/viewpager"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-            </ScrollView>
+                        android:layout_height="wrap_content">
+
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/viewpager"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/page2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <include
+                layout="@layout/layout_riskt_result"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
 </LinearLayout>

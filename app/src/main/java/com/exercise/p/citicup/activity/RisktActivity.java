@@ -6,17 +6,19 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.exercise.p.citicup.CheckableLinearLayout;
 import com.exercise.p.citicup.R;
+import com.github.lzyzsd.circleprogress.DonutProgress;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +29,22 @@ public class RisktActivity extends AppCompatActivity {
     ViewPager pager;
     String[] topic;
     ArrayList<ArrayList<String>> data;
+    ArrayList<ArrayList<Integer>> score;
     ArrayList<ArrayList<Integer>> choose;
+    String[] type;
+    String[] ability;
+    String[] expect;
+    String[] text;
+    int sco_all = 0;
+    LinearLayout page1;
+    LinearLayout page2;
+    TextView scoreText;
+    TextView typeView;
+    TextView abilityView;
+    TextView expectView;
+    TextView textView;
+    Button retest;
+    DonutProgress donutProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +70,25 @@ public class RisktActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        page1 = (LinearLayout) findViewById(R.id.page1);
+        page2 = (LinearLayout) findViewById(R.id.page2);
         pager = (ViewPager) findViewById(R.id.viewpager);
+        scoreText = (TextView) findViewById(R.id.score);
+        typeView = (TextView) findViewById(R.id.type);
+        abilityView = (TextView) findViewById(R.id.ability);
+        expectView = (TextView) findViewById(R.id.expect);
+        textView = (TextView) findViewById(R.id.text);
+        donutProgress = (DonutProgress) findViewById(R.id.donut_progress);
+        retest = (Button) findViewById(R.id.retest);
+        retest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sco_all = 0;
+                page1.setVisibility(View.VISIBLE);
+                pager.setCurrentItem(0);
+                page2.setVisibility(View.GONE);
+            }
+        });
         final ArrayList<View> views = new ArrayList<>();
 
         for (int i = 0; i < topic.length; i++) {
@@ -103,7 +138,29 @@ public class RisktActivity extends AppCompatActivity {
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    sco_all = 0;
+                    for (int ii = 0; ii < choose.size(); ii++){
+                        ArrayList<Integer> temp = choose.get(ii);
+                        if (temp.size() == 0){
+                            pager.setCurrentItem(ii);
+                            Toast.makeText(RisktActivity.this, "您这道题还没选择哦~", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        for (int ij = 0; ij < temp.size(); ij++){
+                            sco_all += score.get(ii).get(temp.get(ij));
+                        }
+                    }
+                    scoreText.setText(sco_all + "分");
+                    int temp = getLevel(sco_all);
+                    typeView.setText(type[temp]);
+                    abilityView.setText("您的风险承受能力：" + ability[temp]);
+                    expectView.setText("您的获利期待：" + expect[temp]);
+                    textView.setText(text[temp]);
+                    donutProgress.setDonut_progress(sco_all + "");
+                    page1.setVisibility(View.GONE);
+                    page2.setVisibility(View.VISIBLE);
                     Log.i("Test", "submit choose" + choose);
+                    Log.i("Test", "sco_all" + sco_all);
                 }
             });
             final ListView listView = (ListView) view1.findViewById(R.id.items);
@@ -144,7 +201,12 @@ public class RisktActivity extends AppCompatActivity {
 
     private void getData() {
         data = new ArrayList<>();
+
         topic = getResources().getStringArray(R.array.topic);
+        type = getResources().getStringArray(R.array.type);
+        ability = getResources().getStringArray(R.array.ability);
+        expect = getResources().getStringArray(R.array.expect);
+        text = getResources().getStringArray(R.array.text);
         for (int i = 1; i < topic.length + 1; i++) {
             ArrayList<String> temp = new ArrayList<>();
             int a = getResources().getIdentifier("a" + i, "array", getApplicationContext().getPackageName());
@@ -152,11 +214,37 @@ public class RisktActivity extends AppCompatActivity {
             Collections.addAll(temp, ss);
             data.add(temp);
         }
+
         choose = new ArrayList<>();
         for (int i = 0; i < topic.length; i++) {
             choose.add(new ArrayList<Integer>());
         }
-        Log.i("Test", "Data: " + data);
+
+        score = new ArrayList<>();
+        for (int i = 1; i < topic.length + 1; i++) {
+            ArrayList<Integer> temp = new ArrayList<>();
+            int a = getResources().getIdentifier("i" + i, "array", getApplicationContext().getPackageName());
+            int[] ss = getResources().getIntArray(a);
+            for (int j = 0; j < ss.length; j++){
+                temp.add(ss[j]);
+            }
+            score.add(temp);
+        }
+
+
+        Log.i("Test", "Data: " + score);
+    }
+
+    private int getLevel(int sco){
+        if (sco < 30)
+            return 0;
+        if (sco < 40)
+            return 1;
+        if (sco < 62)
+            return 2;
+        if (sco < 78)
+            return 3;
+        else return 4;
     }
 
     private void setAdapter(final ListView listView, final ArrayList<String> ss, final int pos, final boolean isSingle) {
