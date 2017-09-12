@@ -1,5 +1,7 @@
 package com.exercise.p.citicup.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,7 +20,9 @@ import android.widget.Toast;
 
 import com.exercise.p.citicup.CheckableLinearLayout;
 import com.exercise.p.citicup.R;
+import com.exercise.p.citicup.ViewPagerAdapter;
 import com.github.lzyzsd.circleprogress.DonutProgress;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -94,7 +98,7 @@ public class RisktActivity extends AppCompatActivity {
         for (int i = 0; i < topic.length; i++) {
             View view1;
             if (i == topic.length - 1) {
-                view1 = View.inflate(RisktActivity.this, R.layout.test3_end, null);
+                view1 = View.inflate(RisktActivity.this, R.layout.risk_test_end, null);
                 Button button1 = (Button) view1.findViewById(R.id.before);
                 final int temp1 = i;
                 button1.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +109,7 @@ public class RisktActivity extends AppCompatActivity {
                 });
             }
             else if (i == 0) {
-                view1 = View.inflate(RisktActivity.this, R.layout.test3_fir, null);
+                view1 = View.inflate(RisktActivity.this, R.layout.risk_test_fir, null);
                 Button button = (Button) view1.findViewById(R.id.next);
                 final int temp = i;
                 button.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +120,7 @@ public class RisktActivity extends AppCompatActivity {
                 });
             }
             else {
-                view1 = View.inflate(RisktActivity.this, R.layout.test3_mid, null);
+                view1 = View.inflate(RisktActivity.this, R.layout.risk_test_mid, null);
                 Button button1 = (Button) view1.findViewById(R.id.before);
                 final int temp1 = i;
                 button1.setOnClickListener(new View.OnClickListener() {
@@ -150,6 +154,11 @@ public class RisktActivity extends AppCompatActivity {
                             sco_all += score.get(ii).get(temp.get(ij));
                         }
                     }
+                    SharedPreferences preferences=getSharedPreferences("riskt", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor=preferences.edit();
+                    editor.putString("choose", new Gson().toJson(choose));
+                    editor.putInt("sco", sco_all);
+                    editor.apply();
                     scoreText.setText(sco_all + "分");
                     int temp = getLevel(sco_all);
                     typeView.setText(type[temp]);
@@ -159,8 +168,6 @@ public class RisktActivity extends AppCompatActivity {
                     donutProgress.setDonut_progress(sco_all + "");
                     page1.setVisibility(View.GONE);
                     page2.setVisibility(View.VISIBLE);
-                    Log.i("Test", "submit choose" + choose);
-                    Log.i("Test", "sco_all" + sco_all);
                 }
             });
             final ListView listView = (ListView) view1.findViewById(R.id.items);
@@ -173,36 +180,36 @@ public class RisktActivity extends AppCompatActivity {
             textView.setText(i + 1 + "、" + topic[i]);
             views.add(view1);
         }
-        pager.setAdapter(new MyViewAdapter(views));
-        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                Log.i("Test", "2position" + position);
-                View temp = views.get(position);
-                ListView listView = (ListView) temp.findViewById(R.id.items);
-                Log.i("Test", "temp :" + choose.get(position));
-                for (int i = 0; i < choose.get(position).size(); i++) {
-                    Log.i("Test", "i:" + i);
-                    Log.i("Test", "c:" + choose.get(position).get(i));
-                    listView.setItemChecked(choose.get(position).get(i), true);
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        pager.setAdapter(new ViewPagerAdapter(views));
+//        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                Log.i("Test", "2position" + position);
+//                View temp = views.get(position);
+//                ListView listView = (ListView) temp.findViewById(R.id.items);
+//                Log.i("Test", "temp :" + choose.get(position));
+//                for (int i = 0; i < choose.get(position).size(); i++) {
+//                    Log.i("Test", "i:" + i);
+//                    Log.i("Test", "c:" + choose.get(position).get(i));
+//                    listView.setItemChecked(choose.get(position).get(i), true);
+//                }
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
     }
 
     private void getData() {
         data = new ArrayList<>();
 
-        topic = getResources().getStringArray(R.array.topic);
+        topic = getResources().getStringArray(R.array.risk_topic);
         type = getResources().getStringArray(R.array.type);
         ability = getResources().getStringArray(R.array.ability);
         expect = getResources().getStringArray(R.array.expect);
@@ -230,9 +237,6 @@ public class RisktActivity extends AppCompatActivity {
             }
             score.add(temp);
         }
-
-
-        Log.i("Test", "Data: " + score);
     }
 
     private int getLevel(int sco){
@@ -293,8 +297,6 @@ public class RisktActivity extends AppCompatActivity {
                                 }
                                 listView.setItemChecked(position, !layout.isChecked());
                             }
-                            Log.i("Test", "choose" + choose.get(pos));
-                            Log.i("Test", "choose" + choose);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -306,38 +308,4 @@ public class RisktActivity extends AppCompatActivity {
         });
     }
 
-    private class MyViewAdapter extends PagerAdapter {
-        private List<View> viewLists;
-
-        public MyViewAdapter(List<View> lists) {
-            viewLists = lists;
-        }
-
-        //获得size
-        @Override
-        public int getCount() {
-            return viewLists.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View arg0, Object arg1) {
-            return arg0 == arg1;
-        }
-
-        //销毁Item
-        @Override
-        public void destroyItem(View view, int position, Object object) {
-            Log.i("Test", "Destroy   :" + position);
-            ((ViewPager) view).removeView(viewLists.get(position));
-        }
-
-        //实例化Item
-        @Override
-        public Object instantiateItem(View view, int position) {
-            Log.i("Test", "Instantiate   :" + position);
-            ((ViewPager) view).addView(viewLists.get(position), 0);
-            View view1 = viewLists.get(position);
-            return view1;
-        }
-    }
 }

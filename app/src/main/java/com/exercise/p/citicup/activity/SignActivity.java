@@ -16,7 +16,6 @@ import android.text.InputType;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
@@ -69,7 +68,6 @@ public class SignActivity extends AppCompatActivity implements SignView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
-        Log.i("Test","create");
         initView();
         initSignInView(signInView);
         initSignUpView(signUpView);
@@ -212,7 +210,6 @@ public class SignActivity extends AppCompatActivity implements SignView {
         signUp_button_getCon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Test", "点击");
                 long timeInFuture = SystemClock.elapsedRealtime() + 1000 * 60;
                 signUp_button_getCon.setTimeInFuture(timeInFuture);
                 signUp_button_getCon.start();

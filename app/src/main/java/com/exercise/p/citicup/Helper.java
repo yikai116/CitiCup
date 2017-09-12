@@ -1,17 +1,11 @@
 package com.exercise.p.citicup;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
-import com.exercise.p.citicup.activity.WelcomeActivity;
 import com.exercise.p.citicup.dto.UserInfo;
 
 import java.security.MessageDigest;
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.Random;
 
 import static android.content.Context.TELEPHONY_SERVICE;

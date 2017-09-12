@@ -17,14 +17,14 @@
     <item
         android:id="@+id/side_riskt"
         android:icon="@drawable/icon_side_riskt"
-        android:title="风险测评"
+        android:title="风险测试"
         />
 
 
     <item
-        android:id="@+id/side_riskl"
-        android:icon="@drawable/icon_side_riskl"
-        android:title="风险偏好"
+        android:id="@+id/side_insut"
+        android:icon="@drawable/icon_side_insut"
+        android:title="保险测试"
         />
 
 

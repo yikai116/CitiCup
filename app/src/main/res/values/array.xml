@@ -297,7 +297,7 @@
         <item>2</item>
     </integer-array>
 
-    <string-array name="topic">
+    <string-array name="risk_topic">
         <item>您的主要收入来源是</item>
         <item>最近您家庭预计进行证券投资的资金占家庭现有总资产(不含自住、自用房产及汽车等固定资产)的比例是</item>
         <item>您是否有尚未清偿的数额较大的债务，如有，其性质是</item>
@@ -348,4 +348,46 @@
         <item>您属于可以承担中等至高风险类型的投资者。您适合投资于能够为您提供升值能力，而投资价值有波动的投资工具。</item>
         <item>您属于可以承受高风险类型的投资者。您适合投资于能够为您提供高升值能力而投资价值波动大的投资工具。最坏的情况下，您可能失去全部投资本金并需对您投资所导致的任何亏蚀承担责任。</item>
     </string-array>
+
+    <string-array name="insu_topic">
+        <item>1.您的家庭成员状况？</item>
+        <item>2.您是否养宠物？</item>
+        <item>3.您的日常出行方式？</item>
+        <item>4.您是否经常出差？</item>
+        <item>5.您近期有外出旅游计划？</item>
+        <item>6.您是否有住房？</item>
+        <item>7.您是否有私家车</item>
+    </string-array>
+    <string-array name="an1">
+        <item>单身贵族</item>
+        <item>两人世界</item>
+        <item>家有儿女</item>
+        <item>上有老下有小</item>
+    </string-array>
+    <string-array name="an2">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+    <string-array name="an3">
+        <item>地铁、公交</item>
+        <item>出租车</item>
+        <item>自己驾车</item>
+    </string-array>
+    <string-array name="an4">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+    <string-array name="an5">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+    <string-array name="an6">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+    <string-array name="an7">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+
 </resources>

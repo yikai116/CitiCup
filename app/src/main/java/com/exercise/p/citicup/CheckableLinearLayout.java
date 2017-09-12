@@ -2,8 +2,6 @@ package com.exercise.p.citicup;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.LinearLayout;
@@ -43,7 +41,6 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
 
     @Override
     public void setChecked(boolean checked) {
-        Log.i("Test","checked = " + checked);
         mChecked = checked;
         box.setChecked(checked);
     }

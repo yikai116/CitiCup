@@ -32,7 +32,8 @@
         <activity android:name=".activity.ReadActivity" />
         <activity android:name=".activity.ManalActivity" />
         <activity android:name=".activity.RisktActivity" />
-        <activity android:name=".activity.TeachActivity"></activity>
+        <activity android:name=".activity.TeachActivity" />
+        <activity android:name=".activity.InsutActivity"></activity>
     </application>
 
 </manifest>

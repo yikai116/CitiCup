@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.exercise.p.citicup.Helper;
@@ -43,14 +42,10 @@ public class WelcomeActivity extends AppCompatActivity {
 //        task.execute();
         //请求验证标识符
         WelcomeModel welcomeModel = RetrofitInstance.getRetrofit().create(WelcomeModel.class);
-        Log.i("Test","IMEI" + Helper.IMEI);
         Call<MyResponse<UserInfo>> call = welcomeModel.verToken(Helper.IMEI);
-        Log.i("Test","URL" + call.request().url());
-        Log.i("Test","BODY" + call.request().body());
         call.enqueue(new Callback<MyResponse<UserInfo>>() {
             @Override
             public void onResponse(Call<MyResponse<UserInfo>> call, Response<MyResponse<UserInfo>> response) {
-                Log.i("Test",response.body().getData().toString());
                 if (response.body().getStatus().getCode() == 1){
                     tag = LOGIN;
                     Helper.userInfo = response.body().getData();
@@ -85,7 +80,6 @@ public class WelcomeActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Log.i("Test", "tag: " + tag);
             return tag;
         }
 

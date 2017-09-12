@@ -21,7 +21,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -49,7 +48,6 @@ import com.exercise.p.citicup.model.SetModel;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -58,7 +56,6 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.i("Test", Helper.userInfo.toString());
         findView();
         initToolBar();
         initTab();
@@ -161,28 +157,19 @@ public class MainActivity extends AppCompatActivity {
         naviView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent = null;
+                Intent intent = new Intent();
                 switch (item.getItemId()) {
                     case R.id.side_insul:
-                        Toast.makeText(MainActivity.this, "1", Toast.LENGTH_SHORT).show();
-                        intent = new Intent();
                         intent.setClass(MainActivity.this, InsulActivity.class);
-                        startActivity(intent);
                         break;
                     case R.id.side_manal:
-                        Toast.makeText(MainActivity.this, "2", Toast.LENGTH_SHORT).show();
-                        intent = new Intent();
                         intent.setClass(MainActivity.this, ManalActivity.class);
-                        startActivity(intent);
                         break;
                     case R.id.side_riskt:
-                        Toast.makeText(MainActivity.this, "3", Toast.LENGTH_SHORT).show();
-                        intent = new Intent();
                         intent.setClass(MainActivity.this, RisktActivity.class);
-                        startActivity(intent);
                         break;
-                    case R.id.side_riskl:
-                        Toast.makeText(MainActivity.this, "4", Toast.LENGTH_SHORT).show();
+                    case R.id.side_insut:
+                        intent.setClass(MainActivity.this, InsutActivity.class);
                         break;
                     case R.id.side_other:
                         Toast.makeText(MainActivity.this, "5", Toast.LENGTH_SHORT).show();
@@ -190,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         break;
                 }
+                startActivity(intent);
                 return false;
             }
         });
@@ -247,18 +235,14 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_CODE && resultCode == RESULT_OK) {
             //拍照回来进入剪裁activity
-            Log.i("Test", "camera: 1  :" + tempPath);
             Uri uri = Uri.fromFile(new File(tempPath));
-            Log.i("Test", "camera: 1  :" + uri.toString());
             PhotoUtils.photoZoom(this, uri, tempPath, ZOOM_CODE, 1, 1);
         }
         if (requestCode == ALBUM_CODE && resultCode == RESULT_OK) {
             //相册回来进入裁剪activity
             //获取选择图片的uri
             Uri uri = data.getData();
-            Log.i("Test", "album: 1  :" + uri.toString());
 //            uri = Uri.fromFile(new File((PhotoUtils.getRealFilePath(this,uri))));
-//            Log.i("Test","album: 2  :" + uri.toString());
             PhotoUtils.photoZoom(this, uri, tempPath, ZOOM_CODE, 1, 1);
         }
         if (requestCode == ZOOM_CODE && resultCode == RESULT_OK) {
@@ -282,7 +266,6 @@ public class MainActivity extends AppCompatActivity {
             call.enqueue(new Callback<MyResponse<String>>() {
                 @Override
                 public void onResponse(Call<MyResponse<String>> call, Response<MyResponse<String>> response) {
-                    Log.i("Test", response.body().toString());
                     if (response.body().getStatus().getCode() == Helper.SUCCESS) {
                         dialog.dismiss();
                         dialog.setTitle("正在加载...");
@@ -316,7 +299,6 @@ public class MainActivity extends AppCompatActivity {
                         if (dialog != null && dialog.isShowing()) {
                             dialog.dismiss();
                         }
-                        Log.i("Test", "成功" + url);
                         RoundedBitmapDrawable circularBitmapDrawable =
                                 RoundedBitmapDrawableFactory.create(MainActivity.this.getResources(), resource);
                         circularBitmapDrawable.setCircular(true);
@@ -328,7 +310,6 @@ public class MainActivity extends AppCompatActivity {
                         if (dialog != null && dialog.isShowing()) {
                             dialog.dismiss();
                         }
-                        Log.i("Test", "失败" + url);
                         e.printStackTrace();
                         super.onLoadFailed(e, errorDrawable);
                         avatar.setImageResource(R.drawable.icon_avatar_fail);
