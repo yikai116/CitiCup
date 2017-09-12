@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.activity.ReadActivity;
+import com.exercise.p.citicup.activity.TeachActivity;
 
 /**
  * Created by p on 2017/8/5.
@@ -44,7 +45,9 @@ public class InsuFragment extends Fragment{
         root.findViewById(R.id.insu_teach).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Choose", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setClass(InsuFragment.this.getContext(), TeachActivity.class);
+                startActivity(intent);
             }
         });
         root.findViewById(R.id.insu_mistake).setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.exercise.p.citicup.activity.TeachActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/read_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="?colorPrimary"
+        android:translationZ="2dp">
+
+        <TextView
+            style="@style/MyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="教您读保单" />
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="20.5dp"
+                    android:background="@color/themeColor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="前言"
+                    android:textColor="#485465"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:lineSpacingMultiplier="1.3"
+                android:text="\t\t在保险销售中，很多客户信不过业务员的三寸不烂之舌，想亲自过目保险合同。但是一看到动辄十几页的，密密麻麻的文字，又感到很烦乱，不想去看甚至根本看不懂。请您不要担心，在这里，Lifney能教会您轻松、高效地阅读保险合同，并且在读过之后精确把握其中关键内容。自己心中有数。再不惧被业务员忽悠。"
+                android:textColor="#485465"
+                android:textSize="10sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="20.5dp"
+                    android:background="@color/themeColor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="读懂合同，仅需三步"
+                    android:textColor="#485465"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7.5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="2"
+                    android:drawablePadding="5dp"
+                    android:drawableTop="@drawable/icon_teach_1"
+                    android:gravity="center"
+                    android:text="1.重点阅读"
+                    android:textColor="#485465"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7.5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="7.5dp"
+                    android:layout_weight="9"
+                    android:background="@drawable/shape_insul_card_normal"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="15dp"
+                    android:paddingTop="15dp"
+                    android:translationZ="3dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="a.“我们提供的保障”条款下的所有内容。"
+                        android:textColor="#485465"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\t知道这份保险保什么，保多久。"
+                        android:textColor="#42A5F5"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="b.“保险缴纳”条款下的所有内容。"
+                        android:textColor="#485465"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\t知道我每年要交多少钱，要交多久。"
+                        android:textColor="#42A5F5"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="c.“责任免除”条款下的所有内容。"
+                        android:textColor="#485465"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\t知道哪些内容不保"
+                        android:textColor="#42A5F5"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/teach_2_1_d"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="d. 包括数字（时间）期限的条款。认真看清楚期限是多久，及时地处理好该做的事情，逾期只会带来麻烦。"
+                        android:textColor="#485465"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="2"
+                    android:drawablePadding="5dp"
+                    android:drawableTop="@drawable/icon_teach_2"
+                    android:gravity="center"
+                    android:text="2.关键条款"
+                    android:textColor="#485465"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7.5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="7.5dp"
+                    android:layout_weight="9"
+                    android:background="@drawable/shape_insul_card_normal"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="15dp"
+                    android:paddingTop="15dp"
+                    android:translationZ="3dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="犹豫期"
+                        android:textColor="#42A5F5"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="您可以在犹豫期内随时退保而不用承担损失"
+                        android:textColor="#485465"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="受益人"
+                        android:textColor="#42A5F5"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="保险金赔付给的人，由您指定"
+                        android:textColor="#485465"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="宽限期"
+                        android:textColor="#42A5F5"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="您再这段时间里可以缓交保费"
+                        android:textColor="#485465"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="复效/效力恢复"
+                        android:textColor="#42A5F5"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="保单恢复效力，继续保护您"
+                        android:textColor="#485465"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="误报年龄性别"
+                        android:textColor="#42A5F5"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="发生这种情况，您该怎么办"
+                        android:textColor="#485465"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="2"
+                    android:drawablePadding="5dp"
+                    android:drawableTop="@drawable/icon_teach_3"
+                    android:gravity="center"
+                    android:text="1.剩余内容"
+                    android:textColor="#485465"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7.5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="7.5dp"
+                    android:layout_weight="9"
+                    android:background="@drawable/shape_insul_card_normal"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingTop="15dp"
+                    android:translationZ="3dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="再行阅读剩余内容"
+                        android:textColor="#42A5F5"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\t\t在阅读保单的任何时候，不管在任何地方有任何不懂的地方，请一定马上向业务员询问，让他讲清楚。不偏信业务员的嘴巴，确保自己把保单的每一个字都弄得清清楚楚明明白白的。"
+                        android:textColor="#485465"
+                        android:textSize="10sp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:background="#979797" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="最后请您牢记：一定要自己看懂保单；如果有问题随时向业务员咨询；\n如果觉得不妥，在犹豫期内可以直接退保，不会有任何损失。\n祝您购得合适的、满意的保险！"
+                android:textColor="#A8B4C4"
+                android:textSize="10sp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
