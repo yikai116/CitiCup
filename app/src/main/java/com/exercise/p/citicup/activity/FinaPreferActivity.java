@@ -77,16 +77,12 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
         cards4Content.add(new MyCards.MyTextCard((TextView) findViewById(R.id.b_4_3), false));
         cards4Content.add(new MyCards.MyTextCard((TextView) findViewById(R.id.b_4_4), false));
 
-        List<MyCards.MyTextCard> cards5Content = new ArrayList<>();
-        cards5Content.add(new MyCards.MyTextCard((TextView) findViewById(R.id.b_5_1), false));
-        cards5Content.add(new MyCards.MyTextCard((TextView) findViewById(R.id.b_5_2), false));
 
         final List<MyCards> lists = new ArrayList<>();
         lists.add(new MyCards(cards1Content));
         lists.add(new MyCards(cards2Content));
         lists.add(new MyCards(cards3Content));
         lists.add(new MyCards(cards4Content));
-        lists.add(new MyCards(cards5Content));
 
         for (final MyCards cards : lists) {
             for (final MyCards.MyTextCard card : (List<MyCards.MyTextCard>) cards.getCards()) {
@@ -115,18 +111,27 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
                     if (temp.size() == 0) {
                         temp.addAll(lists.get(i).getAllText());
                     }
-                    switch (i){
-                        case 0:info.setDuration(new Gson().toJson(temp));
+                    switch (i) {
+                        case 0:
+                            info.setDuration(new Gson().toJson(temp));
                             break;
-                        case 1:info.setProType(new Gson().toJson(temp));
+                        case 1:
+                            info.setProType(new Gson().toJson(temp));
                             break;
-                        case 2:info.setLevel(new Gson().toJson(temp));
+                        case 2:
+                            info.setLevel(new Gson().toJson(temp));
                             break;
-                        case 3:info.setRevenue(new Gson().toJson(temp));
+                        case 3:
+                            info.setRevenue(new Gson().toJson(temp));
                             break;
                         default:
-                            Log.i("Test",new Gson().toJson(temp));
+                            Log.i("Test", new Gson().toJson(temp));
                     }
+                }
+                try {
+                    presenter.submit(info);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
