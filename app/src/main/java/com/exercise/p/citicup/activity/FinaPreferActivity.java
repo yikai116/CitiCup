@@ -22,7 +22,7 @@ import java.util.List;
 
 public class FinaPreferActivity extends AppCompatActivity implements ShowDialogView {
 
-    MyCards cards;
+    List<MyCards> lists;
     ProgressDialog dialog;
     ManaPreferPresenter presenter;
 
@@ -32,9 +32,13 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
         setContentView(R.layout.activity_mana_prefer);
         presenter = new ManaPreferPresenter(this);
         initToolBar();
+        findView();
         initView();
     }
 
+    /**
+     * 初始化标题栏
+     */
     private void initToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.manal_toolbar);
         setSupportActionBar(toolbar);
@@ -49,7 +53,10 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
-    private void initView() {
+    /**
+     * 找到控件
+     */
+    private void findView() {
         List<MyCards.MyTextCard> cards1Content = new ArrayList<>();
         cards1Content.add(new MyCards.MyTextCard((TextView) findViewById(R.id.b_1_1), false));
         cards1Content.add(new MyCards.MyTextCard((TextView) findViewById(R.id.b_1_2), false));
@@ -78,12 +85,17 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
         cards4Content.add(new MyCards.MyTextCard((TextView) findViewById(R.id.b_4_4), false));
 
 
-        final List<MyCards> lists = new ArrayList<>();
+        lists = new ArrayList<>();
         lists.add(new MyCards(cards1Content));
         lists.add(new MyCards(cards2Content));
         lists.add(new MyCards(cards3Content));
         lists.add(new MyCards(cards4Content));
+    }
 
+    /**
+     * 设置控件，如点击事件等
+     */
+    private void initView(){
         for (final MyCards cards : lists) {
             for (final MyCards.MyTextCard card : (List<MyCards.MyTextCard>) cards.getCards()) {
                 card.setOnclickListener(new View.OnClickListener() {
@@ -101,8 +113,8 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
             }
         }
 
-        Button button = (Button) findViewById(R.id.manal_commit);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button submit = (Button) findViewById(R.id.manal_commit);
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FinaPreferInfo info = new FinaPreferInfo();
@@ -111,28 +123,25 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
                     if (temp.size() == 0) {
                         temp.addAll(lists.get(i).getAllText());
                     }
+                    String str = new Gson().toJson(temp);
                     switch (i) {
                         case 0:
-                            info.setDuration(new Gson().toJson(temp));
+                            info.setDuration(str);
                             break;
                         case 1:
-                            info.setProType(new Gson().toJson(temp));
+                            info.setProType(str);
                             break;
                         case 2:
-                            info.setLevel(new Gson().toJson(temp));
+                            info.setLevel(str);
                             break;
                         case 3:
-                            info.setRevenue(new Gson().toJson(temp));
+                            info.setRevenue(str);
                             break;
                         default:
-                            Log.i("Test", new Gson().toJson(temp));
+                            Log.i("Test", str);
                     }
                 }
-                try {
-                    presenter.submit(info);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                presenter.submit(info);
             }
         });
     }

@@ -27,7 +27,6 @@ import java.util.Collections;
 
 public class RiskTestActivity extends AppCompatActivity implements ShowDialogView {
 
-    ViewPager pager;
     String[] topic;
     ArrayList<ArrayList<String>> data;
     ArrayList<ArrayList<Integer>> score;
@@ -36,7 +35,10 @@ public class RiskTestActivity extends AppCompatActivity implements ShowDialogVie
     String[] ability;
     String[] expect;
     String[] text;
+
     int sco_all = 0;
+
+    ViewPager pager;
     LinearLayout page1;
     LinearLayout page2;
     TextView scoreText;
@@ -57,6 +59,7 @@ public class RiskTestActivity extends AppCompatActivity implements ShowDialogVie
         presenter = new RiskTestPresenter(this);
         getData();
         initToolBar();
+        findView();
         initView();
     }
 
@@ -74,10 +77,11 @@ public class RiskTestActivity extends AppCompatActivity implements ShowDialogVie
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
-    private void initView() {
+    private void findView() {
         page1 = (LinearLayout) findViewById(R.id.page1);
         page2 = (LinearLayout) findViewById(R.id.page2);
         pager = (ViewPager) findViewById(R.id.viewpager);
+
         scoreText = (TextView) findViewById(R.id.score);
         typeView = (TextView) findViewById(R.id.type);
         abilityView = (TextView) findViewById(R.id.ability);
@@ -85,24 +89,19 @@ public class RiskTestActivity extends AppCompatActivity implements ShowDialogVie
         textView = (TextView) findViewById(R.id.text);
         donutProgress = (DonutProgress) findViewById(R.id.donut_progress);
         retest = (Button) findViewById(R.id.retest);
-        retest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sco_all = 0;
-                page1.setVisibility(View.VISIBLE);
-                pager.setCurrentItem(0);
-                page2.setVisibility(View.GONE);
-            }
-        });
+    }
+
+    private void initView() {
+
         final ArrayList<View> views = new ArrayList<>();
 
         for (int i = 0; i < topic.length; i++) {
             View view1;
             if (i == topic.length - 1) {
                 view1 = View.inflate(RiskTestActivity.this, R.layout.layout_risk_test_end, null);
-                Button button1 = (Button) view1.findViewById(R.id.before);
+                Button before = (Button) view1.findViewById(R.id.before);
                 final int temp1 = i;
-                button1.setOnClickListener(new View.OnClickListener() {
+                before.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         pager.setCurrentItem(temp1 - 1, true);
@@ -110,9 +109,9 @@ public class RiskTestActivity extends AppCompatActivity implements ShowDialogVie
                 });
             } else if (i == 0) {
                 view1 = View.inflate(RiskTestActivity.this, R.layout.layout_risk_test_fir, null);
-                Button button = (Button) view1.findViewById(R.id.next);
+                Button next = (Button) view1.findViewById(R.id.next);
                 final int temp = i;
-                button.setOnClickListener(new View.OnClickListener() {
+                next.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         pager.setCurrentItem(temp + 1, true);
@@ -120,17 +119,17 @@ public class RiskTestActivity extends AppCompatActivity implements ShowDialogVie
                 });
             } else {
                 view1 = View.inflate(RiskTestActivity.this, R.layout.layout_risk_test_mid, null);
-                Button button1 = (Button) view1.findViewById(R.id.before);
+                Button before = (Button) view1.findViewById(R.id.before);
                 final int temp1 = i;
-                button1.setOnClickListener(new View.OnClickListener() {
+                before.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         pager.setCurrentItem(temp1 - 1, true);
                     }
                 });
-                Button button2 = (Button) view1.findViewById(R.id.next);
+                Button next = (Button) view1.findViewById(R.id.next);
                 final int temp2 = i;
-                button2.setOnClickListener(new View.OnClickListener() {
+                next.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         pager.setCurrentItem(temp2 + 1, true);
@@ -141,72 +140,67 @@ public class RiskTestActivity extends AppCompatActivity implements ShowDialogVie
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    sco_all = 0;
-                    for (int ii = 0; ii < choose.size(); ii++) {
-                        ArrayList<Integer> temp = choose.get(ii);
-                        if (temp.size() == 0) {
-                            pager.setCurrentItem(ii);
-                            Toast.makeText(RiskTestActivity.this, "您这道题还没选择哦~", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        for (int ij = 0; ij < temp.size(); ij++) {
-                            sco_all += score.get(ii).get(temp.get(ij));
-                        }
-                    }
-                    presenter.submit(sco_all);
-                    scoreText.setText(sco_all + "分");
-                    int temp = getLevel(sco_all);
-                    typeView.setText(type[temp]);
-                    abilityView.setText("您的风险承受能力：" + ability[temp]);
-                    expectView.setText("您的获利期待：" + expect[temp]);
-                    textView.setText(text[temp]);
-                    donutProgress.setDonut_progress(sco_all + "");
+                    submit();
                 }
             });
+
+            //初始化选项信息
             final ListView listView = (ListView) view1.findViewById(R.id.items);
             if (i != 8 && i != 11) {
                 setAdapter(listView, data.get(i), i, true);
             } else {
                 setAdapter(listView, data.get(i), i, false);
             }
+
+            //初始化标题
             TextView textView = (TextView) view1.findViewById(R.id.topic);
-            textView.setText(i + 1 + "、" + topic[i]);
+            textView.setText(topic[i]);
+
             views.add(view1);
         }
         pager.setAdapter(new ViewPagerAdapter(views));
+
+        //设置page2即测试结果页面
+        retest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sco_all = 0;
+                page1.setVisibility(View.VISIBLE);
+                pager.setCurrentItem(0);
+                page2.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void getData() {
         data = new ArrayList<>();
-
-        topic = getResources().getStringArray(R.array.risk_topic);
-        type = getResources().getStringArray(R.array.type);
-        ability = getResources().getStringArray(R.array.ability);
-        expect = getResources().getStringArray(R.array.expect);
-        text = getResources().getStringArray(R.array.text);
-        for (int i = 1; i < topic.length + 1; i++) {
-            ArrayList<String> temp = new ArrayList<>();
-            int a = getResources().getIdentifier("a" + i, "array", getApplicationContext().getPackageName());
-            String[] ss = getResources().getStringArray(a);
-            Collections.addAll(temp, ss);
-            data.add(temp);
-        }
-
+        score = new ArrayList<>();
         choose = new ArrayList<>();
-        for (int i = 0; i < topic.length; i++) {
+        topic = getResources().getStringArray(R.array.risk_test_topic);
+        for (int i = 1; i < topic.length + 1; i++) {
+            //选项信息
+            ArrayList<String> temp_s = new ArrayList<>();
+            int a_s = getResources().getIdentifier("rish_test_q" + i, "array", getApplicationContext().getPackageName());
+            String[] ss = getResources().getStringArray(a_s);
+            Collections.addAll(temp_s, ss);
+            data.add(temp_s);
+
+            //选项分数
+            ArrayList<Integer> temp_i = new ArrayList<>();
+            int a_i = getResources().getIdentifier("rish_test_s" + i, "array", getApplicationContext().getPackageName());
+            int[] ii = getResources().getIntArray(a_i);
+            for (int j = 0; j < ii.length; j++) {
+                temp_i.add(ii[j]);
+            }
+            score.add(temp_i);
+
             choose.add(new ArrayList<Integer>());
         }
 
-        score = new ArrayList<>();
-        for (int i = 1; i < topic.length + 1; i++) {
-            ArrayList<Integer> temp = new ArrayList<>();
-            int a = getResources().getIdentifier("i" + i, "array", getApplicationContext().getPackageName());
-            int[] ss = getResources().getIntArray(a);
-            for (int j = 0; j < ss.length; j++) {
-                temp.add(ss[j]);
-            }
-            score.add(temp);
-        }
+        type = getResources().getStringArray(R.array.rish_test_result_type);
+        ability = getResources().getStringArray(R.array.rish_test_result_ability);
+        expect = getResources().getStringArray(R.array.rish_test_result_expect);
+        text = getResources().getStringArray(R.array.rish_test_result_text);
     }
 
     private int getLevel(int sco) {
@@ -278,6 +272,29 @@ public class RiskTestActivity extends AppCompatActivity implements ShowDialogVie
         });
     }
 
+    private void submit() {
+        sco_all = 0;
+        for (int ii = 0; ii < choose.size(); ii++) {
+            ArrayList<Integer> temp = choose.get(ii);
+            if (temp.size() == 0) {
+                pager.setCurrentItem(ii);
+                Toast.makeText(RiskTestActivity.this, "您这道题还没选择哦~", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            for (int ij = 0; ij < temp.size(); ij++) {
+                sco_all += score.get(ii).get(temp.get(ij));
+            }
+        }
+        presenter.submit(sco_all);
+        scoreText.setText(sco_all + "分");
+        int temp = getLevel(sco_all);
+        typeView.setText(type[temp]);
+        abilityView.setText("您的风险承受能力：" + ability[temp]);
+        expectView.setText("您的获利期待：" + expect[temp]);
+        textView.setText(text[temp]);
+        donutProgress.setDonut_progress(sco_all + "");
+    }
+
     @Override
     public void showDialog(String title) {
         if (dialog == null) {
@@ -301,8 +318,8 @@ public class RiskTestActivity extends AppCompatActivity implements ShowDialogVie
 
     @Override
     public void myFinish(boolean finish) {
-        page1.setVisibility(finish?View.GONE:View.VISIBLE);
-        page2.setVisibility(finish?View.VISIBLE:View.GONE);
+        page1.setVisibility(finish ? View.GONE : View.VISIBLE);
+        page2.setVisibility(finish ? View.VISIBLE : View.GONE);
     }
 
 }

@@ -28,9 +28,8 @@ import com.unnamed.b.atv.view.AndroidTreeView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InsuPreferActivity extends AppCompatActivity implements ShowDialogView{
+public class InsuPreferActivity extends AppCompatActivity implements ShowDialogView {
 
-    Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager pager;
     View page1;
@@ -42,6 +41,7 @@ public class InsuPreferActivity extends AppCompatActivity implements ShowDialogV
     ProgressDialog dialog;
 
     InsuPreferPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,12 +56,15 @@ public class InsuPreferActivity extends AppCompatActivity implements ShowDialogV
     }
 
     private void findView() {
-        toolbar = (Toolbar) findViewById(R.id.insul_toolbar);
         tabLayout = (TabLayout) findViewById(R.id.insul_tab);
         pager = (ViewPager) findViewById(R.id.insul_pager);
     }
 
+    /**
+     * 初始化标题栏
+     */
     private void initToolBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.insul_toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -101,33 +104,48 @@ public class InsuPreferActivity extends AppCompatActivity implements ShowDialogV
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
+    private void initPage1Data() {
+
+        TreeNode p1 = new TreeNode(new MyHolder.IconTreeItem("理财型", R.drawable.icon_insu_prefer_1_1_1));
+        TreeNode p1_1 = new TreeNode(new MyHolder.IconTreeItem("保本"));
+        TreeNode p1_2 = new TreeNode(new MyHolder.IconTreeItem("非保本"));
+        p1.addChildren(p1_1, p1_2);
+
+        TreeNode p2 = new TreeNode(new MyHolder.IconTreeItem("保障型", R.drawable.icon_insu_prefer_1_1_2));
+
+        String[] ss_1_2 = getResources().getStringArray(R.array.insu_prefer_1_2);
+        for (int i = 1; i < ss_1_2.length + 1; i++) {
+            TreeNode temp2 = new TreeNode(new MyHolder.IconTreeItem(ss_1_2[i - 1], R.drawable.icon_insu_prefer_1_2));
+            int res = getResources().getIdentifier("insu_prefer_1_2_" + i, "array", getApplicationContext().getPackageName());
+            String[] ss_1_3 = getResources().getStringArray(res);
+            for (int j = 0; j < ss_1_3.length; j++) {
+                TreeNode temp3 = new TreeNode(new MyHolder.IconTreeItem(ss_1_3[j]));
+                temp2.addChildren(temp3);
+            }
+            p2.addChildren(temp2);
+        }
+
+        page1_root.addChildren(p1, p2);
+
+    }
+
+
     private void initPage2() {
         List<MyCards.MyTextCard> cards1Content = new ArrayList<>();
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_1), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_2), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_3), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_4), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_5), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_6), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_7), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_8), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_9), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_10), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_11), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_12), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_13), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_14), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_15), false));
-        cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(R.id.b_1_16), false));
+        for (int i = 1; i < 17; i++) {
+            int id = getResources().getIdentifier("b_1_" + i, "id", getApplicationContext().getPackageName());
+            cards1Content.add(new MyCards.MyTextCard((TextView) page2.findViewById(id), false));
+        }
+
         for (final MyCards.MyTextCard card : cards1Content) {
             card.setOnclickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (card.isSelected()) {
-                        card.setAppearance(R.drawable.shape_insul_card_normal,getResources().getColor(R.color.cardTextNormal));
+                        card.setAppearance(R.drawable.shape_insul_card_normal, getResources().getColor(R.color.cardTextNormal));
                         card.setSelected(false);
                     } else {
-                        card.setAppearance(R.drawable.shape_insul_card_selected,getResources().getColor(R.color.white));
+                        card.setAppearance(R.drawable.shape_insul_card_selected, getResources().getColor(R.color.white));
                         card.setSelected(true);
                     }
                 }
@@ -143,10 +161,10 @@ public class InsuPreferActivity extends AppCompatActivity implements ShowDialogV
                 @Override
                 public void onClick(View v) {
                     if (card.isSelected()) {
-                        card.setAppearance(R.drawable.shape_insul_card_normal,getResources().getColor(R.color.cardTextNormal));
+                        card.setAppearance(R.drawable.shape_insul_card_normal, getResources().getColor(R.color.cardTextNormal));
                         card.setSelected(false);
                     } else {
-                        card.setAppearance(R.drawable.shape_insul_card_selected,getResources().getColor(R.color.white));
+                        card.setAppearance(R.drawable.shape_insul_card_selected, getResources().getColor(R.color.white));
                         card.setSelected(true);
                     }
                 }
@@ -154,117 +172,58 @@ public class InsuPreferActivity extends AppCompatActivity implements ShowDialogV
         }
         cards2 = new MyCards<>(cards2Content);
 
-        Button button = (Button) page2.findViewById(R.id.fragment_insul_2_commit);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button submit = (Button) page2.findViewById(R.id.fragment_insul_2_commit);
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    List<TreeNode> list = page1_root.getChildren();
-
-                    ArrayList<String> one = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(0)));
-                    if (one.size() == 0){
-                        one.addAll(TreeNodeHelper.getNodeText(TreeNodeHelper.getLeaf(list.get(0))));
-                    }
-
-                    ArrayList<String> two = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(1)));
-                    if (two.size() == 0){
-                        two.addAll(TreeNodeHelper.getNodeText(TreeNodeHelper.getLeaf(list.get(1))));
-                    }
-
-                    ArrayList<String> three = (ArrayList<String>) cards1.getSelectedText();
-                    if (three.size() == 0){
-                        three.addAll(cards1.getAllText());
-                    }
-
-                    ArrayList<String> four = (ArrayList<String>) cards2.getSelectedText();
-                    if (four.size() == 0){
-                        four.addAll(cards2.getAllText());
-                    }
-
-                    ArrayList<ArrayList<String>> json = new ArrayList<>();
-                    json.add(one);
-                    json.add(two);
-                    json.add(three);
-                    json.add(four);
-                    Log.i("Test",new Gson().toJson(json));
-                    InsuPreferInfo info = new InsuPreferInfo();
-                    info.setInsuType(new Gson().toJson(one.addAll(two)));
-                    info.setTheme(new Gson().toJson(three));
-                    info.setPayMethod(new Gson().toJson(four));
-                    presenter.submit(info);
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-
+                submit();
             }
         });
     }
 
-    private void initPage1Data() {
+    private void submit() {
+        try {
+            List<TreeNode> list = page1_root.getChildren();
 
-        TreeNode p1 = new TreeNode(new MyHolder.IconTreeItem("理财型", R.drawable.icon_insu_prefer_1_1_1));
-        TreeNode p1_1 = new TreeNode(new MyHolder.IconTreeItem("保本"));
-        TreeNode p1_2 = new TreeNode(new MyHolder.IconTreeItem("非保本"));
-        p1.addChildren(p1_1, p1_2);
+            ArrayList<String> one = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(0)));
+            if (one.size() == 0) {
+                one.addAll(TreeNodeHelper.getNodeText(TreeNodeHelper.getLeaf(list.get(0))));
+            }
 
-        TreeNode p2 = new TreeNode(new MyHolder.IconTreeItem("保障型", R.drawable.icon_insu_prefer_1_1_2));
+            ArrayList<String> two = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(1)));
+            if (two.size() == 0) {
+                two.addAll(TreeNodeHelper.getNodeText(TreeNodeHelper.getLeaf(list.get(1))));
+            }
 
-        TreeNode p2_1 = new TreeNode(new MyHolder.IconTreeItem("寿险", R.drawable.icon_insu_prefer_1_2));
-        TreeNode p2_1_1 = new TreeNode(new MyHolder.IconTreeItem("普通型"));
-        TreeNode p2_1_2 = new TreeNode(new MyHolder.IconTreeItem("两全险"));
-        p2_1.addChildren(p2_1_1, p2_1_2);
+            ArrayList<String> three = (ArrayList<String>) cards1.getSelectedText();
+            if (three.size() == 0) {
+                three.addAll(cards1.getAllText());
+            }
 
-        TreeNode p2_2 = new TreeNode(new MyHolder.IconTreeItem("年金险", R.drawable.icon_insu_prefer_1_2));
-        TreeNode p2_2_1 = new TreeNode(new MyHolder.IconTreeItem("养老年金"));
-        TreeNode p2_2_2 = new TreeNode(new MyHolder.IconTreeItem("教育年金"));
-        TreeNode p2_2_3 = new TreeNode(new MyHolder.IconTreeItem("普通年金"));
-        p2_2.addChildren(p2_2_1, p2_2_2, p2_2_3);
+            ArrayList<String> four = (ArrayList<String>) cards2.getSelectedText();
+            if (four.size() == 0) {
+                four.addAll(cards2.getAllText());
+            }
 
-        TreeNode p2_3 = new TreeNode(new MyHolder.IconTreeItem("意外险", R.drawable.icon_insu_prefer_1_2));
-        TreeNode p2_3_1 = new TreeNode(new MyHolder.IconTreeItem("人身年金"));
-        TreeNode p2_3_2 = new TreeNode(new MyHolder.IconTreeItem("交通年金"));
-        TreeNode p2_3_3 = new TreeNode(new MyHolder.IconTreeItem("航空年金"));
-        p2_3.addChildren(p2_3_1, p2_3_2, p2_3_3);
-
-        TreeNode p2_4 = new TreeNode(new MyHolder.IconTreeItem("个人财险", R.drawable.icon_insu_prefer_1_2));
-        TreeNode p2_4_1 = new TreeNode(new MyHolder.IconTreeItem("家财险"));
-        TreeNode p2_4_2 = new TreeNode(new MyHolder.IconTreeItem("汽车险"));
-        TreeNode p2_4_3 = new TreeNode(new MyHolder.IconTreeItem("房贷险"));
-        p2_4.addChildren(p2_4_1, p2_4_2, p2_4_3);
-
-        TreeNode p2_5 = new TreeNode(new MyHolder.IconTreeItem("企业财险", R.drawable.icon_insu_prefer_1_2));
-        TreeNode p2_5_1 = new TreeNode(new MyHolder.IconTreeItem("财产保险"));
-        TreeNode p2_5_2 = new TreeNode(new MyHolder.IconTreeItem("短期意健险"));
-        TreeNode p2_5_3 = new TreeNode(new MyHolder.IconTreeItem("保证保险"));
-        TreeNode p2_5_4 = new TreeNode(new MyHolder.IconTreeItem("信用保险"));
-        TreeNode p2_5_5 = new TreeNode(new MyHolder.IconTreeItem("农业保险"));
-        TreeNode p2_5_6 = new TreeNode(new MyHolder.IconTreeItem("责任保险"));
-        p2_5.addChildren(p2_5_1, p2_5_2, p2_5_3, p2_5_4, p2_5_5, p2_5_6);
-
-        TreeNode p2_6 = new TreeNode(new MyHolder.IconTreeItem("旅游险", R.drawable.icon_insu_prefer_1_2));
-        TreeNode p2_6_1 = new TreeNode(new MyHolder.IconTreeItem("境内"));
-        TreeNode p2_6_2 = new TreeNode(new MyHolder.IconTreeItem("境外"));
-        TreeNode p2_6_3 = new TreeNode(new MyHolder.IconTreeItem("港澳台"));
-        p2_6.addChildren(p2_6_1, p2_6_2, p2_6_3);
-
-        TreeNode p2_7 = new TreeNode(new MyHolder.IconTreeItem("健康险", R.drawable.icon_insu_prefer_1_2));
-        TreeNode p2_7_1 = new TreeNode(new MyHolder.IconTreeItem("护理"));
-        TreeNode p2_7_2 = new TreeNode(new MyHolder.IconTreeItem("女性疾病"));
-        TreeNode p2_7_3 = new TreeNode(new MyHolder.IconTreeItem("失能收入损失险"));
-        TreeNode p2_7_4 = new TreeNode(new MyHolder.IconTreeItem("重大疾病"));
-        TreeNode p2_7_5 = new TreeNode(new MyHolder.IconTreeItem("住院医疗"));
-        p2_7.addChildren(p2_7_1, p2_7_2, p2_7_3, p2_7_4, p2_7_5);
-
-        p2.addChildren(p2_1, p2_2, p2_3, p2_4, p2_5, p2_6, p2_7);
-
-        page1_root.addChildren(p1, p2);
-
+            ArrayList<ArrayList<String>> json = new ArrayList<>();
+            json.add(one);
+            json.add(two);
+            json.add(three);
+            json.add(four);
+            Log.i("Test", new Gson().toJson(json));
+            InsuPreferInfo info = new InsuPreferInfo();
+            info.setInsuType(new Gson().toJson(one.addAll(two)));
+            info.setTheme(new Gson().toJson(three));
+            info.setPayMethod(new Gson().toJson(four));
+            presenter.submit(info);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void showDialog(String title) {
-        if (dialog == null){
+        if (dialog == null) {
             dialog = new ProgressDialog(InsuPreferActivity.this);
         }
         dialog.setTitle(title);
@@ -274,7 +233,7 @@ public class InsuPreferActivity extends AppCompatActivity implements ShowDialogV
 
     @Override
     public void dismissDialog() {
-        if (dialog!=null)
+        if (dialog != null)
             dialog.dismiss();
     }
 
