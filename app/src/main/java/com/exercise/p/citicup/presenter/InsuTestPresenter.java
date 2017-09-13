@@ -26,7 +26,7 @@ public class InsuTestPresenter {
     }
 
     public void submit(String keyword){
-        view.showDialog("正在上传...");
+        view.showDialog("正在提交...");
         Call<MyResponse> call = model.setKeyword(keyword);
         call.enqueue(new Callback<MyResponse>(){
 
@@ -35,7 +35,7 @@ public class InsuTestPresenter {
                 MyResponse response1 = response.body();
                 view.dismissDialog();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
-                    view.showMessage("上传成功");
+                    view.showMessage("提交成功");
                     view.myFinish(true);
                 }
             }

@@ -27,7 +27,7 @@ public class ManaPreferPresenter {
     }
 
     public void submit(FinaPreferInfo info) {
-        view.showDialog("正在上传...");
+        view.showDialog("正在提交...");
         Call<MyResponse> call = model.setFinaPrefer(info);
         call.enqueue(new Callback<MyResponse>() {
 
@@ -36,7 +36,7 @@ public class ManaPreferPresenter {
                 MyResponse response1 = response.body();
                 view.dismissDialog();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
-                    view.showMessage("上传成功");
+                    view.showMessage("提交成功");
                     view.myFinish(true);
                 }
             }
