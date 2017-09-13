@@ -28,12 +28,13 @@
             android:name=".activity.SignActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.FpswActivity" />
-        <activity android:name=".activity.InsulActivity" />
+        <activity android:name=".activity.InsuPreferActivity" />
         <activity android:name=".activity.ReadActivity" />
-        <activity android:name=".activity.ManalActivity" />
-        <activity android:name=".activity.RisktActivity" />
+        <activity android:name=".activity.FinaPreferActivity" />
+        <activity android:name=".activity.RiskTestActivity" />
         <activity android:name=".activity.TeachActivity" />
-        <activity android:name=".activity.InsutActivity"></activity>
+        <activity android:name=".activity.InsuTestActivity" />
+        <activity android:name=".activity.PersonalActivity"></activity>
     </application>
 
 </manifest>

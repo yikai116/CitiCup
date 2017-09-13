@@ -1,20 +1,26 @@
 package com.exercise.p.citicup.activity;
 
+import android.app.ProgressDialog;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.exercise.p.citicup.MyCards;
 import com.exercise.p.citicup.TreeNodeHelper.MyHolder;
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.TreeNodeHelper.TreeNodeHelper;
 import com.exercise.p.citicup.ViewPagerAdapter;
+import com.exercise.p.citicup.dto.InsuPreferInfo;
+import com.exercise.p.citicup.presenter.InsuPreferPresenter;
+import com.exercise.p.citicup.view.ShowDialogView;
 import com.google.gson.Gson;
 import com.unnamed.b.atv.model.TreeNode;
 import com.unnamed.b.atv.view.AndroidTreeView;
@@ -22,7 +28,7 @@ import com.unnamed.b.atv.view.AndroidTreeView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InsulActivity extends AppCompatActivity {
+public class InsuPreferActivity extends AppCompatActivity implements ShowDialogView{
 
     Toolbar toolbar;
     TabLayout tabLayout;
@@ -33,11 +39,14 @@ public class InsulActivity extends AppCompatActivity {
 
     MyCards cards1;
     MyCards cards2;
+    ProgressDialog dialog;
 
+    InsuPreferPresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_insul);
+        setContentView(R.layout.activity_insu_prefer);
+        presenter = new InsuPreferPresenter(this);
         findView();
         initToolBar();
         initTab();
@@ -58,7 +67,7 @@ public class InsulActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InsulActivity.this.finish();
+                InsuPreferActivity.this.finish();
             }
         });
         assert getSupportActionBar() != null;
@@ -72,8 +81,8 @@ public class InsulActivity extends AppCompatActivity {
 
     private void initPager() {
         List<View> views = new ArrayList<>();
-        page1 = getLayoutInflater().inflate(R.layout.fragment_insul_1, null);
-        page2 = getLayoutInflater().inflate(R.layout.fragment_insul_2, null);
+        page1 = getLayoutInflater().inflate(R.layout.fragment_insu_prefer_1, null);
+        page2 = getLayoutInflater().inflate(R.layout.fragment_insu_prefer_2, null);
         views.add(page1);
         views.add(page2);
         ViewPagerAdapter adapter = new ViewPagerAdapter(views);
@@ -149,70 +158,82 @@ public class InsulActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<TreeNode> list = page1_root.getChildren();
+                try {
+                    List<TreeNode> list = page1_root.getChildren();
 
-                ArrayList<String> one = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(0)));
-                if (one.size() == 0){
-                    one.addAll(TreeNodeHelper.getNodeText(TreeNodeHelper.getLeaf(list.get(0))));
+                    ArrayList<String> one = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(0)));
+                    if (one.size() == 0){
+                        one.addAll(TreeNodeHelper.getNodeText(TreeNodeHelper.getLeaf(list.get(0))));
+                    }
+
+                    ArrayList<String> two = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(1)));
+                    if (two.size() == 0){
+                        two.addAll(TreeNodeHelper.getNodeText(TreeNodeHelper.getLeaf(list.get(1))));
+                    }
+
+                    ArrayList<String> three = (ArrayList<String>) cards1.getSelectedText();
+                    if (three.size() == 0){
+                        three.addAll(cards1.getAllText());
+                    }
+
+                    ArrayList<String> four = (ArrayList<String>) cards2.getSelectedText();
+                    if (four.size() == 0){
+                        four.addAll(cards2.getAllText());
+                    }
+
+                    ArrayList<ArrayList<String>> json = new ArrayList<>();
+                    json.add(one);
+                    json.add(two);
+                    json.add(three);
+                    json.add(four);
+                    Log.i("Test",new Gson().toJson(json));
+                    InsuPreferInfo info = new InsuPreferInfo();
+                    info.setInsuType(new Gson().toJson(one.addAll(two)));
+                    info.setTheme(new Gson().toJson(three));
+                    info.setPayMethod(new Gson().toJson(four));
+                    presenter.submit(info);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
                 }
 
-                ArrayList<String> two = (ArrayList<String>) TreeNodeHelper.getNodeText(TreeNodeHelper.getSelected(list.get(1)));
-                if (two.size() == 0){
-                    two.addAll(TreeNodeHelper.getNodeText(TreeNodeHelper.getLeaf(list.get(1))));
-                }
-
-                ArrayList<String> three = (ArrayList<String>) cards1.getSelectedText();
-                if (three.size() == 0){
-                    three.addAll(cards1.getAllText());
-                }
-
-                ArrayList<String> four = (ArrayList<String>) cards2.getSelectedText();
-                if (four.size() == 0){
-                    four.addAll(cards2.getAllText());
-                }
-
-                ArrayList<ArrayList<String>> json = new ArrayList<>();
-                json.add(one);
-                json.add(two);
-                json.add(three);
-                json.add(four);
             }
         });
     }
 
     private void initPage1Data() {
 
-        TreeNode p1 = new TreeNode(new MyHolder.IconTreeItem("理财型", R.drawable.icon_insul_1_1_1));
+        TreeNode p1 = new TreeNode(new MyHolder.IconTreeItem("理财型", R.drawable.icon_insu_prefer_1_1_1));
         TreeNode p1_1 = new TreeNode(new MyHolder.IconTreeItem("保本"));
         TreeNode p1_2 = new TreeNode(new MyHolder.IconTreeItem("非保本"));
         p1.addChildren(p1_1, p1_2);
 
-        TreeNode p2 = new TreeNode(new MyHolder.IconTreeItem("保障型", R.drawable.icon_insul_1_1_2));
+        TreeNode p2 = new TreeNode(new MyHolder.IconTreeItem("保障型", R.drawable.icon_insu_prefer_1_1_2));
 
-        TreeNode p2_1 = new TreeNode(new MyHolder.IconTreeItem("寿险", R.drawable.icon_insul_1_2));
+        TreeNode p2_1 = new TreeNode(new MyHolder.IconTreeItem("寿险", R.drawable.icon_insu_prefer_1_2));
         TreeNode p2_1_1 = new TreeNode(new MyHolder.IconTreeItem("普通型"));
         TreeNode p2_1_2 = new TreeNode(new MyHolder.IconTreeItem("两全险"));
         p2_1.addChildren(p2_1_1, p2_1_2);
 
-        TreeNode p2_2 = new TreeNode(new MyHolder.IconTreeItem("年金险", R.drawable.icon_insul_1_2));
+        TreeNode p2_2 = new TreeNode(new MyHolder.IconTreeItem("年金险", R.drawable.icon_insu_prefer_1_2));
         TreeNode p2_2_1 = new TreeNode(new MyHolder.IconTreeItem("养老年金"));
         TreeNode p2_2_2 = new TreeNode(new MyHolder.IconTreeItem("教育年金"));
         TreeNode p2_2_3 = new TreeNode(new MyHolder.IconTreeItem("普通年金"));
         p2_2.addChildren(p2_2_1, p2_2_2, p2_2_3);
 
-        TreeNode p2_3 = new TreeNode(new MyHolder.IconTreeItem("意外险", R.drawable.icon_insul_1_2));
+        TreeNode p2_3 = new TreeNode(new MyHolder.IconTreeItem("意外险", R.drawable.icon_insu_prefer_1_2));
         TreeNode p2_3_1 = new TreeNode(new MyHolder.IconTreeItem("人身年金"));
         TreeNode p2_3_2 = new TreeNode(new MyHolder.IconTreeItem("交通年金"));
         TreeNode p2_3_3 = new TreeNode(new MyHolder.IconTreeItem("航空年金"));
         p2_3.addChildren(p2_3_1, p2_3_2, p2_3_3);
 
-        TreeNode p2_4 = new TreeNode(new MyHolder.IconTreeItem("个人财险", R.drawable.icon_insul_1_2));
+        TreeNode p2_4 = new TreeNode(new MyHolder.IconTreeItem("个人财险", R.drawable.icon_insu_prefer_1_2));
         TreeNode p2_4_1 = new TreeNode(new MyHolder.IconTreeItem("家财险"));
         TreeNode p2_4_2 = new TreeNode(new MyHolder.IconTreeItem("汽车险"));
         TreeNode p2_4_3 = new TreeNode(new MyHolder.IconTreeItem("房贷险"));
         p2_4.addChildren(p2_4_1, p2_4_2, p2_4_3);
 
-        TreeNode p2_5 = new TreeNode(new MyHolder.IconTreeItem("企业财险", R.drawable.icon_insul_1_2));
+        TreeNode p2_5 = new TreeNode(new MyHolder.IconTreeItem("企业财险", R.drawable.icon_insu_prefer_1_2));
         TreeNode p2_5_1 = new TreeNode(new MyHolder.IconTreeItem("财产保险"));
         TreeNode p2_5_2 = new TreeNode(new MyHolder.IconTreeItem("短期意健险"));
         TreeNode p2_5_3 = new TreeNode(new MyHolder.IconTreeItem("保证保险"));
@@ -221,13 +242,13 @@ public class InsulActivity extends AppCompatActivity {
         TreeNode p2_5_6 = new TreeNode(new MyHolder.IconTreeItem("责任保险"));
         p2_5.addChildren(p2_5_1, p2_5_2, p2_5_3, p2_5_4, p2_5_5, p2_5_6);
 
-        TreeNode p2_6 = new TreeNode(new MyHolder.IconTreeItem("旅游险", R.drawable.icon_insul_1_2));
+        TreeNode p2_6 = new TreeNode(new MyHolder.IconTreeItem("旅游险", R.drawable.icon_insu_prefer_1_2));
         TreeNode p2_6_1 = new TreeNode(new MyHolder.IconTreeItem("境内"));
         TreeNode p2_6_2 = new TreeNode(new MyHolder.IconTreeItem("境外"));
         TreeNode p2_6_3 = new TreeNode(new MyHolder.IconTreeItem("港澳台"));
         p2_6.addChildren(p2_6_1, p2_6_2, p2_6_3);
 
-        TreeNode p2_7 = new TreeNode(new MyHolder.IconTreeItem("健康险", R.drawable.icon_insul_1_2));
+        TreeNode p2_7 = new TreeNode(new MyHolder.IconTreeItem("健康险", R.drawable.icon_insu_prefer_1_2));
         TreeNode p2_7_1 = new TreeNode(new MyHolder.IconTreeItem("护理"));
         TreeNode p2_7_2 = new TreeNode(new MyHolder.IconTreeItem("女性疾病"));
         TreeNode p2_7_3 = new TreeNode(new MyHolder.IconTreeItem("失能收入损失险"));
@@ -241,5 +262,30 @@ public class InsulActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void showDialog(String title) {
+        if (dialog == null){
+            dialog = new ProgressDialog(InsuPreferActivity.this);
+        }
+        dialog.setTitle(title);
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    @Override
+    public void dismissDialog() {
+        if (dialog!=null)
+            dialog.dismiss();
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void myFinish(boolean finish) {
+        InsuPreferActivity.this.finish();
+    }
 }
 

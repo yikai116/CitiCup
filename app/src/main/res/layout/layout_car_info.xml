@@ -12,133 +12,266 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingEnd="20dp"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
-                android:text="您的风险测评结果为"
-                android:textAlignment="center"
-                android:textColor="#485485"
-                android:textSize="12.5sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="210dp"
-                android:layout_marginTop="10dp">
-
-                <com.github.lzyzsd.circleprogress.DonutProgress
-                    android:id="@+id/donut_progress"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    app:donut_finished_color="#A06FE6"
-                    app:donut_finished_stroke_width="20dp"
-                    app:donut_progress="80"
-                    app:donut_text=""
-                    app:donut_unfinished_color="#DEC9F6"
-                    app:donut_unfinished_stroke_width="20dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/score"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="80分"
-                        android:textSize="29sp" />
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="0.5dp"
-                        android:layout_marginBottom="6dp"
-                        android:layout_marginTop="5dp"
-                        android:background="#979797" />
-
-                    <TextView
-                        android:id="@+id/type"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="激进型"
-                        android:textSize="24sp" />
-                </LinearLayout>
+                    android:paddingBottom="15dp"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="15dp"
+                    android:text="车辆信息"
+                    android:textAlignment="center"
+                    android:textColor="#485485"
+                    android:textSize="12.5sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/title"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:src="@drawable/icon_insu_test_7"/>
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/shape_insul_card_normal"
                 android:orientation="vertical"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:padding="10dp"
                 android:translationZ="3dp">
-
                 <TextView
-                    android:id="@+id/ability"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_riskt_result_ability"
-                    android:gravity="center_vertical"
-                    android:text="您的风险承受能力：高"
-                    android:textColor="#757575"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/expect"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="20dp"
+                    android:text="车辆使用年限"
+                    android:textColor="#626262"
+                    android:textSize="14sp"/>
+                <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_riskt_result_expect"
-                    android:gravity="center_vertical"
-                    android:text="您的获利期待：高收益"
-                    android:textColor="#757575"
-                    android:textSize="12sp" />
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp"
+                    android:scrollbars="none">
+                    <RadioGroup
+                        android:id="@+id/radio_group1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginTop="13dp"
-                    android:background="#979797" />
+                    </RadioGroup>
+                </HorizontalScrollView>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_insul_card_normal"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:translationZ="3dp">
                 <TextView
-                    android:id="@+id/text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="13dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_riskt_result_text"
-                    android:gravity="center_vertical"
-                    android:text="您属于可以承受高风险类型的投资者。您适合投资于能够为您提供高升值能力而投资价值波动大的投资工具。最坏的情况下，您可能失去全部投资本金并需对您投资所导致的任何亏蚀承担责任。"
-                    android:textColor="#757575"
-                    android:textSize="12sp" />
+                    android:paddingEnd="10dp"
+                    android:paddingStart="20dp"
+                    android:text="车辆购买价格"
+                    android:textColor="#626262"
+                    android:textSize="14sp"/>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp"
+                    android:scrollbars="none">
+                    <RadioGroup
+                        android:id="@+id/radio_group2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
+
+                    </RadioGroup>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_insul_card_normal"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:translationZ="3dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="20dp"
+                    android:text="车辆用途"
+                    android:textColor="#626262"
+                    android:textSize="14sp"/>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp"
+                    android:scrollbars="none">
+                    <RadioGroup
+                        android:id="@+id/radio_group3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
+
+                    </RadioGroup>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_insul_card_normal"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:translationZ="3dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="20dp"
+                    android:text="通常的乘客数量"
+                    android:textColor="#626262"
+                    android:textSize="14sp"/>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp"
+                    android:scrollbars="none">
+                    <RadioGroup
+                        android:id="@+id/radio_group4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
+
+                    </RadioGroup>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_insul_card_normal"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:translationZ="3dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="20dp"
+                    android:text="停车地点"
+                    android:textColor="#626262"
+                    android:textSize="14sp"/>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp"
+                    android:scrollbars="none">
+                    <RadioGroup
+                        android:id="@+id/radio_group5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
+
+                    </RadioGroup>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_insul_card_normal"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:translationZ="3dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="20dp"
+                    android:text="去年出险情况"
+                    android:textColor="#626262"
+                    android:textSize="14sp"/>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp"
+                    android:scrollbars="none">
+                    <RadioGroup
+                        android:id="@+id/radio_group6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
+
+                    </RadioGroup>
+                </HorizontalScrollView>
+
             </LinearLayout>
 
             <Button
-                android:id="@+id/retest"
+                android:id="@+id/submit"
                 android:layout_width="66dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="50dp"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/shape_test_button"
-                android:text="重新测试"
+                android:text="提交"
                 android:textColor="#FFF"
                 android:textSize="12sp" />
         </LinearLayout>

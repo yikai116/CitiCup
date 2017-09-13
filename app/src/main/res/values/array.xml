@@ -390,4 +390,36 @@
         <item>否</item>
     </string-array>
 
+    <string-array name="car1">
+        <item>新车</item>
+        <item>2年以内</item>
+        <item>2–6年</item>
+        <item>6年以上</item>
+    </string-array>
+    <string-array name="car2">
+        <item>10万以内</item>
+        <item>10–20万</item>
+        <item>20–50万</item>
+        <item>50万以上</item>
+    </string-array>
+    <string-array name="car3">
+        <item>上下班代步</item>
+        <item>周末出游</item>
+        <item>经常长途旅行</item>
+    </string-array>
+    <string-array name="car4">
+        <item>只有驾驶员</item>
+        <item>2人</item>
+        <item>3人以上</item>
+    </string-array>
+    <string-array name="car5">
+        <item>地下车库</item>
+        <item>露天停车位</item>
+        <item>无固定停放地点</item>
+    </string-array>
+    <string-array name="car6">
+        <item>未出险</item>
+        <item>1–2次</item>
+        <item>3次及以上</item>
+    </string-array>
 </resources>

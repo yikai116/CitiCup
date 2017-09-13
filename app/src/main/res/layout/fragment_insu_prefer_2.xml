@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="10dp"
-                android:drawableStart="@drawable/icon_insu_2_1"
+                android:drawableStart="@drawable/icon_insu_prefer_2_1"
                 android:gravity="center"
                 android:text="产品主题" />
 
@@ -190,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="10dp"
-                android:drawableStart="@drawable/icon_insu_2_2"
+                android:drawableStart="@drawable/icon_insu_prefer_2_2"
                 android:gravity="center"
                 android:paddingTop="30dp"
                 android:text="缴费方式"/>

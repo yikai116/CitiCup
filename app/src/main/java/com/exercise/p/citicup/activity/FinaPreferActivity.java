@@ -1,28 +1,36 @@
 package com.exercise.p.citicup.activity;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.exercise.p.citicup.MyCards;
 import com.exercise.p.citicup.R;
+import com.exercise.p.citicup.dto.FinaPreferInfo;
+import com.exercise.p.citicup.presenter.ManaPreferPresenter;
+import com.exercise.p.citicup.view.ShowDialogView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class ManalActivity extends AppCompatActivity {
+public class FinaPreferActivity extends AppCompatActivity implements ShowDialogView {
 
     MyCards cards;
+    ProgressDialog dialog;
+    ManaPreferPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manal);
+        setContentView(R.layout.activity_mana_prefer);
+        presenter = new ManaPreferPresenter(this);
         initToolBar();
         initView();
     }
@@ -34,14 +42,14 @@ public class ManalActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ManalActivity.this.finish();
+                FinaPreferActivity.this.finish();
             }
         });
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
-    private void initView(){
+    private void initView() {
         List<MyCards.MyTextCard> cards1Content = new ArrayList<>();
         cards1Content.add(new MyCards.MyTextCard((TextView) findViewById(R.id.b_1_1), false));
         cards1Content.add(new MyCards.MyTextCard((TextView) findViewById(R.id.b_1_2), false));
@@ -81,7 +89,7 @@ public class ManalActivity extends AppCompatActivity {
         lists.add(new MyCards(cards5Content));
 
         for (final MyCards cards : lists) {
-            for (final MyCards.MyTextCard card : (List<MyCards.MyTextCard>)cards.getCards()) {
+            for (final MyCards.MyTextCard card : (List<MyCards.MyTextCard>) cards.getCards()) {
                 card.setOnclickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -101,15 +109,52 @@ public class ManalActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<ArrayList<String>> json = new ArrayList<>();
-                for (int i = 0; i < lists.size(); i++){
+                FinaPreferInfo info = new FinaPreferInfo();
+                for (int i = 0; i < lists.size(); i++) {
                     ArrayList<String> temp = (ArrayList<String>) lists.get(i).getSelectedText();
-                    if (temp.size() == 0){
+                    if (temp.size() == 0) {
                         temp.addAll(lists.get(i).getAllText());
                     }
-                    json.add(temp);
+                    switch (i){
+                        case 0:info.setDuration(new Gson().toJson(temp));
+                            break;
+                        case 1:info.setProType(new Gson().toJson(temp));
+                            break;
+                        case 2:info.setLevel(new Gson().toJson(temp));
+                            break;
+                        case 3:info.setRevenue(new Gson().toJson(temp));
+                            break;
+                        default:
+                            Log.i("Test",new Gson().toJson(temp));
+                    }
                 }
             }
         });
+    }
+
+    @Override
+    public void showDialog(String title) {
+        if (dialog == null) {
+            dialog = new ProgressDialog(FinaPreferActivity.this);
+        }
+        dialog.setTitle(title);
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    @Override
+    public void dismissDialog() {
+        if (dialog != null)
+            dialog.dismiss();
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void myFinish(boolean finish) {
+        FinaPreferActivity.this.finish();
     }
 }

@@ -1,13 +1,10 @@
 package com.exercise.p.citicup.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -21,14 +18,14 @@ import android.widget.Toast;
 import com.exercise.p.citicup.CheckableLinearLayout;
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.ViewPagerAdapter;
+import com.exercise.p.citicup.presenter.RiskTestPresenter;
+import com.exercise.p.citicup.view.ShowDialogView;
 import com.github.lzyzsd.circleprogress.DonutProgress;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-public class RisktActivity extends AppCompatActivity {
+public class RiskTestActivity extends AppCompatActivity implements ShowDialogView {
 
     ViewPager pager;
     String[] topic;
@@ -49,11 +46,15 @@ public class RisktActivity extends AppCompatActivity {
     TextView textView;
     Button retest;
     DonutProgress donutProgress;
+    ProgressDialog dialog;
+
+    RiskTestPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_riskt);
+        setContentView(R.layout.activity_risk_test);
+        presenter = new RiskTestPresenter(this);
         getData();
         initToolBar();
         initView();
@@ -66,7 +67,7 @@ public class RisktActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RisktActivity.this.finish();
+                RiskTestActivity.this.finish();
             }
         });
         assert getSupportActionBar() != null;
@@ -98,7 +99,7 @@ public class RisktActivity extends AppCompatActivity {
         for (int i = 0; i < topic.length; i++) {
             View view1;
             if (i == topic.length - 1) {
-                view1 = View.inflate(RisktActivity.this, R.layout.risk_test_end, null);
+                view1 = View.inflate(RiskTestActivity.this, R.layout.layout_risk_test_end, null);
                 Button button1 = (Button) view1.findViewById(R.id.before);
                 final int temp1 = i;
                 button1.setOnClickListener(new View.OnClickListener() {
@@ -107,9 +108,8 @@ public class RisktActivity extends AppCompatActivity {
                         pager.setCurrentItem(temp1 - 1, true);
                     }
                 });
-            }
-            else if (i == 0) {
-                view1 = View.inflate(RisktActivity.this, R.layout.risk_test_fir, null);
+            } else if (i == 0) {
+                view1 = View.inflate(RiskTestActivity.this, R.layout.layout_risk_test_fir, null);
                 Button button = (Button) view1.findViewById(R.id.next);
                 final int temp = i;
                 button.setOnClickListener(new View.OnClickListener() {
@@ -118,9 +118,8 @@ public class RisktActivity extends AppCompatActivity {
                         pager.setCurrentItem(temp + 1, true);
                     }
                 });
-            }
-            else {
-                view1 = View.inflate(RisktActivity.this, R.layout.risk_test_mid, null);
+            } else {
+                view1 = View.inflate(RiskTestActivity.this, R.layout.layout_risk_test_mid, null);
                 Button button1 = (Button) view1.findViewById(R.id.before);
                 final int temp1 = i;
                 button1.setOnClickListener(new View.OnClickListener() {
@@ -143,22 +142,18 @@ public class RisktActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     sco_all = 0;
-                    for (int ii = 0; ii < choose.size(); ii++){
+                    for (int ii = 0; ii < choose.size(); ii++) {
                         ArrayList<Integer> temp = choose.get(ii);
-                        if (temp.size() == 0){
+                        if (temp.size() == 0) {
                             pager.setCurrentItem(ii);
-                            Toast.makeText(RisktActivity.this, "您这道题还没选择哦~", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RiskTestActivity.this, "您这道题还没选择哦~", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        for (int ij = 0; ij < temp.size(); ij++){
+                        for (int ij = 0; ij < temp.size(); ij++) {
                             sco_all += score.get(ii).get(temp.get(ij));
                         }
                     }
-                    SharedPreferences preferences=getSharedPreferences("riskt", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor=preferences.edit();
-                    editor.putString("choose", new Gson().toJson(choose));
-                    editor.putInt("sco", sco_all);
-                    editor.apply();
+                    presenter.submit(sco_all);
                     scoreText.setText(sco_all + "分");
                     int temp = getLevel(sco_all);
                     typeView.setText(type[temp]);
@@ -166,8 +161,6 @@ public class RisktActivity extends AppCompatActivity {
                     expectView.setText("您的获利期待：" + expect[temp]);
                     textView.setText(text[temp]);
                     donutProgress.setDonut_progress(sco_all + "");
-                    page1.setVisibility(View.GONE);
-                    page2.setVisibility(View.VISIBLE);
                 }
             });
             final ListView listView = (ListView) view1.findViewById(R.id.items);
@@ -181,29 +174,6 @@ public class RisktActivity extends AppCompatActivity {
             views.add(view1);
         }
         pager.setAdapter(new ViewPagerAdapter(views));
-//        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                Log.i("Test", "2position" + position);
-//                View temp = views.get(position);
-//                ListView listView = (ListView) temp.findViewById(R.id.items);
-//                Log.i("Test", "temp :" + choose.get(position));
-//                for (int i = 0; i < choose.get(position).size(); i++) {
-//                    Log.i("Test", "i:" + i);
-//                    Log.i("Test", "c:" + choose.get(position).get(i));
-//                    listView.setItemChecked(choose.get(position).get(i), true);
-//                }
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
     }
 
     private void getData() {
@@ -232,14 +202,14 @@ public class RisktActivity extends AppCompatActivity {
             ArrayList<Integer> temp = new ArrayList<>();
             int a = getResources().getIdentifier("i" + i, "array", getApplicationContext().getPackageName());
             int[] ss = getResources().getIntArray(a);
-            for (int j = 0; j < ss.length; j++){
+            for (int j = 0; j < ss.length; j++) {
                 temp.add(ss[j]);
             }
             score.add(temp);
         }
     }
 
-    private int getLevel(int sco){
+    private int getLevel(int sco) {
         if (sco < 30)
             return 0;
         if (sco < 40)
@@ -306,6 +276,33 @@ public class RisktActivity extends AppCompatActivity {
                 return layout;
             }
         });
+    }
+
+    @Override
+    public void showDialog(String title) {
+        if (dialog == null) {
+            dialog = new ProgressDialog(RiskTestActivity.this);
+        }
+        dialog.setTitle(title);
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    @Override
+    public void dismissDialog() {
+        if (dialog != null)
+            dialog.dismiss();
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void myFinish(boolean finish) {
+        page1.setVisibility(finish?View.GONE:View.VISIBLE);
+        page2.setVisibility(finish?View.VISIBLE:View.GONE);
     }
 
 }

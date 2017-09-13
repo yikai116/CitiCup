@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:src="@drawable/icon_insul_1_1_1"/>
+            android:src="@drawable/icon_insu_prefer_1_1_1"/>
         <TextView
             android:id="@+id/node_title"
             android:layout_width="0dp"

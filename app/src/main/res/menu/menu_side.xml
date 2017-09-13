@@ -2,36 +2,36 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/side_insul"
-        android:icon="@drawable/icon_side_insul"
-        android:title="保险偏好"
+        android:id="@+id/side_insuTest"
+        android:icon="@drawable/icon_side_insu_prefer"
+        android:title="保险测试"
         />
 
     <item
-        android:id="@+id/side_manal"
-        android:icon="@drawable/icon_side_manal"
+        android:id="@+id/side_insuLike"
+        android:icon="@drawable/icon_side_mana_prefer"
+        android:title="保险偏好"
+        />
+
+
+    <item
+        android:id="@+id/side_riskTest"
+        android:icon="@drawable/icon_side_risk_test"
+        android:title="风险测评"
+        />
+
+
+    <item
+        android:id="@+id/side_manaLike"
+        android:icon="@drawable/icon_side_insu_test"
         android:title="理财偏好"
         />
 
 
     <item
-        android:id="@+id/side_riskt"
-        android:icon="@drawable/icon_side_riskt"
-        android:title="风险测试"
-        />
-
-
-    <item
-        android:id="@+id/side_insut"
-        android:icon="@drawable/icon_side_insut"
-        android:title="保险测试"
-        />
-
-
-    <item
-        android:id="@+id/side_other"
+        android:id="@+id/side_personal"
         android:icon="@drawable/icon_side_other"
-        android:title="其他设置"
+        android:title="个人信息"
         />
 
 </menu>

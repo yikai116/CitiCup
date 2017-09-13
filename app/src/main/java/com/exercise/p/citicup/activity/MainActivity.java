@@ -21,6 +21,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -80,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i("Test",Helper.userInfo.toString());
+
+        Log.i("Test",Helper.userInfo.getAvatar());
         findView();
         initToolBar();
         initTab();
@@ -159,20 +163,20 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Intent intent = new Intent();
                 switch (item.getItemId()) {
-                    case R.id.side_insul:
-                        intent.setClass(MainActivity.this, InsulActivity.class);
+                    case R.id.side_insuTest:
+                        intent.setClass(MainActivity.this, InsuTestActivity.class);
                         break;
-                    case R.id.side_manal:
-                        intent.setClass(MainActivity.this, ManalActivity.class);
+                    case R.id.side_insuLike:
+                        intent.setClass(MainActivity.this, InsuPreferActivity.class);
                         break;
-                    case R.id.side_riskt:
-                        intent.setClass(MainActivity.this, RisktActivity.class);
+                    case R.id.side_riskTest:
+                        intent.setClass(MainActivity.this, RiskTestActivity.class);
                         break;
-                    case R.id.side_insut:
-                        intent.setClass(MainActivity.this, InsutActivity.class);
+                    case R.id.side_manaLike:
+                        intent.setClass(MainActivity.this, FinaPreferActivity.class);
                         break;
-                    case R.id.side_other:
-                        Toast.makeText(MainActivity.this, "5", Toast.LENGTH_SHORT).show();
+                    case R.id.side_personal:
+                        intent.setClass(MainActivity.this, PersonalActivity.class);
                         break;
                     default:
                         break;
