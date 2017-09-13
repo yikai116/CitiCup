@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="insu_prefer_1_2">
+        <item>寿险</item>
+        <item>年金险</item>
+        <item>意外险</item>
+        <item>个人财险</item>
+        <item>企业财险</item>
+        <item>旅游险</item>
+        <item>健康险</item>
+    </string-array>
+
+    <string-array name="insu_prefer_1_2_1">
+        <item>普通型</item>
+        <item>两全险</item>
+    </string-array>
+
+    <string-array name="insu_prefer_1_2_2">
+        <item>养老年金</item>
+        <item>教育年金</item>
+        <item>普通年金</item>
+    </string-array>
+
+    <string-array name="insu_prefer_1_2_3">
+        <item>人身年金</item>
+        <item>交通年金</item>
+        <item>航空年金</item>
+    </string-array>
+
+    <string-array name="insu_prefer_1_2_4">
+        <item>家财险</item>
+        <item>汽车险</item>
+        <item>房贷险</item>
+    </string-array>
+
+    <string-array name="insu_prefer_1_2_5">
+        <item>财产保险</item>
+        <item>短期意健险</item>
+        <item>保证保险</item>
+        <item>信用保险</item>
+        <item>农业保险</item>
+        <item>责任保险</item>
+    </string-array>
+
+    <string-array name="insu_prefer_1_2_6">
+        <item>境内</item>
+        <item>境外</item>
+        <item>港澳台</item>
+    </string-array>
+
+    <string-array name="insu_prefer_1_2_7">
+        <item>护理</item>
+        <item>女性疾病</item>
+        <item>失能收入损失险</item>
+        <item>重大疾病</item>
+        <item>住院医疗</item>
+    </string-array>
+
+
+</resources>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="insu_test_topic">
+        <item>1.您的家庭成员状况？</item>
+        <item>2.您是否养宠物？</item>
+        <item>3.您的日常出行方式？</item>
+        <item>4.您是否经常出差？</item>
+        <item>5.您近期有外出旅游计划？</item>
+        <item>6.您是否有住房？</item>
+        <item>7.您是否有私家车</item>
+    </string-array>
+
+    <string-array name="insu_test_q1">
+        <item>单身贵族</item>
+        <item>两人世界</item>
+        <item>家有儿女</item>
+        <item>上有老下有小</item>
+    </string-array>
+
+    <string-array name="insu_test_q2">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+
+    <string-array name="insu_test_q3">
+        <item>地铁、公交</item>
+        <item>出租车</item>
+        <item>自己驾车</item>
+    </string-array>
+
+    <string-array name="insu_test_q4">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+
+    <string-array name="insu_test_q5">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+
+    <string-array name="insu_test_q6">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+
+    <string-array name="insu_test_q7">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+
+    <string-array name="car1">
+        <item>新车</item>
+        <item>2年以内</item>
+        <item>2–6年</item>
+        <item>6年以上</item>
+    </string-array>
+
+    <string-array name="car2">
+        <item>10万以内</item>
+        <item>10–20万</item>
+        <item>20–50万</item>
+        <item>50万以上</item>
+    </string-array>
+
+    <string-array name="car3">
+        <item>上下班代步</item>
+        <item>周末出游</item>
+        <item>经常长途旅行</item>
+    </string-array>
+
+    <string-array name="car4">
+        <item>只有驾驶员</item>
+        <item>2人</item>
+        <item>3人以上</item>
+    </string-array>
+
+    <string-array name="car5">
+        <item>地下车库</item>
+        <item>露天停车位</item>
+        <item>无固定停放地点</item>
+    </string-array>
+
+    <string-array name="car6">
+        <item>未出险</item>
+        <item>1–2次</item>
+        <item>3次及以上</item>
+    </string-array>
+</resources>
