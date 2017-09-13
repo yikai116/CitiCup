@@ -245,7 +245,7 @@ public class RiskTestActivity extends AppCompatActivity implements ShowDialogVie
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
                 if (convertView == null) {
-                    convertView = (getLayoutInflater()).inflate(R.layout.test_list_item, null);
+                    convertView = (getLayoutInflater()).inflate(R.layout.item_test_list, null);
                 }
                 final CheckableLinearLayout layout = (CheckableLinearLayout) convertView;
                 TextView textView = (TextView) layout.findViewById(R.id.node_title);
