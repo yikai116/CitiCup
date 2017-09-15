@@ -65,5 +65,6 @@
         android:divider="#00FFFFFF"
         android:dividerHeight="20dp"
         android:scrollbars="none"
+        ptr:ptrHeaderTextColor = "#979797"
         ptr:ptrMode = "both"/>
 </LinearLayout>
