@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 
 public interface FinaFragView {
-    void initView(final ArrayList<FinaPro> pros);
+    void initView(final ArrayList<FinaPro> pros, boolean more);
+
     void showMessage(String msg);
 }

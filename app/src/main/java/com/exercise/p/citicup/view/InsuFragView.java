@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 
 public interface InsuFragView {
-    void initView(final ArrayList<InsuPro> pros);
+    void initView(final ArrayList<InsuPro> pros, boolean more);
+
     void showMessage(String msg);
 }

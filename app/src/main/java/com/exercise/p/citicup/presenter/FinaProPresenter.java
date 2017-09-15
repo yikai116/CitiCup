@@ -32,14 +32,14 @@ public class FinaProPresenter {
 
     }
 
-    public void getFinaPro() {
+    public void getFinaPro(final boolean more) {
         Call<MyResponse<ArrayList<FinaPro>>> call = model.getFinaPro();
         call.enqueue(new Callback<MyResponse<ArrayList<FinaPro>>>() {
             @Override
             public void onResponse(Call<MyResponse<ArrayList<FinaPro>>> call, Response<MyResponse<ArrayList<FinaPro>>> response) {
                 MyResponse<ArrayList<FinaPro>> response1 = response.body();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
-                    view.initView(response1.getData());
+                    view.initView(response1.getData(),more);
                 } else {
                     view.showMessage(response1.getStatus().getMsg());
                 }
@@ -53,5 +53,6 @@ public class FinaProPresenter {
         });
 
     }
+
 }
 

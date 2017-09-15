@@ -29,14 +29,14 @@ public class InsuProPresenter {
 
     }
 
-    public void getInsuPro() {
+    public void getInsuPro(final boolean more) {
         Call<MyResponse<ArrayList<InsuPro>>> call = model.getInsuPro();
         call.enqueue(new Callback<MyResponse<ArrayList<InsuPro>>>() {
             @Override
             public void onResponse(Call<MyResponse<ArrayList<InsuPro>>> call, Response<MyResponse<ArrayList<InsuPro>>> response) {
                 MyResponse<ArrayList<InsuPro>> response1 = response.body();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
-                    view.initView(response1.getData());
+                    view.initView(response1.getData(),more);
                 } else {
                     view.showMessage(response1.getStatus().getMsg());
                 }

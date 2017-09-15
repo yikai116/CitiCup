@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import com.exercise.p.citicup.dto.FinaPro;
 import com.exercise.p.citicup.dto.FinaPro;
 import com.exercise.p.citicup.presenter.FinaProPresenter;
 import com.exercise.p.citicup.view.FinaFragView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.util.ArrayList;
 
@@ -32,7 +35,7 @@ import java.util.ArrayList;
 
 public class FinaFragment extends Fragment implements FinaFragView {
     View root;
-    ListView finaConentView;
+    PullToRefreshListView finaConentView;
     FinaProPresenter presenter;
     ArrayList<FinaPro> pros;
 
@@ -46,14 +49,31 @@ public class FinaFragment extends Fragment implements FinaFragView {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         root = inflater.inflate(R.layout.fragment_fina, container, false);
-        finaConentView = (ListView) root.findViewById(R.id.fina_content);
+        finaConentView = (PullToRefreshListView) root.findViewById(R.id.fina_content);
         initTop();
         presenter = new FinaProPresenter(this);
         if (pros == null)
-            presenter.getFinaPro();
+            presenter.getFinaPro(false);
         else
-            initView(pros);
+            initView(pros, false);
 //        initView(getData());
+//        finaConentView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+//            @Override
+//            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                presenter.getFinaPro();
+//            }
+//        });
+        finaConentView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                presenter.getFinaPro(false);
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                presenter.getFinaPro(true);
+            }
+        });
         return root;
     }
 
@@ -77,8 +97,14 @@ public class FinaFragment extends Fragment implements FinaFragView {
     }
 
     @Override
-    public void initView(final ArrayList<FinaPro> pros) {
-        this.pros = pros;
+    public void initView(final ArrayList<FinaPro> pros1, boolean more) {
+        if (finaConentView != null)
+            finaConentView.onRefreshComplete();
+        if (more) {
+            this.pros.addAll(pros1);
+            Log.i("Test", "Size" + this.pros.size());
+        } else
+            this.pros = pros1;
         finaConentView.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -109,7 +135,7 @@ public class FinaFragment extends Fragment implements FinaFragView {
                     public void onClick(View v) {
                         Intent intent = new Intent();
                         intent.setClass(getActivity(), FinaProDetailActivity.class);
-                        intent.putExtra("product",pros.get(position));
+                        intent.putExtra("product", pros.get(position));
                         startActivity(intent);
                     }
                 });
@@ -144,7 +170,9 @@ public class FinaFragment extends Fragment implements FinaFragView {
 
     @Override
     public void showMessage(String msg) {
-
+        if (finaConentView != null)
+            finaConentView.onRefreshComplete();
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 
     private ArrayList<FinaPro> getData() {

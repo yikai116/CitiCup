@@ -27,6 +27,8 @@ import com.exercise.p.citicup.activity.TeachActivity;
 import com.exercise.p.citicup.dto.InsuPro;
 import com.exercise.p.citicup.presenter.InsuProPresenter;
 import com.exercise.p.citicup.view.InsuFragView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.util.ArrayList;
 
@@ -36,7 +38,7 @@ import java.util.ArrayList;
 
 public class InsuFragment extends Fragment implements InsuFragView {
     View root;
-    ListView insuConentView;
+    PullToRefreshListView insuConentView;
     InsuProPresenter presenter;
     ArrayList<InsuPro> pros;
 
@@ -54,12 +56,30 @@ public class InsuFragment extends Fragment implements InsuFragView {
         super.onCreateView(inflater, container, savedInstanceState);
         root = inflater.inflate(R.layout.fragment_insu, container, false);
         initTop();
-        insuConentView = (ListView) root.findViewById(R.id.insu_content);
+        insuConentView = (PullToRefreshListView) root.findViewById(R.id.insu_content);
         presenter = new InsuProPresenter(this);
         if (pros == null)
-            presenter.getInsuPro();
+            presenter.getInsuPro(false);
         else
-            initView(pros);
+            initView(pros,false);
+
+//        insuConentView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+//            @Override
+//            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                presenter.getInsuPro();
+//            }
+//        });
+        insuConentView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                presenter.getInsuPro(false);
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                presenter.getInsuPro(true);
+            }
+        });
         return root;
     }
 
@@ -99,8 +119,14 @@ public class InsuFragment extends Fragment implements InsuFragView {
     }
 
     @Override
-    public void initView(final ArrayList<InsuPro> pros) {
-        this.pros = pros;
+    public void initView(final ArrayList<InsuPro> pros1, boolean more) {
+        if (insuConentView != null)
+            insuConentView.onRefreshComplete();
+        if (more) {
+            this.pros.addAll(pros1);
+            Log.i("Test", "Size" + this.pros.size());
+        } else
+            this.pros = pros1;
         insuConentView.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -165,6 +191,8 @@ public class InsuFragment extends Fragment implements InsuFragView {
 
     @Override
     public void showMessage(String msg) {
+        if (insuConentView != null)
+            insuConentView.onRefreshComplete();
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 
