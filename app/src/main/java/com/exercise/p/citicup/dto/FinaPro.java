@@ -1,9 +1,11 @@
 package com.exercise.p.citicup.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by p on 2017/9/14.
  */
-public class FianPro {
+public class FinaPro implements Serializable {
     private int id;
     private String name;
     private String company;
@@ -11,8 +13,8 @@ public class FianPro {
     private String duration;
     private String issuintDate;
     private float preEarn;
-    private Boolean redeem;
-    private Boolean guaranteed;
+    private boolean redeem;
+    private boolean guaranteed;
     private int level;
 
     public int getId() {
@@ -71,19 +73,19 @@ public class FianPro {
         this.preEarn = preEarn;
     }
 
-    public Boolean getRedeem() {
+    public boolean getRedeem() {
         return redeem;
     }
 
-    public void setRedeem(Boolean redeem) {
+    public void setRedeem(boolean redeem) {
         this.redeem = redeem;
     }
 
-    public Boolean getGuaranteed() {
+    public boolean getGuaranteed() {
         return guaranteed;
     }
 
-    public void setGuaranteed(Boolean guaranteed) {
+    public void setGuaranteed(boolean guaranteed) {
         this.guaranteed = guaranteed;
     }
 
@@ -94,4 +96,5 @@ public class FianPro {
     public void setLevel(int level) {
         this.level = level;
     }
+
 }

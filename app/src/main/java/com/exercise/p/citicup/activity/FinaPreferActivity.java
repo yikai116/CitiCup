@@ -29,7 +29,7 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mana_prefer);
+        setContentView(R.layout.activity_fina_prefer);
         presenter = new ManaPreferPresenter(this);
         initToolBar();
         findView();
@@ -120,27 +120,28 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
                 FinaPreferInfo info = new FinaPreferInfo();
                 for (int i = 0; i < lists.size(); i++) {
                     ArrayList<String> temp = (ArrayList<String>) lists.get(i).getSelectedText();
+                    Log.i("Test","temp" + i + temp + "");
                     if (temp.size() == 0) {
                         temp.addAll(lists.get(i).getAllText());
                     }
-                    String str = new Gson().toJson(temp);
                     switch (i) {
                         case 0:
-                            info.setDuration(str);
+                            info.setDuration(temp);
                             break;
                         case 1:
-                            info.setProType(str);
+                            info.setProType(temp);
                             break;
                         case 2:
-                            info.setLevel(str);
+                            info.setLevel(temp);
                             break;
                         case 3:
-                            info.setRevenue(str);
+                            info.setRevenue(temp);
                             break;
                         default:
-                            Log.i("Test", str);
+                            Log.i("Test", new Gson().toJson(temp));
                     }
                 }
+                Log.i("Test","info : " + new Gson().toJson(info));
                 presenter.submit(info);
             }
         });

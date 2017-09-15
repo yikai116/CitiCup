@@ -8,6 +8,8 @@ import com.exercise.p.citicup.model.InsuTestModel;
 import com.exercise.p.citicup.model.RetrofitInstance;
 import com.exercise.p.citicup.view.ShowDialogView;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,7 +27,7 @@ public class InsuTestPresenter {
         model = RetrofitInstance.getRetrofitWithToken().create(InsuTestModel.class);
     }
 
-    public void submit(String keyword){
+    public void submit(ArrayList<String> keyword){
         view.showDialog("正在提交...");
         Call<MyResponse> call = model.setKeyword(keyword);
         call.enqueue(new Callback<MyResponse>(){

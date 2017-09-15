@@ -369,57 +369,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="9dp"
-                    android:layout_height="20.5dp"
-                    android:background="@color/themeColor" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="13dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="销售状态"
-                    android:textColor="#485465"
-                    android:textSize="14sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12.5dp"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingEnd="17.5dp"
-                    android:paddingStart="17.5dp">
-                    <TextView
-                        android:id="@+id/b_5_1"
-                        style="@style/CardText"
-                        android:layout_width="0dp"
-                        android:layout_height="27dp"
-                        android:layout_weight="1"
-                        android:text="全部"/>
-                    <TextView
-                        android:id="@+id/b_5_2"
-                        style="@style/CardText"
-                        android:layout_width="0dp"
-                        android:layout_height="27dp"
-                        android:layout_weight="1"
-                        android:text="在售"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
             <Button
                 android:id="@+id/manal_commit"
                 android:layout_width="178dp"

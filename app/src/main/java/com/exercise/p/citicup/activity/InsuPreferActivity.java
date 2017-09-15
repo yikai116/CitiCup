@@ -212,9 +212,10 @@ public class InsuPreferActivity extends AppCompatActivity implements ShowDialogV
             json.add(four);
             Log.i("Test", new Gson().toJson(json));
             InsuPreferInfo info = new InsuPreferInfo();
-            info.setInsuType(new Gson().toJson(one.addAll(two)));
-            info.setTheme(new Gson().toJson(three));
-            info.setPayMethod(new Gson().toJson(four));
+            one.addAll(two);
+            info.setInsuType(one);
+            info.setTheme(three);
+            info.setPayMethod(four);
             presenter.submit(info);
         } catch (Exception e) {
             e.printStackTrace();

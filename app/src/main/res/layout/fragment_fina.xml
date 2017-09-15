@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="71.5dp"
+        android:background="#F1F1F1"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/fina_asset"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="3.5dp"
+            android:drawableTop="@drawable/icon_fina_assest"
+            android:gravity="center"
+            android:text="资产配置"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/fina_fina_prefer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/icon_fina_fina_prefer"
+            android:gravity="center"
+            android:text="理财偏好"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="20.5dp"
+            android:background="@color/themeColor" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="13dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="最新推荐"
+            android:textColor="#485465"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/fina_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:divider="#00FFFFFF"
+        android:dividerHeight="20dp"
+        android:scrollbars="none"/>
+</LinearLayout>

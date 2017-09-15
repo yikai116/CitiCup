@@ -8,7 +8,7 @@
         />
 
     <item
-        android:id="@+id/side_insuLike"
+        android:id="@+id/side_insuPrefer"
         android:icon="@drawable/icon_side_mana_prefer"
         android:title="保险偏好"
         />
@@ -18,13 +18,6 @@
         android:id="@+id/side_riskTest"
         android:icon="@drawable/icon_side_risk_test"
         android:title="风险测评"
-        />
-
-
-    <item
-        android:id="@+id/side_manaLike"
-        android:icon="@drawable/icon_side_insu_test"
-        android:title="理财偏好"
         />
 
 

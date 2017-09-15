@@ -30,6 +30,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,10 +43,12 @@ import com.exercise.p.citicup.PhotoUtils;
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.fragment.main.InsuFragment;
-import com.exercise.p.citicup.fragment.main.ManaFragment;
+import com.exercise.p.citicup.fragment.main.FinaFragment;
 import com.exercise.p.citicup.fragment.main.StocFragment;
 import com.exercise.p.citicup.model.RetrofitInstance;
 import com.exercise.p.citicup.model.SetModel;
+import com.exercise.p.citicup.presenter.MainPresenter;
+import com.exercise.p.citicup.view.MainView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -58,7 +61,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainView {
 
     // 拍照请求码
     protected static final int CAMERA_CODE = 100;
@@ -70,9 +73,12 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     ViewPager pager;
+    RelativeLayout notTestView;
     NavigationView naviView;
     ImageView avatar;
     TextView userName;
+    ProgressDialog dialog;
+    MainPresenter presenter;
     //临时文件路径
     private String tempPath = Environment.getExternalStorageDirectory()
             .getAbsolutePath() + "/tempPhoto.jpg";
@@ -81,13 +87,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.i("Test",Helper.userInfo.toString());
-
-        Log.i("Test",Helper.userInfo.getAvatar());
+//        Log.i("Test",Helper.user.toString());
+//
+//        Log.i("Test",Helper.user.getAvatar());
+        presenter = new MainPresenter(this);
         findView();
         initToolBar();
         initTab();
         initNavi();
+        presenter.verTest();
     }
 
     private void findView() {
@@ -95,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawerLayout);
         pager = (ViewPager) findViewById(R.id.main_pager);
+        notTestView = (RelativeLayout) findViewById(R.id.notTest);
         naviView = (NavigationView) findViewById(R.id.main_side);
         avatar = (ImageView)
                 naviView.getHeaderView(0).findViewById(R.id.side_avatar);
@@ -104,6 +113,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.this.finish();
+            }
+        });
+        TextView exchange = (TextView) findViewById(R.id.exchange);
+        exchange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,SignActivity.class);
+                startActivity(intent);
+                MainActivity.this.finish();
+            }
+        });
+        notTestView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.verTest();
             }
         });
     }
@@ -144,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         //初始化ViewPager
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new InsuFragment());
-        fragments.add(new ManaFragment());
+        fragments.add(new FinaFragment());
         fragments.add(new StocFragment());
         pager.setAdapter(new MyFragAdapter(getSupportFragmentManager(), fragments));
 
@@ -166,14 +191,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.side_insuTest:
                         intent.setClass(MainActivity.this, InsuTestActivity.class);
                         break;
-                    case R.id.side_insuLike:
+                    case R.id.side_insuPrefer:
                         intent.setClass(MainActivity.this, InsuPreferActivity.class);
                         break;
                     case R.id.side_riskTest:
                         intent.setClass(MainActivity.this, RiskTestActivity.class);
-                        break;
-                    case R.id.side_manaLike:
-                        intent.setClass(MainActivity.this, FinaPreferActivity.class);
                         break;
                     case R.id.side_personal:
                         intent.setClass(MainActivity.this, PersonalActivity.class);
@@ -185,8 +207,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        userName.setText(Helper.userInfo.getName());
-        setAvatar(Helper.userInfo.getAvatar(),null);
+        userName.setText(Helper.user.getName());
+        setAvatar(Helper.user.getAvatar(),null);
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -320,4 +342,37 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    @Override
+    public void showDialog(String title) {
+        if (dialog == null) {
+            dialog = new ProgressDialog(MainActivity.this);
+        }
+        dialog.setTitle(title);
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    @Override
+    public void dismissDialog() {
+        if (dialog != null)
+            dialog.dismiss();
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void myFinish(boolean finish) {
+        MainActivity.this.finish();
+    }
+
+    @Override
+    public void showNotTest(boolean show) {
+        pager.setVisibility(show?View.GONE:View.VISIBLE);
+        notTestView.setVisibility(show?View.VISIBLE:View.GONE);
+    }
+
 }

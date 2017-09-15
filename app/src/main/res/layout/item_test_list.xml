@@ -12,7 +12,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/shape_insul_card_normal"
+        android:background="@drawable/shape_4corner_3dp_fff"
         android:orientation="horizontal"
         android:paddingLeft="14dp"
         android:paddingRight="14dp"

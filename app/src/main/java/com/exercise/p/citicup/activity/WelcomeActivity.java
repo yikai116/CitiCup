@@ -9,9 +9,8 @@ import android.widget.Toast;
 
 import com.exercise.p.citicup.Helper;
 import com.exercise.p.citicup.R;
-import com.exercise.p.citicup.dto.UserInfo;
+import com.exercise.p.citicup.dto.User;
 import com.exercise.p.citicup.dto.response.MyResponse;
-import com.exercise.p.citicup.model.FpswModel;
 import com.exercise.p.citicup.model.RetrofitInstance;
 import com.exercise.p.citicup.model.WelcomeModel;
 
@@ -42,13 +41,13 @@ public class WelcomeActivity extends AppCompatActivity {
 //        task.execute();
         //请求验证标识符
         WelcomeModel welcomeModel = RetrofitInstance.getRetrofit().create(WelcomeModel.class);
-        Call<MyResponse<UserInfo>> call = welcomeModel.verToken(Helper.IMEI);
-        call.enqueue(new Callback<MyResponse<UserInfo>>() {
+        Call<MyResponse<User>> call = welcomeModel.verToken(Helper.IMEI);
+        call.enqueue(new Callback<MyResponse<User>>() {
             @Override
-            public void onResponse(Call<MyResponse<UserInfo>> call, Response<MyResponse<UserInfo>> response) {
+            public void onResponse(Call<MyResponse<User>> call, Response<MyResponse<User>> response) {
                 if (response.body().getStatus().getCode() == 1){
                     tag = LOGIN;
-                    Helper.userInfo = response.body().getData();
+                    Helper.user = response.body().getData();
                 }
                 else {
                     tag = NOTLOGIN;
@@ -59,7 +58,7 @@ public class WelcomeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<MyResponse<UserInfo>> call, Throwable t) {
+            public void onFailure(Call<MyResponse<User>> call, Throwable t) {
                 Toast.makeText(WelcomeActivity.this, "网络连接错误", Toast.LENGTH_SHORT).show();
                 tag = NOTLOGIN;
                 WelAsyncTask task = new WelAsyncTask();
@@ -86,7 +85,7 @@ public class WelcomeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer status) {
             super.onPostExecute(status);
-            if (status == LOGIN && Helper.userInfo != null) {
+            if (status == LOGIN && Helper.user != null) {
                 Intent intent = new Intent();
                 intent.setClass(WelcomeActivity.this, MainActivity.class);
                 WelcomeActivity.this.startActivity(intent);

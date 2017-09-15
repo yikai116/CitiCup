@@ -1,15 +1,20 @@
 package com.exercise.p.citicup.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by p on 2017/9/14.
  */
-public class InsuPro {
+public class InsuPro implements Serializable {
     private int id;
     private String name;
     private String company;
     private String type;
+    private String price;
     private String payMethod;
     private String advance;
+    private String suitable;
+    private String term;
 
     public int getId() {
         return id;
@@ -43,6 +48,14 @@ public class InsuPro {
         this.type = type;
     }
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
     public String getPayMethod() {
         return payMethod;
     }
@@ -57,5 +70,21 @@ public class InsuPro {
 
     public void setAdvance(String advance) {
         this.advance = advance;
+    }
+
+    public String getSuitable() {
+        return suitable;
+    }
+
+    public void setSuitable(String suitable) {
+        this.suitable = suitable;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
     }
 }

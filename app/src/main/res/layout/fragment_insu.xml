@@ -56,6 +56,36 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="20.5dp"
+            android:background="@color/themeColor" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="13dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="最新推荐"
+            android:textColor="#485465"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/insu_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:divider="#00FFFFFF"
+        android:dividerHeight="20dp"
+        android:scrollbars="none"/>
 
 </LinearLayout>

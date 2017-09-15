@@ -47,7 +47,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/shape_insul_card_normal"
+                android:background="@drawable/shape_4corner_3dp_fff"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:translationZ="3dp">
@@ -84,7 +84,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/shape_insul_card_normal"
+                android:background="@drawable/shape_4corner_3dp_fff"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:translationZ="3dp">
@@ -121,7 +121,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/shape_insul_card_normal"
+                android:background="@drawable/shape_4corner_3dp_fff"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:translationZ="3dp">
@@ -158,7 +158,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/shape_insul_card_normal"
+                android:background="@drawable/shape_4corner_3dp_fff"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:translationZ="3dp">
@@ -195,7 +195,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/shape_insul_card_normal"
+                android:background="@drawable/shape_4corner_3dp_fff"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:translationZ="3dp">
@@ -232,7 +232,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/shape_insul_card_normal"
+                android:background="@drawable/shape_4corner_3dp_fff"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:translationZ="3dp">

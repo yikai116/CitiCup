@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -34,7 +34,12 @@
         <activity android:name=".activity.RiskTestActivity" />
         <activity android:name=".activity.TeachActivity" />
         <activity android:name=".activity.InsuTestActivity" />
-        <activity android:name=".activity.PersonalActivity"></activity>
+        <activity android:name=".activity.PersonalActivity" />
+        <activity android:name=".activity.InsuProDetailActivity" />
+        <activity android:name=".activity.MistakeActivity" />
+        <activity android:name=".activity.FinaProDetailActivity" />
+        <activity android:name=".activity.AssetsActivity" />
+        <activity android:name=".activity.FeedbackActivity"></activity>
     </application>
 
 </manifest>

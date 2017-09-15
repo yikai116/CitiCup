@@ -62,24 +62,15 @@
                 </ScrollView>
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/page2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-            <include
-                layout="@layout/layout_car_info"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/page3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-            <include
-                layout="@layout/layout_riskt_result"/>
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:id="@+id/page2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--android:visibility="gone">-->
+            <!--<include-->
+                <!--layout="@layout/layout_car_info"/>-->
+        <!--</LinearLayout>-->
     </RelativeLayout>
 
 </LinearLayout>

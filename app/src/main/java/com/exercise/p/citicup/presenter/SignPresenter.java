@@ -5,7 +5,7 @@ import android.util.Log;
 import com.exercise.p.citicup.Helper;
 import com.exercise.p.citicup.dto.SignInParam;
 import com.exercise.p.citicup.dto.SignUpParam;
-import com.exercise.p.citicup.dto.UserInfo;
+import com.exercise.p.citicup.dto.User;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.model.RetrofitInstance;
 import com.exercise.p.citicup.model.SignModel;
@@ -54,14 +54,14 @@ public class SignPresenter {
         }
         param.setToken(Helper.IMEI);
         signView.showProgress(true);
-        Call<MyResponse<UserInfo>> signInResCall = signModel.signIn(param);
-        signInResCall.enqueue(new Callback<MyResponse<UserInfo>>() {
+        Call<MyResponse<User>> signInResCall = signModel.signIn(param);
+        signInResCall.enqueue(new Callback<MyResponse<User>>() {
             @Override
-            public void onResponse(Call<MyResponse<UserInfo>> call, Response<MyResponse<UserInfo>> response) {
+            public void onResponse(Call<MyResponse<User>> call, Response<MyResponse<User>> response) {
                 Log.i("Test","success" + call.request().url().toString());
-                MyResponse<UserInfo> response1 = response.body();
+                MyResponse<User> response1 = response.body();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
-                    Helper.userInfo = response1.getData();
+                    Helper.user = response1.getData();
                     signView.toMainActivity();
                 }
                 else if (response1.getStatus().getCode() == Helper.NO_USER){
@@ -78,7 +78,7 @@ public class SignPresenter {
                 }
             }
             @Override
-            public void onFailure(Call<MyResponse<UserInfo>> call, Throwable t) {
+            public void onFailure(Call<MyResponse<User>> call, Throwable t) {
                 Log.i("Test",call.request().url().toString());
                 signView.showProgress(false);
                 signView.showMessage("网络连接错误");
@@ -117,14 +117,14 @@ public class SignPresenter {
         param.setToken(Helper.IMEI);
         param.setVerCode(verCode);
         signView.showProgress(true);
-        Call<MyResponse<UserInfo>> call = signModel.signUp(param);
-        call.enqueue(new Callback<MyResponse<UserInfo>>() {
+        Call<MyResponse<User>> call = signModel.signUp(param);
+        call.enqueue(new Callback<MyResponse<User>>() {
             @Override
-            public void onResponse(Call<MyResponse<UserInfo>> call, Response<MyResponse<UserInfo>> response) {
+            public void onResponse(Call<MyResponse<User>> call, Response<MyResponse<User>> response) {
                 Log.i("Test",call.request().url().toString());
-                MyResponse<UserInfo> response1 = response.body();
+                MyResponse<User> response1 = response.body();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
-                    Helper.userInfo = response1.getData();
+                    Helper.user = response1.getData();
                     signView.toMainActivity();
                 }
                 else if (response1.getStatus().getCode() == Helper.USER_REGISTERED){
@@ -142,7 +142,7 @@ public class SignPresenter {
             }
 
             @Override
-            public void onFailure(Call<MyResponse<UserInfo>> call, Throwable t) {
+            public void onFailure(Call<MyResponse<User>> call, Throwable t) {
                 Log.i("Test",call.request().url().toString());
                 signView.showProgress(false);
                 signView.showMessage("网络连接错误");

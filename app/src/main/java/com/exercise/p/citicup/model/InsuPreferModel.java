@@ -33,6 +33,6 @@ public interface InsuPreferModel {
      * @return 返回结果信息
      */
     @POST("getInsuPrefer")
-    Call<MyResponse> getInsuPrefer();
+    Call<MyResponse<InsuPreferInfo>> getInsuPrefer();
 
 }

@@ -1,13 +1,10 @@
 package com.exercise.p.citicup.activity;
 
 import android.app.ProgressDialog;
-import android.support.annotation.IdRes;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,8 +13,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -250,7 +245,7 @@ public class InsuTestActivity extends AppCompatActivity implements ShowDialogVie
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
                 if (convertView == null) {
-                    convertView = (getLayoutInflater()).inflate(R.layout.item_insut_list, null);
+                    convertView = (getLayoutInflater()).inflate(R.layout.item_insu_test_list, null);
                 }
                 final CheckableLinearLayout layout = (CheckableLinearLayout) convertView;
                 TextView textView = (TextView) layout.findViewById(R.id.node_title);
@@ -313,7 +308,7 @@ public class InsuTestActivity extends AppCompatActivity implements ShowDialogVie
                         break;
                 }
             }
-            presenter.submit(new Gson().toJson(keyword));
+            presenter.submit(keyword);
         } catch (Exception e) {
             e.printStackTrace();
         }

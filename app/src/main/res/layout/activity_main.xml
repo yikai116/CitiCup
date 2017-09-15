@@ -39,14 +39,61 @@
             app:tabIndicatorColor="#FFFF8C"
             app:tabSelectedTextColor="#FFF"
             app:tabTextAppearance="@style/TabText"
-            app:tabTextColor="#adffffff"/>
+            app:tabTextColor="#adffffff" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/main_pager"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center" />
+            android:layout_weight="1">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/main_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/notTest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_not_test"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="出错啦~"
+                        android:textColor="#485465"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="您还未填写保险测试哦"
+                        android:textColor="#485465"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="点击空白进行刷新"
+                        android:textColor="#485465"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout

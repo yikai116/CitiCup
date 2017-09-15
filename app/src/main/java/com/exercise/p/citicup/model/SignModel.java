@@ -2,7 +2,7 @@ package com.exercise.p.citicup.model;
 
 import com.exercise.p.citicup.dto.SignInParam;
 import com.exercise.p.citicup.dto.SignUpParam;
-import com.exercise.p.citicup.dto.UserInfo;
+import com.exercise.p.citicup.dto.User;
 import com.exercise.p.citicup.dto.response.MyResponse;
 
 import retrofit2.Call;
@@ -10,7 +10,6 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 /**
  * Created by p on 2017/5/11.
@@ -23,7 +22,7 @@ public interface SignModel {
      * @return 返回结果信息
      */
     @POST("signIn")
-    Call<MyResponse<UserInfo>> signIn(
+    Call<MyResponse<User>> signIn(
             @Body SignInParam param
     );
 
@@ -33,7 +32,7 @@ public interface SignModel {
      * @return 返回结果信息
      */
     @POST("signUp")
-    Call<MyResponse<UserInfo>> signUp(
+    Call<MyResponse<User>> signUp(
             @Body SignUpParam param
     );
 

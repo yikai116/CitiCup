@@ -1,9 +1,362 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.exercise.p.citicup.activity.PersonalActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/person_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="?colorPrimary">
+
+        <TextView
+            style="@style/MyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="个人信息" />
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/personal_avatar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/shape_avatar" />
+
+            <TextView
+                android:id="@+id/personal_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:gravity="center"
+                android:text="Detra Mcmunn"
+                android:textColor="#485465"
+                android:textSize="12.5sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="47.5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_4corner_3dp_fff"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:translationZ="3dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_personal_age" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/age_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/personal_age"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+
+                                android:text="年龄：未填写"
+                                android:textColor="#757575" />
+
+                            <Button
+                                android:id="@+id/age_modify"
+                                android:layout_width="33dp"
+                                android:layout_height="24dp"
+                                android:background="@drawable/shape_4corner_3dp_themecolor"
+                                android:text="修改"
+                                android:textColor="#fff"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/age_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:gravity="center_vertical"
+                                android:text="年龄："
+                                android:textColor="#757575" />
+
+                            <EditText
+                                android:id="@+id/personal_age_edit"
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:hint="年龄"
+                                android:inputType="number"
+                                android:textColor="#757575" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+
+                                android:text="岁"
+                                android:textColor="#757575" />
+
+                            <Button
+                                android:id="@+id/age_submit"
+                                android:layout_width="33dp"
+                                android:layout_height="24dp"
+                                android:background="@drawable/shape_4corner_3dp_themecolor"
+                                android:text="提交"
+                                android:textColor="#fff"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="47.5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape_4corner_3dp_fff"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:translationZ="3dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_personal_gender" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/gender_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/personal_gender"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="性别：未填写"
+                                android:textColor="#757575" />
+
+                            <Button
+                                android:id="@+id/gender_modify"
+                                android:layout_width="33dp"
+                                android:layout_height="24dp"
+                                android:background="@drawable/shape_4corner_3dp_themecolor"
+                                android:text="修改"
+                                android:textColor="#fff"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/gender_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:gravity="center_vertical"
+                                android:text="性别："
+                                android:textColor="#757575" />
+
+                            <RadioGroup
+                                android:id="@+id/personal_gender_edit"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp">
+
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:button="@drawable/selector_checkbox"
+                                    android:paddingLeft="10dp"
+                                    android:text="男"
+                                    android:textColor="#757575" />
+
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:button="@drawable/selector_checkbox"
+                                    android:paddingLeft="10dp"
+                                    android:text="女"
+                                    android:textColor="#757575" />
+                            </RadioGroup>
+
+                            <Button
+                                android:id="@+id/gender_submit"
+                                android:layout_width="33dp"
+                                android:layout_height="24dp"
+                                android:background="@drawable/shape_4corner_3dp_themecolor"
+                                android:text="提交"
+                                android:textColor="#fff"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="47.5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape_4corner_3dp_fff"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:translationZ="3dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_personal_income" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/income_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/personal_income"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="家庭年收入：未填写"
+                                android:textColor="#757575" />
+
+                            <Button
+                                android:id="@+id/income_modify"
+                                android:layout_width="33dp"
+                                android:layout_height="24dp"
+                                android:background="@drawable/shape_4corner_3dp_themecolor"
+                                android:text="修改"
+                                android:textColor="#fff"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/income_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:gravity="center_vertical"
+                                android:text="家庭年收入："
+                                android:textColor="#757575" />
+
+                            <EditText
+                                android:id="@+id/personal_income_edit"
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:hint="收入"
+                                android:inputType="number"
+                                android:textColor="#757575" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="万"
+                                android:textColor="#757575" />
+
+                            <Button
+                                android:id="@+id/income_submit"
+                                android:layout_width="33dp"
+                                android:layout_height="24dp"
+                                android:background="@drawable/shape_4corner_3dp_themecolor"
+                                android:text="提交"
+                                android:textColor="#fff"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

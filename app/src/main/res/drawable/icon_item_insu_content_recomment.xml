@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="36dp"
+    android:viewportHeight="72"
+    android:viewportWidth="64">
+
+    <group
+        android:translateX="-594.000000"
+        android:translateY="-491.000000">
+        <group
+            android:translateX="37.000000"
+            android:translateY="498.000000">
+            <group
+                android:translateX="569.000000">
+                <path
+                    android:fillColor="#000000"
+                    android:fillType="evenOdd"
+                    android:pathData="M0,1.9968516 C0,0.894020915 0.891539827,0 1.99729162,0 L38.0027084,0
+C39.1057821,0 40,0.892315254 40,1.9968516 L40,49 L20.4033203,42.3876953 L0,49
+L0,1.9968516 Z"
+                    android:strokeWidth="1" />
+                <path
+                    android:fillColor="#FF624D"
+                    android:fillType="evenOdd"
+                    android:pathData="M0,1.9968516 C0,0.894020915 0.891539827,0 1.99729162,0 L38.0027084,0
+C39.1057821,0 40,0.892315254 40,1.9968516 L40,49 L20.4033203,42.3876953 L0,49
+L0,1.9968516 Z"
+                    android:strokeWidth="1" />
+                <path
+                    android:fillColor="#FF624D"
+                    android:fillType="evenOdd"
+                    android:pathData="M0,1.9968516 C0,0.894020915 0.891539827,0 1.99729162,0 L38.0027084,0
+C39.1057821,0 40,0.892315254 40,1.9968516 L40,49 L20.4033203,42.3876953 L0,49
+L0,1.9968516 Z"
+                    android:strokeWidth="1" />
+                <path
+                    android:fillColor="#FFFFFF"
+                    android:fillType="evenOdd"
+                    android:pathData="M 20 32.5035134 L 11.9655581 36.7274694 L 13.5 27.7809869 L 7 21.4450529 L 15.9827791 20.1397787 L 20 12 L 24.0172209 20.1397787 L 33 21.4450529 L 26.5 27.7809869 L 28.0344419 36.7274694 Z"
+                    android:strokeWidth="1" />
+            </group>
+        </group>
+    </group>
+</vector>

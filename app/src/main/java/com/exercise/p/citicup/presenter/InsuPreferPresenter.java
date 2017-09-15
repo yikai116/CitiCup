@@ -35,7 +35,9 @@ public class InsuPreferPresenter {
             public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                 MyResponse response1 = response.body();
                 view.dismissDialog();
-                if (response1.getStatus().getCode() == Helper.SUCCESS) {
+                Log.i("Test",response.code() + "");
+                Log.i("Test",response1.toString());
+                if (response1.getStatus().getCode()== Helper.SUCCESS) {
                     view.showMessage("提交成功");
                     view.myFinish(true);
                 }

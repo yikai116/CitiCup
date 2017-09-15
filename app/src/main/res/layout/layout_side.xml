@@ -21,16 +21,38 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/exit"
-        style="@style/SideText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:drawablePadding="7dp"
-        android:drawableStart="@drawable/icon_side_exit"
-        android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="退出" />
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/exit"
+            style="@style/SideText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:layout_weight="1"
+            android:drawablePadding="7dp"
+            android:drawableStart="@drawable/icon_side_exit"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="退出" />
+
+        <TextView
+            android:id="@+id/exchange"
+            style="@style/SideText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:layout_weight="1"
+            android:drawableEnd="@drawable/icon_side_exchange"
+            android:drawablePadding="7dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="切换账号"
+            android:textAlignment="viewEnd" />
+    </LinearLayout>
+
 </LinearLayout>

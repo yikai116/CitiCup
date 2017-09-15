@@ -32,6 +32,6 @@ public interface FinaPreferModel {
      * @return 返回结果信息
      */
     @POST("getFinaPrefer")
-    Call<MyResponse> getFinaPrefer();
+    Call<MyResponse<FinaPreferInfo>> getFinaPrefer();
 
 }

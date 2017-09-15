@@ -3,6 +3,7 @@ package com.exercise.p.citicup;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 
+import com.exercise.p.citicup.dto.User;
 import com.exercise.p.citicup.dto.UserInfo;
 
 import java.security.MessageDigest;
@@ -38,7 +39,8 @@ public class Helper {
     /**
      * 用户信息
      */
-    public static UserInfo userInfo = null;
+    public static User user = null;
+    public static UserInfo info = null;
     public static String IMEI = null;
 
     /**
