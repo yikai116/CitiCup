@@ -312,7 +312,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/icon_item_insu_content_pan"/>
+                            android:src="@mipmap/lipei1"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -343,7 +343,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/icon_item_insu_content_pan"/>
+                            android:src="@mipmap/lipei2"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -374,7 +374,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/icon_item_insu_content_pan"/>
+                            android:src="@mipmap/lipei3"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
