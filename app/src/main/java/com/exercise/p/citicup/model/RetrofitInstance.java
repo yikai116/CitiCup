@@ -28,7 +28,7 @@ public class RetrofitInstance {
     public static Retrofit getRetrofit() {
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://104.236.132.15:8081/CitiCup/api/")
+                    .baseUrl("http://104.236.132.15:8080/CitiCup/api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();
@@ -54,7 +54,7 @@ public class RetrofitInstance {
                     .build();
             retrofitWithToken = new Retrofit.Builder()
                     .client(client)
-                    .baseUrl("http://104.236.132.15:8081/CitiCup/api/set/")
+                    .baseUrl("http://104.236.132.15:8080/CitiCup/api/set/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();
