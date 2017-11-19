@@ -5,9 +5,10 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
-import com.exercise.p.citicup.Helper;
+import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.dto.User;
 import com.exercise.p.citicup.dto.response.MyResponse;
@@ -45,6 +46,7 @@ public class WelcomeActivity extends AppCompatActivity {
         call.enqueue(new Callback<MyResponse<User>>() {
             @Override
             public void onResponse(Call<MyResponse<User>> call, Response<MyResponse<User>> response) {
+                Log.i("Test",response.message());
                 if (response.body().getStatus().getCode() == 1){
                     tag = LOGIN;
                     Helper.user = response.body().getData();
@@ -60,6 +62,8 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<MyResponse<User>> call, Throwable t) {
                 Toast.makeText(WelcomeActivity.this, "网络连接错误", Toast.LENGTH_SHORT).show();
+                Log.i("Test",call.request().url().toString());
+                t.printStackTrace();
                 tag = NOTLOGIN;
                 WelAsyncTask task = new WelAsyncTask();
                 task.execute();

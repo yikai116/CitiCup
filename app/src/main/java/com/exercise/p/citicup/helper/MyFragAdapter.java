@@ -1,4 +1,4 @@
-package com.exercise.p.citicup;
+package com.exercise.p.citicup.helper;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

@@ -1,6 +1,5 @@
-package com.exercise.p.citicup;
+package com.exercise.p.citicup.helper;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 

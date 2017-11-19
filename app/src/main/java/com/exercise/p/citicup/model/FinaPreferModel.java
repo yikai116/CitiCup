@@ -26,12 +26,4 @@ public interface FinaPreferModel {
             @Body FinaPreferInfo info
     );
 
-    /**
-     * 得到理财偏好
-     *
-     * @return 返回结果信息
-     */
-    @POST("getFinaPrefer")
-    Call<MyResponse<FinaPreferInfo>> getFinaPrefer();
-
 }

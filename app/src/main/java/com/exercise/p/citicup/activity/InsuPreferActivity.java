@@ -13,11 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.exercise.p.citicup.MyCards;
-import com.exercise.p.citicup.TreeNodeHelper.MyHolder;
+import com.exercise.p.citicup.helper.MyCards;
+import com.exercise.p.citicup.tree_node_helper.MyHolder;
 import com.exercise.p.citicup.R;
-import com.exercise.p.citicup.TreeNodeHelper.TreeNodeHelper;
-import com.exercise.p.citicup.ViewPagerAdapter;
+import com.exercise.p.citicup.tree_node_helper.TreeNodeHelper;
+import com.exercise.p.citicup.helper.ViewPagerAdapter;
 import com.exercise.p.citicup.dto.InsuPreferInfo;
 import com.exercise.p.citicup.presenter.InsuPreferPresenter;
 import com.exercise.p.citicup.view.ShowDialogView;

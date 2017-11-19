@@ -1,4 +1,4 @@
-package com.exercise.p.citicup;
+package com.exercise.p.citicup.helper;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;

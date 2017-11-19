@@ -16,12 +16,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.exercise.p.citicup.CheckableLinearLayout;
+import com.exercise.p.citicup.helper.CheckableLinearLayout;
 import com.exercise.p.citicup.R;
-import com.exercise.p.citicup.ViewPagerAdapter;
+import com.exercise.p.citicup.helper.ViewPagerAdapter;
 import com.exercise.p.citicup.presenter.InsuTestPresenter;
 import com.exercise.p.citicup.view.ShowDialogView;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;

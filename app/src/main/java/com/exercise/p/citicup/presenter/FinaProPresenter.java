@@ -2,15 +2,12 @@ package com.exercise.p.citicup.presenter;
 
 import android.util.Log;
 
-import com.exercise.p.citicup.Helper;
+import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.dto.FinaPro;
-import com.exercise.p.citicup.dto.InsuPro;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.model.FinaProModel;
-import com.exercise.p.citicup.model.InsuProModel;
 import com.exercise.p.citicup.model.RetrofitInstance;
 import com.exercise.p.citicup.view.FinaFragView;
-import com.exercise.p.citicup.view.InsuFragView;
 
 import java.util.ArrayList;
 
@@ -33,7 +30,7 @@ public class FinaProPresenter {
     }
 
     public void getFinaPro(final boolean more) {
-        Call<MyResponse<ArrayList<FinaPro>>> call = model.getFinaPro();
+        Call<MyResponse<ArrayList<FinaPro>>> call = model.getFinaPro(more);
         call.enqueue(new Callback<MyResponse<ArrayList<FinaPro>>>() {
             @Override
             public void onResponse(Call<MyResponse<ArrayList<FinaPro>>> call, Response<MyResponse<ArrayList<FinaPro>>> response) {

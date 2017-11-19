@@ -1,7 +1,6 @@
 package com.exercise.p.citicup.activity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.exercise.p.citicup.PhotoUtils;
 import com.exercise.p.citicup.R;
 
 import java.util.ArrayList;

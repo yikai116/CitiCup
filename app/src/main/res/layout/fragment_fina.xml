@@ -66,5 +66,5 @@
         android:dividerHeight="20dp"
         android:scrollbars="none"
         ptr:ptrHeaderTextColor = "#979797"
-        ptr:ptrMode = "both"/>
+        ptr:ptrMode = "pullFromEnd"/>
 </LinearLayout>

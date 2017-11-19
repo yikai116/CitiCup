@@ -1,4 +1,4 @@
-package com.exercise.p.citicup.TreeNodeHelper;
+package com.exercise.p.citicup.tree_node_helper;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.exercise.p.citicup.Helper;
+import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.R;
 import com.unnamed.b.atv.model.TreeNode;
 

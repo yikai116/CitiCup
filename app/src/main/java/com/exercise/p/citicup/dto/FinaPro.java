@@ -16,6 +16,15 @@ public class FinaPro implements Serializable {
     private boolean redeem;
     private boolean guaranteed;
     private int level;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public int getId() {
         return id;

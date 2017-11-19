@@ -1,4 +1,4 @@
-package com.exercise.p.citicup;
+package com.exercise.p.citicup.helper;
 
 import android.app.Activity;
 import android.content.ContentUris;

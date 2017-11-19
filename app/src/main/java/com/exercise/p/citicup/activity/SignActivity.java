@@ -26,7 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.exercise.p.citicup.ViewPagerAdapter;
+import com.exercise.p.citicup.helper.ViewPagerAdapter;
 import com.exercise.p.citicup.presenter.SignPresenter;
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.view.SignView;

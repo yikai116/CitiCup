@@ -6,6 +6,8 @@ import com.exercise.p.citicup.dto.response.MyResponse;
 import java.util.ArrayList;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
@@ -20,6 +22,9 @@ public interface FinaProModel {
      * @return 返回结果信息
      */
     @POST("getFinaPro")
-    Call<MyResponse<ArrayList<FinaPro>>> getFinaPro();
+    @FormUrlEncoded
+    Call<MyResponse<ArrayList<FinaPro>>> getFinaPro(
+             @Field("reget") Boolean reget
+    );
 
 }

@@ -27,12 +27,4 @@ public interface InsuPreferModel {
             @Body InsuPreferInfo info
     );
 
-    /**
-     * 得到保险偏好
-     *
-     * @return 返回结果信息
-     */
-    @POST("getInsuPrefer")
-    Call<MyResponse<InsuPreferInfo>> getInsuPrefer();
-
 }

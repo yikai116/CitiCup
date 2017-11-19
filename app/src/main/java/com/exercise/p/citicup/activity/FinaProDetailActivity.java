@@ -1,10 +1,13 @@
 package com.exercise.p.citicup.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +22,7 @@ public class FinaProDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fina_pro_detail);
         initToolbar();
-        FinaPro pro = (FinaPro) getIntent().getSerializableExtra("product");
+        final FinaPro pro = (FinaPro) getIntent().getSerializableExtra("product");
         if (pro == null){
             Toast.makeText(this, "网络连接错误", Toast.LENGTH_SHORT).show();
         }
@@ -52,6 +55,18 @@ public class FinaProDetailActivity extends AppCompatActivity {
             pro_issue_date.setText(pro.getIssuintDate());
 
         }
+        Button submit = (Button) findViewById(R.id.submit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("Test","click");
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(pro.getUrl());
+                intent.setData(content_url);
+                startActivity(intent);
+            }
+        });
     }
 
     private String getLevelStr(int i){

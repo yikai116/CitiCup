@@ -1,10 +1,15 @@
 package com.exercise.p.citicup.fragment.main;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +25,7 @@ import android.widget.Toast;
 
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.activity.FeedbackActivity;
+import com.exercise.p.citicup.activity.FinaProDetailActivity;
 import com.exercise.p.citicup.activity.InsuProDetailActivity;
 import com.exercise.p.citicup.activity.MistakeActivity;
 import com.exercise.p.citicup.activity.ReadActivity;
@@ -66,13 +72,12 @@ public class InsuFragment extends Fragment implements InsuFragView {
 //        insuConentView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
 //            @Override
 //            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-//                presenter.getInsuPro();
+//                presenter.getInsuPro(false);
 //            }
 //        });
         insuConentView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                presenter.getInsuPro(false);
             }
 
             @Override

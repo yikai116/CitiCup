@@ -2,7 +2,7 @@ package com.exercise.p.citicup.presenter;
 
 import android.util.Log;
 
-import com.exercise.p.citicup.Helper;
+import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.dto.SignInParam;
 import com.exercise.p.citicup.dto.SignUpParam;
 import com.exercise.p.citicup.dto.User;
@@ -80,6 +80,7 @@ public class SignPresenter {
             @Override
             public void onFailure(Call<MyResponse<User>> call, Throwable t) {
                 Log.i("Test",call.request().url().toString());
+                t.printStackTrace();
                 signView.showProgress(false);
                 signView.showMessage("网络连接错误");
             }

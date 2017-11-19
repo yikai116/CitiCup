@@ -21,7 +21,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -37,9 +36,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.signature.StringSignature;
-import com.exercise.p.citicup.Helper;
-import com.exercise.p.citicup.MyFragAdapter;
-import com.exercise.p.citicup.PhotoUtils;
+import com.exercise.p.citicup.helper.Helper;
+import com.exercise.p.citicup.helper.MyFragAdapter;
+import com.exercise.p.citicup.helper.PhotoUtils;
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.fragment.main.InsuFragment;
@@ -87,15 +86,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Log.i("Test",Helper.user.toString());
-//
-//        Log.i("Test",Helper.user.getAvatar());
         presenter = new MainPresenter(this);
         findView();
         initToolBar();
         initTab();
         initNavi();
         presenter.verTest();
+        presenter.setRegId(this);
     }
 
     private void findView() {
@@ -164,13 +161,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
         //初始化TabLayout
         tab.addTab(tab.newTab().setText("保险"));
         tab.addTab(tab.newTab().setText("理财"));
-        tab.addTab(tab.newTab().setText("股票"));
+//        tab.addTab(tab.newTab().setText("股票"));
 
         //初始化ViewPager
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new InsuFragment());
         fragments.add(new FinaFragment());
-        fragments.add(new StocFragment());
+//        fragments.add(new StocFragment());
         pager.setAdapter(new MyFragAdapter(getSupportFragmentManager(), fragments));
 
         //结合

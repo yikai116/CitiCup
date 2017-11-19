@@ -1,13 +1,8 @@
 package com.exercise.p.citicup.model;
 
-import com.exercise.p.citicup.dto.FinaPreferInfo;
-import com.exercise.p.citicup.dto.InsuPreferInfo;
 import com.exercise.p.citicup.dto.response.MyResponse;
 
-import java.util.ArrayList;
-
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -27,7 +22,7 @@ public interface InsuTestModel {
     @FormUrlEncoded
     @POST("setKeyword")
     Call<MyResponse> setKeyword(
-            @Field("keyword") ArrayList<String> keyword
+            @Field("keyword") String keyword
     );
 
     /**
@@ -35,7 +30,14 @@ public interface InsuTestModel {
      *
      * @return 返回结果信息
      */
-    @POST("getKeyword")
-    Call<MyResponse> getKeyword();
+    @POST("verTest")
+    Call<MyResponse> verTest();
+
+
+    @FormUrlEncoded
+    @POST("setRegId")
+    Call<MyResponse> setRegId(
+            @Field("regId") String regId
+    );
 
 }

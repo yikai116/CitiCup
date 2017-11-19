@@ -2,7 +2,7 @@ package com.exercise.p.citicup.presenter;
 
 import android.util.Log;
 
-import com.exercise.p.citicup.Helper;
+import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.dto.InsuPreferInfo;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.model.InsuPreferModel;

@@ -1,28 +1,55 @@
 package com.exercise.p.citicup.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.dto.InsuPro;
+import com.exercise.p.citicup.dto.response.MyResponse;
+import com.exercise.p.citicup.helper.Helper;
+import com.exercise.p.citicup.model.InsuTestModel;
+import com.exercise.p.citicup.model.RetrofitInstance;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InsuProDetailActivity extends AppCompatActivity {
+
+    InsuTestModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insu_pro_detail);
-        InsuPro pro = (InsuPro) getIntent().getSerializableExtra("product");
+        final InsuPro pro = (InsuPro) getIntent().getSerializableExtra("product");
         if (pro == null){
             Toast.makeText(this, "网络连接错误", Toast.LENGTH_SHORT).show();
         }
         else {
+            model = RetrofitInstance.getRetrofitWithToken().create(InsuTestModel.class);
+            Call<MyResponse> call = model.setKeyword(pro.getType());
+            call.enqueue(new Callback<MyResponse>(){
+                @Override
+                public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                    Log.i("Test",response.code() + "");
+                }
+
+                @Override
+                public void onFailure(Call<MyResponse> call, Throwable t) {
+                }
+            });
             ImageView pro_company_icon = (ImageView) findViewById(R.id.pro_company_icon);
 
             TextView pro_name = (TextView) findViewById(R.id.pro_name);
@@ -59,6 +86,18 @@ public class InsuProDetailActivity extends AppCompatActivity {
             Log.i("Test",pro.getType() + "");
         }
         initToolbar();
+        Button submit = (Button) findViewById(R.id.submit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("Test","click");
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(pro.getUrl());
+                intent.setData(content_url);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initToolbar() {

@@ -1,8 +1,10 @@
 package com.exercise.p.citicup.presenter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.exercise.p.citicup.Helper;
+import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.model.InsuTestModel;
 import com.exercise.p.citicup.model.RetrofitInstance;
@@ -28,12 +30,13 @@ public class MainPresenter {
 
     public void verTest() {
         view.showDialog("正在初始化...");
-        Call<MyResponse> call = testModel.getKeyword();
+        Call<MyResponse> call = testModel.verTest();
         call.enqueue(new Callback<MyResponse>() {
 
             @Override
             public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                 MyResponse response1 = response.body();
+                Log.i("Test",response.body().toString());
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
                     view.showNotTest(false);
                 } else {
@@ -47,6 +50,25 @@ public class MainPresenter {
                 Log.i("Test", call.request().url().toString());
                 view.dismissDialog();
                 view.showMessage("网络连接错误");
+            }
+        });
+    }
+
+    public void setRegId(Context context){
+        SharedPreferences preferences = context.getSharedPreferences("AppInfo", context.MODE_PRIVATE);
+        String regId = preferences.getString("regId",null);
+        if (regId == null)
+            return;
+        Call<MyResponse> regCall = testModel.setRegId(regId);
+        regCall.enqueue(new Callback<MyResponse>() {
+            @Override
+            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<MyResponse> call, Throwable t) {
+
             }
         });
     }

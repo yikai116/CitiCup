@@ -1,6 +1,6 @@
 package com.exercise.p.citicup.presenter;
 
-import com.exercise.p.citicup.Helper;
+import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.dto.UserInfo;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.model.RetrofitInstance;

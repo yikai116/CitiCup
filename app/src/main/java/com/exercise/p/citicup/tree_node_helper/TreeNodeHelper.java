@@ -1,4 +1,4 @@
-package com.exercise.p.citicup.TreeNodeHelper;
+package com.exercise.p.citicup.tree_node_helper;
 
 import com.unnamed.b.atv.model.TreeNode;
 

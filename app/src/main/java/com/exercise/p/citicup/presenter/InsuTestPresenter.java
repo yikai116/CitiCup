@@ -2,7 +2,7 @@ package com.exercise.p.citicup.presenter;
 
 import android.util.Log;
 
-import com.exercise.p.citicup.Helper;
+import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.model.InsuTestModel;
 import com.exercise.p.citicup.model.RetrofitInstance;
@@ -29,7 +29,7 @@ public class InsuTestPresenter {
 
     public void submit(ArrayList<String> keyword){
         view.showDialog("正在提交...");
-        Call<MyResponse> call = model.setKeyword(keyword);
+        Call<MyResponse> call = model.setKeyword(keyword.toString());
         call.enqueue(new Callback<MyResponse>(){
 
             @Override

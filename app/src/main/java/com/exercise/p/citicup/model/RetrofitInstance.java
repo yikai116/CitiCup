@@ -1,6 +1,6 @@
 package com.exercise.p.citicup.model;
 
-import com.exercise.p.citicup.Helper;
+import com.exercise.p.citicup.helper.Helper;
 
 import java.io.IOException;
 

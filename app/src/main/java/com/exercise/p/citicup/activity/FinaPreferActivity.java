@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.exercise.p.citicup.MyCards;
+import com.exercise.p.citicup.helper.MyCards;
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.dto.FinaPreferInfo;
 import com.exercise.p.citicup.presenter.ManaPreferPresenter;
