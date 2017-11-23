@@ -105,7 +105,7 @@ public class FeedbackActivity extends AppCompatActivity {
             //获取选择图片的uri
             Uri uri = data.getData();
             if (uri != null) {
-                Log.i("Test", "Uri：" + uri.toString());
+//                Log.i("Test", "Uri：" + uri.toString());
                 pics.add(uri);
                 images.get(pics.size() - 1).setImageURI(uri);
                 images.get(pics.size() - 1).setVisibility(View.VISIBLE);
@@ -113,7 +113,7 @@ public class FeedbackActivity extends AppCompatActivity {
                     add.setVisibility(View.GONE);
                 }
             } else {
-                Log.i("Test", "Uri：NULL");
+//                Log.i("Test", "Uri：NULL");
             }
         }
     }

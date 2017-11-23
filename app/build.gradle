@@ -29,8 +29,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     compile project(':PullRefreshLibrary')
+    compile files('src/main/java/com/exercise/p/citicup/MiPush_SDK_Client_3_5_1.jar')
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
@@ -44,5 +45,4 @@ dependencies {
     compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
     compile 'com.github.lzyzsd:circleprogress:1.2.1'
     testCompile 'junit:junit:4.12'
-    compile files('src/main/java/com/exercise/p/citicup/MiPush_SDK_Client_3_5_1.jar')
 }

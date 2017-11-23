@@ -32,6 +32,7 @@ public class RiskTestPresenter {
 
             @Override
             public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                Log.i(Helper.TAG,"提交风险承受能力测试成功——" + response.body().getStatus().getCode());
                 MyResponse response1 = response.body();
                 view.dismissDialog();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
@@ -42,7 +43,7 @@ public class RiskTestPresenter {
 
             @Override
             public void onFailure(Call<MyResponse> call, Throwable t) {
-                Log.i("Test",call.request().url().toString());
+                t.printStackTrace();
                 view.dismissDialog();
                 view.showMessage("网络连接错误");
             }

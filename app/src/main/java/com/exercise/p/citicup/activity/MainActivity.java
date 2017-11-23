@@ -2,16 +2,25 @@ package com.exercise.p.citicup.activity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Browser;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -21,6 +30,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -36,6 +46,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.signature.StringSignature;
+import com.exercise.p.citicup.Manifest;
 import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.helper.MyFragAdapter;
 import com.exercise.p.citicup.helper.PhotoUtils;
@@ -50,7 +61,9 @@ import com.exercise.p.citicup.presenter.MainPresenter;
 import com.exercise.p.citicup.view.MainView;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -78,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     TextView userName;
     ProgressDialog dialog;
     MainPresenter presenter;
+    LocationManager mLocationManager;
     //临时文件路径
     private String tempPath = Environment.getExternalStorageDirectory()
             .getAbsolutePath() + "/tempPhoto.jpg";
@@ -93,8 +107,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         initNavi();
         presenter.verTest();
         presenter.setRegId(this);
+        getLastKnownLocation();
     }
-
     private void findView() {
         tab = (TabLayout) findViewById(R.id.main_tab);
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
@@ -117,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this,SignActivity.class);
+                intent.setClass(MainActivity.this, SignActivity.class);
                 startActivity(intent);
                 MainActivity.this.finish();
             }
@@ -205,13 +219,63 @@ public class MainActivity extends AppCompatActivity implements MainView {
             }
         });
         userName.setText(Helper.user.getName());
-        setAvatar(Helper.user.getAvatar(),null);
+        setAvatar(Helper.user.getAvatar(), null);
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setPopupWindow();
             }
         });
+    }
+
+
+    private void getLastKnownLocation() {
+        mLocationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+        List<String> providers = mLocationManager.getProviders(true);
+        for (String s : providers) {
+            Log.i("Location","provider:---  " + s);
+        }
+        LocationListener listener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                Log.i("Location", "onLocationChanged");
+                if (location != null) {
+                    Log.i("Location", "Current longitude = "
+                            + location.getLongitude());
+                    Log.i("Location", "Current latitude = "
+                            + location.getLatitude());
+                    presenter.savePlace(location.getLatitude(),location.getLongitude());
+                }
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                Log.i("Location", "onProviderDisabled");
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+                Log.i("Location", "onProviderEnabled");
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status,
+                                        Bundle extras) {
+                Log.i("Location", "onStatusChanged");
+            }
+        };
+        for (String provider : providers) {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Log.i("Location","continue: permission  " + provider);
+                continue;
+            }
+            Location l = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            if (l != null){
+                mLocationManager.requestLocationUpdates(provider, 1000, (float) 1000.0, listener);
+                break;
+            }
+        }
+        return;
     }
 
     /**
@@ -368,8 +432,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showNotTest(boolean show) {
-        pager.setVisibility(show?View.GONE:View.VISIBLE);
-        notTestView.setVisibility(show?View.VISIBLE:View.GONE);
+        pager.setVisibility(show ? View.GONE : View.VISIBLE);
+        notTestView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
 }

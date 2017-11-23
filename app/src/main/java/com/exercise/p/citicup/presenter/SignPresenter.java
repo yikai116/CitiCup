@@ -58,7 +58,7 @@ public class SignPresenter {
         signInResCall.enqueue(new Callback<MyResponse<User>>() {
             @Override
             public void onResponse(Call<MyResponse<User>> call, Response<MyResponse<User>> response) {
-                Log.i("Test","success" + call.request().url().toString());
+                Log.i(Helper.TAG, "登录成功——" + response.body().getStatus().getCode());
                 MyResponse<User> response1 = response.body();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
                     Helper.user = response1.getData();
@@ -79,7 +79,6 @@ public class SignPresenter {
             }
             @Override
             public void onFailure(Call<MyResponse<User>> call, Throwable t) {
-                Log.i("Test",call.request().url().toString());
                 t.printStackTrace();
                 signView.showProgress(false);
                 signView.showMessage("网络连接错误");
@@ -122,7 +121,7 @@ public class SignPresenter {
         call.enqueue(new Callback<MyResponse<User>>() {
             @Override
             public void onResponse(Call<MyResponse<User>> call, Response<MyResponse<User>> response) {
-                Log.i("Test",call.request().url().toString());
+                Log.i(Helper.TAG, "注册成功——" + response.body().getStatus().getCode());
                 MyResponse<User> response1 = response.body();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
                     Helper.user = response1.getData();
@@ -144,7 +143,7 @@ public class SignPresenter {
 
             @Override
             public void onFailure(Call<MyResponse<User>> call, Throwable t) {
-                Log.i("Test",call.request().url().toString());
+                t.printStackTrace();
                 signView.showProgress(false);
                 signView.showMessage("网络连接错误");
             }
@@ -165,8 +164,7 @@ public class SignPresenter {
         call.enqueue(new Callback<MyResponse<String>>() {
             @Override
             public void onResponse(Call<MyResponse<String>> call, Response<MyResponse<String>> response) {
-                Log.i("Test","success" + call.request().url().toString());
-                Log.i("Test",response.body().getData() != null ? response.body().getData() : "null");
+                Log.i(Helper.TAG,"获取验证码成功——" + response.body().getStatus().getCode());
                 if (response.body().getStatus().getCode() == Helper.SUCCESS) {
                     signView.showMessage(response.body().getData());
                 } else if (response.body().getStatus().getCode() == Helper.USER_REGISTERED){
@@ -179,7 +177,7 @@ public class SignPresenter {
 
             @Override
             public void onFailure(Call<MyResponse<String>> call, Throwable t) {
-                Log.i("Test",call.request().url().toString());
+                t.printStackTrace();
                 signView.showProgress(false);
                 signView.showMessage("网络连接错误");
                 signView.cancelGetVerCode();

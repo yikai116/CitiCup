@@ -16,6 +16,7 @@ import static android.content.Context.TELEPHONY_SERVICE;
  */
 public class Helper {
 
+    public static final String TAG = "LastTest";
     /**
      * 获取成功
      */

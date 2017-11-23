@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,7 +13,10 @@ import android.util.Log;
 import com.exercise.p.citicup.R;
 import com.exercise.p.citicup.activity.InsuProDetailActivity;
 import com.exercise.p.citicup.dto.InsuPro;
+import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.helper.Helper;
+import com.exercise.p.citicup.model.InsuProModel;
+import com.exercise.p.citicup.model.RetrofitInstance;
 import com.xiaomi.mipush.sdk.ErrorCode;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xiaomi.mipush.sdk.MiPushCommandMessage;
@@ -20,18 +24,24 @@ import com.xiaomi.mipush.sdk.MiPushMessage;
 import com.xiaomi.mipush.sdk.PushMessageReceiver;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MessageReceiver extends PushMessageReceiver {
-    private String mRegId;
     private long mResultCode = -1;
-    private String mReason;
     private String mCommand;
-    private String mMessage;
     private String mTopic;
     private String mAlias;
     private String mUserAccount;
     private String mStartTime;
     private String mEndTime;
+    private String mMessage;
+    private InsuProModel model;
+    private String mRegId;
 
     @Override
     public void onReceivePassThroughMessage(Context context, MiPushMessage message) {
@@ -47,6 +57,7 @@ public class MessageReceiver extends PushMessageReceiver {
 
     @Override
     public void onNotificationMessageClicked(Context context, MiPushMessage message) {
+        final Context _context = context;
         mMessage = message.getContent();
         if (!TextUtils.isEmpty(message.getTopic())) {
             mTopic = message.getTopic();
@@ -55,22 +66,26 @@ public class MessageReceiver extends PushMessageReceiver {
         } else if (!TextUtils.isEmpty(message.getUserAccount())) {
             mUserAccount = message.getUserAccount();
         }
-        Intent intent = new Intent(context, InsuProDetailActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        InsuPro pro = new InsuPro();
-        pro.setId(1000);
-        pro.setName("全家无忧保障计划");
-        pro.setCompany("中国平安");
-        pro.setType("意外险");
-        pro.setPrice("401");
-        pro.setPayMethod("趸缴");
-        pro.setAdvance("1、全家人的综合保障计划，保障自己、配偶及未成年子女在工作生活中的意外\n" +
-                "2、提供门诊与住院意外医疗保障，另有意外住院收入补偿\n" +
-                "3、赠送24小时电话医疗咨询");
-        pro.setSuitable("1-64周岁");
-        pro.setTerm("1年");
-        intent.putExtra("product", pro);
-        context.startActivity(intent);
+        if (isNumeric(mMessage)) {
+            model = RetrofitInstance.getRetrofitWithToken().create(InsuProModel.class);
+            Call<MyResponse<InsuPro>> call = model.getInsuProById(mMessage);
+            call.enqueue(new Callback<MyResponse<InsuPro>>() {
+                @Override
+                public void onResponse(Call<MyResponse<InsuPro>> call, Response<MyResponse<InsuPro>> response) {
+                    InsuPro insuPro = response.body().getData();
+                    Intent intent = new Intent(_context, InsuProDetailActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("product", insuPro);
+                    _context.startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(Call<MyResponse<InsuPro>> call, Throwable t) {
+                    t.printStackTrace();
+                }
+            });
+        }
+
     }
 
     @Override
@@ -83,6 +98,7 @@ public class MessageReceiver extends PushMessageReceiver {
         } else if (!TextUtils.isEmpty(message.getUserAccount())) {
             mUserAccount = message.getUserAccount();
         }
+
     }
 
     @Override
@@ -130,10 +146,19 @@ public class MessageReceiver extends PushMessageReceiver {
                 mRegId = cmdArg1;
             }
         }
-        Log.i("MI_PUSH", "RegId: " + mRegId);
+//        Log.i("MI_PUSH", "RegId: " + mRegId);
         SharedPreferences preferences = context.getSharedPreferences("AppInfo", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("regId", mRegId);
         editor.apply();
+    }
+
+    public boolean isNumeric(String str) {
+        Pattern pattern = Pattern.compile("[0-9]*");
+        Matcher isNum = pattern.matcher(str);
+        if (!isNum.matches()) {
+            return false;
+        }
+        return true;
     }
 }

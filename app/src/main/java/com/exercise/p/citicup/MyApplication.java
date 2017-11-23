@@ -3,10 +3,18 @@ package com.exercise.p.citicup;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.Application;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Process;
+import android.provider.Browser;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -30,7 +38,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         //初始化push推送服务
-        if(shouldInit()) {
+        if (shouldInit()) {
             MiPushClient.registerPush(this, APP_ID, APP_KEY);
         }
         //打开Log
@@ -52,6 +60,7 @@ public class MyApplication extends Application {
             }
         };
         Logger.setLogger(this, newLogger);
+//        history();
     }
 
     private boolean shouldInit() {
@@ -66,4 +75,21 @@ public class MyApplication extends Application {
         }
         return false;
     }
+
+//    private String history() {
+//        String string = null;
+//        ContentResolver contentResolver = getContentResolver();
+//
+////        Cursor cursor = contentResolver.query(
+////                Uri.parse("content://browser/bookmarks"),
+////                new String[], null, null, null);
+////
+////        Log.i("HISTORY", cursor == null ? "is null" : "not null");
+////        while (cursor != null && cursor.moveToNext()) {
+////            string = cursor.getString(cursor.getColumnIndex("url"));
+////            Log.i("HISTORY", string == null ? "null" : string);
+////        }
+//
+//        return string;
+//    }
 }

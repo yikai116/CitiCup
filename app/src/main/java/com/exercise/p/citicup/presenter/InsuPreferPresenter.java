@@ -33,10 +33,9 @@ public class InsuPreferPresenter {
 
             @Override
             public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                Log.i(Helper.TAG,"提交保险偏好——" + response.body().getStatus().getCode());
                 MyResponse response1 = response.body();
                 view.dismissDialog();
-                Log.i("Test",response.code() + "");
-                Log.i("Test",response1.toString());
                 if (response1.getStatus().getCode()== Helper.SUCCESS) {
                     view.showMessage("提交成功");
                     view.myFinish(true);
@@ -45,7 +44,7 @@ public class InsuPreferPresenter {
 
             @Override
             public void onFailure(Call<MyResponse> call, Throwable t) {
-                Log.i("Test",call.request().url().toString());
+                t.printStackTrace();
                 view.dismissDialog();
                 view.showMessage("网络连接错误");
             }

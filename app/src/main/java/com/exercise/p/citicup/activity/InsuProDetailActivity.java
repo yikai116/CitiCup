@@ -17,6 +17,7 @@ import com.exercise.p.citicup.dto.InsuPro;
 import com.exercise.p.citicup.dto.response.MyResponse;
 import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.model.InsuTestModel;
+import com.exercise.p.citicup.model.ProModel;
 import com.exercise.p.citicup.model.RetrofitInstance;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import retrofit2.Response;
 
 public class InsuProDetailActivity extends AppCompatActivity {
 
-    InsuTestModel model;
+    ProModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +39,11 @@ public class InsuProDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "网络连接错误", Toast.LENGTH_SHORT).show();
         }
         else {
-            model = RetrofitInstance.getRetrofitWithToken().create(InsuTestModel.class);
-            Call<MyResponse> call = model.setKeyword(pro.getType());
+            model = RetrofitInstance.getRetrofitWithToken().create(ProModel.class);
+            Call<MyResponse> call = model.clickInsuPro(pro.getId());
             call.enqueue(new Callback<MyResponse>(){
                 @Override
                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                    Log.i("Test",response.code() + "");
                 }
 
                 @Override

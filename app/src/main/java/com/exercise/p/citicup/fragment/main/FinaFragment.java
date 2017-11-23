@@ -102,7 +102,7 @@ public class FinaFragment extends Fragment implements FinaFragView {
             finaConentView.onRefreshComplete();
         if (more) {
             this.pros.addAll(pros1);
-            Log.i("Test", "Size" + this.pros.size());
+//            Log.i("Test", "Size" + this.pros.size());
         } else
             this.pros = pros1;
         finaConentView.setAdapter(new BaseAdapter() {

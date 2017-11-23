@@ -34,6 +34,7 @@ public class InsuProPresenter {
         call.enqueue(new Callback<MyResponse<ArrayList<InsuPro>>>() {
             @Override
             public void onResponse(Call<MyResponse<ArrayList<InsuPro>>> call, Response<MyResponse<ArrayList<InsuPro>>> response) {
+                Log.i(Helper.TAG,"得到保险产品成功——" + response.body().getStatus().getCode());
                 MyResponse<ArrayList<InsuPro>> response1 = response.body();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
                     view.initView(response1.getData(),more);
@@ -44,7 +45,7 @@ public class InsuProPresenter {
 
             @Override
             public void onFailure(Call<MyResponse<ArrayList<InsuPro>>> call, Throwable t) {
-                Log.i("Test", call.request().url().toString());
+                t.printStackTrace();
                 view.showMessage("网络连接错误");
             }
         });

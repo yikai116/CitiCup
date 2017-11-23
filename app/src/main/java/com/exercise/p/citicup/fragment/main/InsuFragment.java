@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.exercise.p.citicup.R;
+import com.exercise.p.citicup.activity.BuyActivity;
 import com.exercise.p.citicup.activity.FeedbackActivity;
 import com.exercise.p.citicup.activity.FinaProDetailActivity;
 import com.exercise.p.citicup.activity.InsuProDetailActivity;
@@ -58,7 +59,6 @@ public class InsuFragment extends Fragment implements InsuFragView {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        Log.i("Test", "InsuFragment CreatView");
         super.onCreateView(inflater, container, savedInstanceState);
         root = inflater.inflate(R.layout.fragment_insu, container, false);
         initTop();
@@ -69,12 +69,6 @@ public class InsuFragment extends Fragment implements InsuFragView {
         else
             initView(pros,false);
 
-//        insuConentView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-//            @Override
-//            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-//                presenter.getInsuPro(false);
-//            }
-//        });
         insuConentView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -129,7 +123,6 @@ public class InsuFragment extends Fragment implements InsuFragView {
             insuConentView.onRefreshComplete();
         if (more) {
             this.pros.addAll(pros1);
-            Log.i("Test", "Size" + this.pros.size());
         } else
             this.pros = pros1;
         insuConentView.setAdapter(new BaseAdapter() {

@@ -1,5 +1,7 @@
 package com.exercise.p.citicup.presenter;
 
+import android.util.Log;
+
 import com.exercise.p.citicup.helper.Helper;
 import com.exercise.p.citicup.dto.UserInfo;
 import com.exercise.p.citicup.dto.response.MyResponse;
@@ -29,6 +31,7 @@ public class UserInfoPresenter {
         call.enqueue(new Callback<MyResponse<UserInfo>>() {
             @Override
             public void onResponse(Call<MyResponse<UserInfo>> call, Response<MyResponse<UserInfo>> response) {
+                Log.i(Helper.TAG,"得到用户信息成功——" + response.body().getStatus().getCode());
                 if (response.body().getStatus().getCode() == Helper.SUCCESS) {
                     Helper.info = response.body().getData();
                     view.initData();
@@ -38,6 +41,7 @@ public class UserInfoPresenter {
 
             @Override
             public void onFailure(Call<MyResponse<UserInfo>> call, Throwable t) {
+                t.printStackTrace();
                 view.showMessage("网络连接错误");
             }
         });
@@ -49,6 +53,7 @@ public class UserInfoPresenter {
         call.enqueue(new Callback<MyResponse>() {
             @Override
             public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                Log.i(Helper.TAG,"设置用户信息成功——" + response.body().getStatus().getCode());
                 if (response.body().getStatus().getCode() == Helper.SUCCESS)
                     view.showMessage("提交成功");
                 else
@@ -58,6 +63,7 @@ public class UserInfoPresenter {
 
             @Override
             public void onFailure(Call<MyResponse> call, Throwable t) {
+                t.printStackTrace();
                 view.showMessage("网络连接错误");
                 view.dismissDialog();
             }

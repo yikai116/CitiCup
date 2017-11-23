@@ -26,7 +26,6 @@ public class FinaProPresenter {
     public FinaProPresenter(FinaFragView view) {
         this.view = view;
         model = RetrofitInstance.getRetrofitWithToken().create(FinaProModel.class);
-
     }
 
     public void getFinaPro(final boolean more) {
@@ -34,6 +33,7 @@ public class FinaProPresenter {
         call.enqueue(new Callback<MyResponse<ArrayList<FinaPro>>>() {
             @Override
             public void onResponse(Call<MyResponse<ArrayList<FinaPro>>> call, Response<MyResponse<ArrayList<FinaPro>>> response) {
+                Log.i(Helper.TAG,"得到理财产品信息——" + response.body().getStatus().getCode());
                 MyResponse<ArrayList<FinaPro>> response1 = response.body();
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
                     view.initView(response1.getData(),more);
@@ -44,7 +44,7 @@ public class FinaProPresenter {
 
             @Override
             public void onFailure(Call<MyResponse<ArrayList<FinaPro>>> call, Throwable t) {
-                Log.i("Test", call.request().url().toString());
+                t.printStackTrace();
                 view.showMessage("网络连接错误");
             }
         });

@@ -120,7 +120,7 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
                 FinaPreferInfo info = new FinaPreferInfo();
                 for (int i = 0; i < lists.size(); i++) {
                     ArrayList<String> temp = (ArrayList<String>) lists.get(i).getSelectedText();
-                    Log.i("Test","temp" + i + temp + "");
+//                    Log.i("Test","temp" + i + temp + "");
                     if (temp.size() == 0) {
                         temp.addAll(lists.get(i).getAllText());
                     }
@@ -138,10 +138,10 @@ public class FinaPreferActivity extends AppCompatActivity implements ShowDialogV
                             info.setRevenue(temp);
                             break;
                         default:
-                            Log.i("Test", new Gson().toJson(temp));
+//                            Log.i("Test", new Gson().toJson(temp));
                     }
                 }
-                Log.i("Test","info : " + new Gson().toJson(info));
+//                Log.i("Test","info : " + new Gson().toJson(info));
                 presenter.submit(info);
             }
         });

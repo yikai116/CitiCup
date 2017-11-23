@@ -63,7 +63,7 @@ public class FpswPresenter {
         call.enqueue(new Callback<MyResponse>() {
             @Override
             public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                Log.i("Test",call.request().url().toString());
+                Log.i(Helper.TAG,"重设密码成功——" + response.body().getStatus().getCode());
                 MyResponse response1 = response.body();
                 fpswView.showProgress(false);
                 if (response1.getStatus().getCode() == Helper.SUCCESS) {
@@ -82,7 +82,7 @@ public class FpswPresenter {
 
             @Override
             public void onFailure(Call<MyResponse> call, Throwable t) {
-                Log.i("Test",call.request().url().toString());
+                t.printStackTrace();
                 fpswView.showProgress(false);
                 fpswView.showMessage("网络连接错误");
             }
@@ -103,8 +103,7 @@ public class FpswPresenter {
         call.enqueue(new Callback<MyResponse<String>>() {
             @Override
             public void onResponse(Call<MyResponse<String>> call, Response<MyResponse<String>> response) {
-                Log.i("Test","success" + call.request().url().toString());
-                Log.i("Test",response.body().getData() != null ? response.body().getData() : "null");
+                Log.i(Helper.TAG,"得到找回密码验证码——" + response.body().getStatus().getCode());
                 if (response.body().getStatus().getCode() == Helper.SUCCESS) {
                     fpswView.showMessage(response.body().getData());
                 } else if (response.body().getStatus().getCode() == Helper.NO_USER){
@@ -117,7 +116,7 @@ public class FpswPresenter {
 
             @Override
             public void onFailure(Call<MyResponse<String>> call, Throwable t) {
-                Log.i("Test",call.request().url().toString());
+                t.printStackTrace();
                 fpswView.showProgress(false);
                 fpswView.showMessage("网络连接错误");
                 fpswView.cancelGetVerCode();
